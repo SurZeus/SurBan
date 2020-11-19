@@ -1,3 +1,4 @@
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Graphics;
@@ -46,6 +47,8 @@ import javax.swing.JProgressBar;
 import javax.swing.border.MatteBorder;
 
 import org.pushingpixels.substance.api.skin.SubstanceGraphiteLookAndFeel;
+
+import dependencies.ClickableProgressBar;
 
 /*import org.pushingpixels.substance.api.SubstanceLookAndFeel;
 import org.pushingpixels.substance.api.skin.GraphiteGlassSkin;

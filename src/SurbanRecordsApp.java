@@ -1,3 +1,4 @@
+import dependencies.*;
 import java.awt.EventQueue;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -36,6 +37,12 @@ import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.event.ChangeListener;
+
+import dependencies.ImagePanel;
+import dependencies.Mysql;
+import dependencies.RoundedBorder;
+import dependencies.TransparentPanel;
+
 import javax.swing.event.ChangeEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;

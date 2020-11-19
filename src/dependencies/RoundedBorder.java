@@ -1,3 +1,4 @@
+package dependencies;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Insets;
@@ -9,7 +10,7 @@ public class RoundedBorder implements Border {
     private int radius;
 
 
-    RoundedBorder(int radius) {
+    public RoundedBorder(int radius) {
         this.radius = radius;
     }
 
