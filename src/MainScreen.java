@@ -108,7 +108,7 @@ public class MainScreen extends JFrame {
 	 * @throws FontFormatException 
 	 */
 	public MainScreen() throws FontFormatException, IOException {
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\winte\\Downloads\\logoph.png"));
+		
 		setResizable(false);
 		setTitle("SurBan Studio");
 		MainScreen.setDefaultLookAndFeelDecorated(true);
@@ -119,13 +119,13 @@ public class MainScreen extends JFrame {
 		
 		  public void paintComponent(Graphics g) { Image img =
 		 Toolkit.getDefaultToolkit().getImage(
-		  MainScreen.class.getResource("/rwd.jpg")); g.drawImage(img, 0,
+		  MainScreen.class.getResource("/img/rwd.jpg")); g.drawImage(img, 0,
 		  0, this.getWidth(), this.getHeight(), this); }
 		  
 		 
 		  };
 		 
-		BufferedImage myPicture = ImageIO.read(this.getClass().getResource("/maxresdefault.jpg"));
+		BufferedImage myPicture = ImageIO.read(this.getClass().getResource("/img/maxresdefault.jpg"));
 		contentPane.setRequestFocusEnabled(false);
 		contentPane.setFocusable(false);
 		contentPane.setForeground(SystemColor.activeCaptionBorder);
@@ -161,26 +161,26 @@ public class MainScreen extends JFrame {
 		
 		JLabel lblNewLabel_2_1 = new JLabel("");
 		lblNewLabel_2_1.setBounds(50, 12, 16, 16);
-		lblNewLabel_2_1.setIcon(new ImageIcon("C:\\Users\\winte\\Documents\\oyszne\\iconmonstr-media-control-42-16.png"));
+		lblNewLabel_2_1.setIcon(new ImageIcon(MainScreen.class.getResource("/img/iconmonstr-media-control-42-16.png")));
 		ButtonsPanelButtons.add(lblNewLabel_2_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setBounds(82, 12, 16, 16);
-		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\winte\\Documents\\oyszne\\iconmonstr-media-control-52-16.png"));
+		lblNewLabel_2.setIcon(new ImageIcon(MainScreen.class.getResource("/img/iconmonstr-media-control-52-16.png")));
 		ButtonsPanelButtons.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(114, 4, 32, 32);
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\winte\\Documents\\oyszne\\iconmonstr-media-control-4-32.png"));
+		lblNewLabel.setIcon(new ImageIcon(MainScreen.class.getResource("/img/iconmonstr-media-control-4-32.png")));
 		ButtonsPanelButtons.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(162, 12, 16, 16);
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\winte\\Documents\\oyszne\\iconmonstr-media-control-53-16.png"));
+		lblNewLabel_1.setIcon(new ImageIcon(MainScreen.class.getResource("/img/iconmonstr-media-control-53-16.png")));
 		ButtonsPanelButtons.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("");
-		lblNewLabel_1_1.setIcon(new ImageIcon("C:\\Users\\winte\\Documents\\oyszne\\iconmonstr-media-control-39-16.png"));
+		lblNewLabel_1_1.setIcon(new ImageIcon(MainScreen.class.getResource("/img/iconmonstr-media-control-39-16.png")));
 		lblNewLabel_1_1.setBounds(194, 12, 16, 16);
 		ButtonsPanelButtons.add(lblNewLabel_1_1);
 		
@@ -193,7 +193,7 @@ public class MainScreen extends JFrame {
 		
 		JLabel CoverLabel = new JLabel("");
 		CoverLabel.setBounds(10, 0, 60, 60);
-		CoverLabel.setIcon(new ImageIcon(new ImageIcon("C:\\Users\\winte\\Documents\\oyszne\\acdc.jpg").getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT)));
+		CoverLabel.setIcon(new ImageIcon(MainScreen.class.getResource("/img/acdc.jpg")));
 		
 		CurrentSongInfo.add(CoverLabel);
 		
@@ -213,7 +213,7 @@ public class MainScreen extends JFrame {
 		JLabel lblNewLabel_4 = new JLabel("");
 		lblNewLabel_4.setBounds(258, 11, 16, 16);
 		CurrentSongInfo.add(lblNewLabel_4);
-		lblNewLabel_4.setIcon(new ImageIcon("C:\\Users\\winte\\Documents\\oyszne\\favIcon2.png"));
+		lblNewLabel_4.setIcon(new ImageIcon(MainScreen.class.getResource("/img/favIcon2.png")));
 		
 		JLabel lblNewLabel_10 = new JLabel("New label");
 		lblNewLabel_10.setBounds(10, 37, 46, 14);
@@ -279,18 +279,18 @@ public class MainScreen extends JFrame {
 		lblNewLabel_8.setToolTipText("Previous Album");
 		lblNewLabel_8.setBounds(23, 25, 16, 16);
 		RandomAlbumPanel.add(lblNewLabel_8);
-		lblNewLabel_8.setIcon(new ImageIcon("C:\\Users\\winte\\Documents\\oyszne\\next.png"));
+		lblNewLabel_8.setIcon(new ImageIcon(MainScreen.class.getResource("/img/next.png")));
 		
 		JLabel PlayRandom = new JLabel("");
 		PlayRandom.setToolTipText("AlbumCover");
 		PlayRandom.setHorizontalAlignment(SwingConstants.CENTER);
 		PlayRandom.setBounds(52, 0, 64, 64);
 		RandomAlbumPanel.add(PlayRandom);
-		PlayRandom.setIcon(new ImageIcon(new ImageIcon("C:\\Users\\winte\\Documents\\oyszne\\acdc.jpg").getImage().getScaledInstance(69, 69, Image.SCALE_DEFAULT)));
+		PlayRandom.setIcon(new ImageIcon(MainScreen.class.getResource("/img/acdc.jpg")));
 		
 		JLabel lblNewLabel_8_1 = new JLabel("");
 		lblNewLabel_8_1.setToolTipText("Next Album");
-		lblNewLabel_8_1.setIcon(new ImageIcon("C:\\Users\\winte\\Documents\\oyszne\\next1.png"));
+		lblNewLabel_8_1.setIcon(new ImageIcon(MainScreen.class.getResource("/img/next1.png")));
 		lblNewLabel_8_1.setBounds(129, 25, 16, 16);
 		RandomAlbumPanel.add(lblNewLabel_8_1);
 		
@@ -316,7 +316,7 @@ public class MainScreen extends JFrame {
 			Home_Button.setLayout(null);
 			
 			JLabel lblNewLabel_7 = new JLabel("");
-			lblNewLabel_7.setIcon(new ImageIcon("C:\\Users\\winte\\Documents\\oyszne\\home1.png"));
+			lblNewLabel_7.setIcon(new ImageIcon(MainScreen.class.getResource("/img/home1.png")));
 			lblNewLabel_7.setBounds(10, 13, 24, 24);
 			Home_Button.add(lblNewLabel_7);
 			
@@ -334,7 +334,7 @@ public class MainScreen extends JFrame {
 			Songs_Button.setBackground(new Color(36, 36, 36));
 			
 			JLabel lblNewLabel_7_1_1 = new JLabel("");
-			lblNewLabel_7_1_1.setIcon(new ImageIcon("C:\\Users\\winte\\Documents\\oyszne\\playbt.png"));
+			lblNewLabel_7_1_1.setIcon(new ImageIcon(MainScreen.class.getResource("/img/playbt.png")));
 			lblNewLabel_7_1_1.setBounds(9, 13, 24, 24);
 			Songs_Button.add(lblNewLabel_7_1_1);
 			
@@ -352,7 +352,7 @@ public class MainScreen extends JFrame {
 			Albums_Buttom.setBackground(new Color(36, 36, 36));
 			
 			JLabel lblNewLabel_7_1 = new JLabel("");
-			lblNewLabel_7_1.setIcon(new ImageIcon("C:\\Users\\winte\\Documents\\oyszne\\songs.png"));
+			lblNewLabel_7_1.setIcon(new ImageIcon(MainScreen.class.getResource("/img/songs.png")));
 			lblNewLabel_7_1.setBounds(9, 13, 24, 24);
 			Albums_Buttom.add(lblNewLabel_7_1);
 			
@@ -370,7 +370,7 @@ public class MainScreen extends JFrame {
 			panel_1.add(Albums_Buttom_1);
 			
 			JLabel lblNewLabel_7_1_2 = new JLabel("");
-			lblNewLabel_7_1_2.setIcon(new ImageIcon("C:\\Users\\winte\\Documents\\oyszne\\iconmonstr-text-27-32.png"));
+			lblNewLabel_7_1_2.setIcon(new ImageIcon(MainScreen.class.getResource("/img/iconmonstr-text-27-32.png")));
 			lblNewLabel_7_1_2.setBounds(9, 13, 24, 24);
 			Albums_Buttom_1.add(lblNewLabel_7_1_2);
 			
@@ -394,7 +394,7 @@ public class MainScreen extends JFrame {
 			contentPane.add(TopMenu_1);
 			
 			JLabel lblNewLabel_5_1 = new JLabel("");
-			lblNewLabel_5_1.setIcon(new ImageIcon("C:\\Users\\winte\\Documents\\oyszne\\menu.png"));
+			lblNewLabel_5_1.setIcon(new ImageIcon(MainScreen.class.getResource("/img/menu.png")));
 			lblNewLabel_5_1.setBounds(72, 3, 24, 24);
 			TopMenu_1.add(lblNewLabel_5_1);
 			
@@ -405,7 +405,7 @@ public class MainScreen extends JFrame {
 			contentPane.add(TopMenu_1_1);
 			
 			JLabel lblNewLabel_5_1_1_1 = new JLabel("");
-			lblNewLabel_5_1_1_1.setIcon(new ImageIcon("C:\\Users\\winte\\Documents\\oyszne\\lside.png"));
+			lblNewLabel_5_1_1_1.setIcon(new ImageIcon(MainScreen.class.getResource("/img/logoph.png")));
 			lblNewLabel_5_1_1_1.setBounds(72, 3, 24, 24);
 			TopMenu_1_1.add(lblNewLabel_5_1_1_1);
 			
@@ -510,7 +510,7 @@ public class MainScreen extends JFrame {
 			SongDetails_1.add(separator_1_1, gbc_separator_1_1);
 			
 			JLabel lblNewLabel_4_1 = new JLabel("");
-			lblNewLabel_4_1.setIcon(new ImageIcon("C:\\Users\\winte\\Documents\\oyszne\\favIcon2.png"));
+			lblNewLabel_4_1.setIcon(new ImageIcon(MainScreen.class.getResource("/img/favIcon2.png")));
 			GridBagConstraints gbc_lblNewLabel_4_1 = new GridBagConstraints();
 			gbc_lblNewLabel_4_1.insets = new Insets(0, 0, 5, 5);
 			gbc_lblNewLabel_4_1.gridx = 0;
@@ -518,7 +518,7 @@ public class MainScreen extends JFrame {
 			SongDetails_1.add(lblNewLabel_4_1, gbc_lblNewLabel_4_1);
 			
 			JLabel lblNewLabel_5 = new JLabel("");
-			lblNewLabel_5.setIcon(new ImageIcon(new ImageIcon("C:\\Users\\winte\\Documents\\oyszne\\acdc.jpg").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
+			lblNewLabel_5.setIcon(new ImageIcon(MainScreen.class.getResource("/img/acdc.jpg")));
 			GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
 			gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 5);
 			gbc_lblNewLabel_5.gridx = 1;
@@ -567,7 +567,7 @@ public class MainScreen extends JFrame {
 			SongDetails_1.add(separator, gbc_separator);
 			
 			JLabel lblNewLabel_4_1_1 = new JLabel("");
-			lblNewLabel_4_1_1.setIcon(new ImageIcon("C:\\Users\\winte\\Documents\\oyszne\\favIcon2.png"));
+			lblNewLabel_4_1_1.setIcon(new ImageIcon(MainScreen.class.getResource("/img/favIcon2.png")));
 			GridBagConstraints gbc_lblNewLabel_4_1_1 = new GridBagConstraints();
 			gbc_lblNewLabel_4_1_1.insets = new Insets(0, 0, 5, 5);
 			gbc_lblNewLabel_4_1_1.gridx = 0;
@@ -575,7 +575,7 @@ public class MainScreen extends JFrame {
 			SongDetails_1.add(lblNewLabel_4_1_1, gbc_lblNewLabel_4_1_1);
 			
 			JLabel lblNewLabel_5_2 = new JLabel("");
-			lblNewLabel_5_2.setIcon(new ImageIcon(new ImageIcon("C:\\Users\\winte\\Documents\\oyszne\\350x350.jpg").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
+			lblNewLabel_5_2.setIcon(new ImageIcon(MainScreen.class.getResource("/img/350x350.jpg")));
 			GridBagConstraints gbc_lblNewLabel_5_2 = new GridBagConstraints();
 			gbc_lblNewLabel_5_2.insets = new Insets(0, 0, 5, 5);
 			gbc_lblNewLabel_5_2.gridx = 1;
@@ -625,7 +625,7 @@ public class MainScreen extends JFrame {
 			SongDetails_1.add(separator_1, gbc_separator_1);
 			
 			JLabel lblNewLabel_4_1_2 = new JLabel("");
-			lblNewLabel_4_1_2.setIcon(new ImageIcon("C:\\Users\\winte\\Documents\\oyszne\\favIcon2.png"));
+			lblNewLabel_4_1_2.setIcon(new ImageIcon(MainScreen.class.getResource("/img/favIcon2.png")));
 			GridBagConstraints gbc_lblNewLabel_4_1_2 = new GridBagConstraints();
 			gbc_lblNewLabel_4_1_2.insets = new Insets(0, 0, 5, 5);
 			gbc_lblNewLabel_4_1_2.gridx = 0;
@@ -634,7 +634,7 @@ public class MainScreen extends JFrame {
 			
 			JLabel lblNewLabel_5_2_1 = new JLabel("");
 		
-			lblNewLabel_5_2_1.setIcon(new ImageIcon(new ImageIcon("C:\\Users\\winte\\Documents\\oyszne\\R-4125665-1562874043-9309.jpeg.jpg").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT)));
+			lblNewLabel_5_2_1.setIcon(new ImageIcon(MainScreen.class.getResource("/img/R-4125665-1562874043-9309.jpeg.jpg")));
 			GridBagConstraints gbc_lblNewLabel_5_2_1 = new GridBagConstraints();
 			gbc_lblNewLabel_5_2_1.insets = new Insets(0, 0, 5, 5);
 			gbc_lblNewLabel_5_2_1.gridx = 1;
@@ -690,7 +690,7 @@ public class MainScreen extends JFrame {
 		
 			
 			
-		Image img = new ImageIcon(this.getClass().getResource("/mainbg2.jpg")).getImage();
+		Image img = new ImageIcon(this.getClass().getResource("/img/mainbg2.jpg")).getImage();
 		
 		
 	}
