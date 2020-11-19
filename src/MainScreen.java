@@ -545,7 +545,7 @@ public class MainScreen extends JFrame {
 			lblUtwory_1_2_2_1.setForeground(Color.LIGHT_GRAY);
 			lblUtwory_1_2_2_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 			
-			JLabel lblUtwory_1_2_2_1_1 = new JLabel("3:00");
+			JLabel lblUtwory_1_2_2_1_1 = new JLabel("2:30");
 			lblUtwory_1_2_2_1_1.setHorizontalAlignment(SwingConstants.CENTER);
 			lblUtwory_1_2_2_1_1.setForeground(Color.WHITE);
 			lblUtwory_1_2_2_1_1.setFont(new Font("Tahoma", Font.BOLD, 14));
