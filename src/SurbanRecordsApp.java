@@ -90,7 +90,7 @@ public class SurbanRecordsApp {
 		
 		ImagePanel backgroundImage = new ImagePanel();
 		backgroundImage.setOpaque(false);
-		backgroundImage.setImage(Toolkit.getDefaultToolkit().getImage(SurbanRecordsApp.class.getResource("/image/logoimage.jpg")));
+		backgroundImage.setImage(Toolkit.getDefaultToolkit().getImage(SurbanRecordsApp.class.getResource("/img/logoimage.jpg")));
 		backgroundImage.setBounds(0, 0, 994, 629);
 		frame.getContentPane().add(backgroundImage);
 		backgroundImage.setLayout(null);
