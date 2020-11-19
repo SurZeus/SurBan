@@ -110,7 +110,7 @@ public class MainScreen extends JFrame {
 	public MainScreen() throws FontFormatException, IOException {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\winte\\Downloads\\logoph.png"));
 		setResizable(false);
-		setTitle("SurBan Records");
+		setTitle("SurBan Studio");
 		MainScreen.setDefaultLookAndFeelDecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1236, 633);
