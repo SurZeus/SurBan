@@ -166,8 +166,10 @@ public class SurbanRecordsApp {
 				String login = loginRegister.getText();
 				String haslo = String.valueOf(passwordRegister.getPassword());
 				String email = emailRegister.getText(); 
-				
-				if(Arrays.equals(passwordRegister.getPassword(),passwordRRegister.getPassword()))
+				if (login.isEmpty() || haslo.isEmpty() || email.isEmpty()) {
+					showMessageDialog(null, "Nie wype³ni³eœ wszystkich danych");
+				}
+				else if(Arrays.equals(passwordRegister.getPassword(),passwordRRegister.getPassword()))
 	            {
 					try {
 						baza.podajDane(login, haslo, email);
