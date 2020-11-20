@@ -520,14 +520,6 @@ public class MainScreen extends JFrame {
 			gbc_lblNewLabel_4_1.gridy = 1;
 			SongDetails_1.add(lblNewLabel_4_1, gbc_lblNewLabel_4_1);
 			
-			JLabel lblNewLabel_5 = new JLabel("");
-			lblNewLabel_5.setIcon(new ImageIcon(MainScreen.class.getResource("/img/acdc.jpg")));
-			GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
-			gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 5);
-			gbc_lblNewLabel_5.gridx = 1;
-			gbc_lblNewLabel_5.gridy = 1;
-			SongDetails_1.add(lblNewLabel_5, gbc_lblNewLabel_5);
-			
 			JLabel lblUtwory_1_2_2_1_2 = new JLabel("Shook Me All Night Long");
 			lblUtwory_1_2_2_1_2.setHorizontalAlignment(SwingConstants.CENTER);
 			lblUtwory_1_2_2_1_2.setForeground(Color.LIGHT_GRAY);
