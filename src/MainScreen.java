@@ -68,7 +68,7 @@ import java.awt.Insets;
 import javax.swing.border.CompoundBorder;
 import javax.swing.JSeparator;
 import java.awt.Window.Type;
-
+//xD
 public class MainScreen extends JFrame {
 //xD2master
 	private JPanel contentPane;
