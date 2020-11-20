@@ -70,7 +70,7 @@ import javax.swing.JSeparator;
 import java.awt.Window.Type;
 
 public class MainScreen extends JFrame {
-
+//xD2master
 	private JPanel contentPane;
 
 	/**
