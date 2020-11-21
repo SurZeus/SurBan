@@ -265,6 +265,10 @@ public class MainScreen2 extends JFrame {
 		lblNewLabel_1_1_1.setBounds(62, 12, 22, 16);
 		VolumeControlPanel.add(lblNewLabel_1_1_1);
 		
+		JScrollPane scrollPane_2 = new JScrollPane();
+		scrollPane_2.setBounds(281, 71, 115, -53);
+		BottomInterface.add(scrollPane_2);
+		
 		JPanel SideBar = new JPanel();
 		SideBar.setBounds(0, 30, 191, 490);
 		SideBar.setBackground(new Color(255, 255, 255,0));

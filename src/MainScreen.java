@@ -45,6 +45,8 @@ import javax.swing.JScrollBar;
 import javax.swing.JComboBox;
 import javax.swing.JProgressBar;
 import javax.swing.border.MatteBorder;
+import javax.swing.plaf.ColorUIResource;
+import javax.swing.plaf.basic.BasicScrollBarUI;
 
 import org.pushingpixels.substance.api.skin.SubstanceGraphiteLookAndFeel;
 
@@ -65,10 +67,17 @@ import java.awt.Rectangle;
 import javax.swing.JList;
 import javax.swing.JTable;
 import java.awt.Insets;
+
+import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.JSeparator;
 import java.awt.Window.Type;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.Scrollbar;
+import java.awt.TextField;
+import dependencies.RoundedJTextField;
 //xD
 public class MainScreen extends JFrame {
 //xD2master
@@ -77,6 +86,8 @@ public class MainScreen extends JFrame {
 	/**
 	 * Launch the application.
 	 */
+	static int IsPlayButton =1;
+	static int IsButtonWhite =0; //0 = grey/1 = whiter
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -87,14 +98,14 @@ public class MainScreen extends JFrame {
 					MainScreen frame = new MainScreen();
 					frame.setVisible(true);
 
-				
+			
 				
 
 
 					 
 					 
 					 
-					UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+				UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 
 					SwingUtilities.updateComponentTreeUI(frame);
 					
@@ -112,6 +123,7 @@ public class MainScreen extends JFrame {
 	 * @throws FontFormatException 
 	 */
 	public MainScreen() throws FontFormatException, IOException {
+		
 		setMinimumSize(new Dimension(700, 400));
 		setTitle("SurBan Studio");
 		MainScreen.setDefaultLookAndFeelDecorated(true);
@@ -121,15 +133,27 @@ public class MainScreen extends JFrame {
 		this.setLocationRelativeTo(null);
 		contentPane = new JPanel() {
 		
-		  public void paintComponent(Graphics g) { Image img =
-		 Toolkit.getDefaultToolkit().getImage(
+		  public void paintComponent(Graphics g)
+		  {
+			  
+		 Image img = Toolkit.getDefaultToolkit().getImage(
 		  MainScreen.class.getResource("/img/rwd.jpg")); g.drawImage(img, 0,
-		  0, this.getWidth(), this.getHeight(), this); }
+		  0, this.getWidth(), this.getHeight(), this);
+	
+		  /*g.setColor( getBackground() );
+		  g.fillRect(0, 0, getWidth(), getHeight());
+		  super.paintComponent(g);*/
+		    
+		};
 		  
 		 
+		  
+		  
+			   
 		  };
+		contentPane.setOpaque(false);
 		 
-		BufferedImage myPicture = ImageIO.read(this.getClass().getResource("/img/maxresdefault.jpg"));
+		BufferedImage myPicture = ImageIO.read(this.getClass().getResource("/img/rwd.jpg"));
 		contentPane.setRequestFocusEnabled(false);
 		contentPane.setFocusable(false);
 		contentPane.setForeground(SystemColor.activeCaptionBorder);
@@ -137,7 +161,7 @@ public class MainScreen extends JFrame {
 		
 		
 		
-		contentPane.setBackground(Color.DARK_GRAY);
+		contentPane.setBackground(new Color(30,30,30));
 		contentPane.setBorder(null);
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
@@ -148,15 +172,56 @@ public class MainScreen extends JFrame {
 		contentPane.setLayout(gbl_contentPane);
 		
 		JPanel TopCenterPanel = new JPanel();
+		TopCenterPanel.setBorder(null);
 		TopCenterPanel.setBackground(new Color(40,40,40));
 		GridBagConstraints gbc_TopCenterPanel = new GridBagConstraints();
 		gbc_TopCenterPanel.fill = GridBagConstraints.BOTH;
 		gbc_TopCenterPanel.gridx = 0;
 		gbc_TopCenterPanel.gridy = 0;
 		contentPane.add(TopCenterPanel, gbc_TopCenterPanel);
+		GridBagLayout gbl_TopCenterPanel = new GridBagLayout();
+		gbl_TopCenterPanel.columnWidths = new int[]{372, 795, 0};
+		gbl_TopCenterPanel.rowHeights = new int[]{33, 0};
+		gbl_TopCenterPanel.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
+		gbl_TopCenterPanel.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		TopCenterPanel.setLayout(gbl_TopCenterPanel);
 		
-		JPanel CenterContent = new JPanel();
-		CenterContent.setBackground(new Color(40,40,40,100));
+		JLabel lblNewLabel_5 = new JLabel("");
+		lblNewLabel_5.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+			}
+		});
+		
+		RoundedJTextField rndjtxtfldWyszukaj = new RoundedJTextField(0);
+		rndjtxtfldWyszukaj.setForeground(Color.GRAY);
+		rndjtxtfldWyszukaj.setFont(new Font("Tahoma", Font.BOLD, 14));
+		rndjtxtfldWyszukaj.setHorizontalAlignment(SwingConstants.LEFT);
+		rndjtxtfldWyszukaj.setText("Wyszukaj");
+		GridBagConstraints gbc_rndjtxtfldWyszukaj = new GridBagConstraints();
+		gbc_rndjtxtfldWyszukaj.fill = GridBagConstraints.HORIZONTAL;
+		gbc_rndjtxtfldWyszukaj.insets = new Insets(0, 200, 0, 0);
+		gbc_rndjtxtfldWyszukaj.gridx = 0;
+		gbc_rndjtxtfldWyszukaj.gridy = 0;
+		TopCenterPanel.add(rndjtxtfldWyszukaj, gbc_rndjtxtfldWyszukaj);
+		lblNewLabel_5.setIcon(new ImageIcon(MainScreen.class.getResource("/img/menu.png")));
+		GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
+		gbc_lblNewLabel_5.insets = new Insets(0, 0, 0, 20);
+		gbc_lblNewLabel_5.anchor = GridBagConstraints.NORTHEAST;
+		gbc_lblNewLabel_5.gridx = 1;
+		gbc_lblNewLabel_5.gridy = 0;
+		TopCenterPanel.add(lblNewLabel_5, gbc_lblNewLabel_5);
+		
+		JPanel CenterContent = new JPanel(); 
+		 /*protected void paintComponent(Graphics g)
+		    {
+		        g.setColor( getBackground() );
+		        g.fillRect(0, 0, getWidth(), getHeight());
+		        super.paintComponent(g);
+		    }
+		};*/
+		CenterContent.setOpaque(false);
+		CenterContent.setBackground(new Color(40,40,40));
 		GridBagConstraints gbc_CenterContent = new GridBagConstraints();
 		gbc_CenterContent.fill = GridBagConstraints.BOTH;
 		gbc_CenterContent.gridx = 0;
@@ -170,8 +235,10 @@ public class MainScreen extends JFrame {
 		CenterContent.setLayout(gbl_CenterContent);
 		
 		JPanel panel_6 = new JPanel();
+		panel_6.setOpaque(false);
 		panel_6.setBorder(null);
 		GridBagConstraints gbc_panel_6 = new GridBagConstraints();
+		gbc_panel_6.insets = new Insets(0, 0, 0, 5);
 		panel_6.setBackground(new Color(36,36,36));
 		gbc_panel_6.fill = GridBagConstraints.BOTH;
 		gbc_panel_6.gridx = 0;
@@ -191,7 +258,7 @@ public class MainScreen extends JFrame {
 		gbc_panel_7.gridy = 0;
 		panel_6.add(panel_7, gbc_panel_7);
 		panel_7.setBorder(null);
-		panel_7.setBackground(new Color(31,31,31));
+		panel_7.setBackground(new Color(20,20,20));
 		panel_7.setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
@@ -208,20 +275,27 @@ public class MainScreen extends JFrame {
 		label.setIcon(new ImageIcon(MainScreen.class.getResource("/img/next1.png")));
 		label.setBounds(130, 26, 16, 16);
 		panel_7.add(label);
-		
+		UIManager.put("ScrollBar.thumb", new ColorUIResource(Color.RED));
+	
 		JScrollPane scrollPane = new JScrollPane();
+	
+
+		scrollPane.getVerticalScrollBar().setUI(new BasicScrollBarUI() );
+		scrollPane.getHorizontalScrollBar().setUI(new BasicScrollBarUI());
+
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.gridx = 0;
 		gbc_scrollPane.gridy = 1;
 		panel_6.add(scrollPane, gbc_scrollPane);
 		scrollPane.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		scrollPane.setBorder(null);
+		scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
 		
 		JPanel panel_8 = new JPanel();
-		panel_8.setBackground(new Color(31,31,31));
+		panel_8.setBackground(new Color(20,20,20));
 		panel_8.setBorder(null);
 		panel_8.setPreferredSize(new Dimension(10, 1000));
 		scrollPane.setViewportView(panel_8);
@@ -296,18 +370,22 @@ public class MainScreen extends JFrame {
 		gbc_lblPlaylisty.gridy = 3;
 		panel_8.add(lblPlaylisty, gbc_lblPlaylisty);
 		
-		JPanel panel_5 = new JPanel();
-		panel_5.setLayout(null);
+		JPanel panel_5 = new JPanel(){
+		    protected void paintComponent(Graphics g)
+		    {
+		        g.setColor( getBackground() );
+		        g.fillRect(0, 0, getWidth(), getHeight());
+		        super.paintComponent(g);
+		    }
+		};
+		panel_5.setOpaque(false);
 		GridBagConstraints gbc_panel_5 = new GridBagConstraints();
 		gbc_panel_5.fill = GridBagConstraints.BOTH;
 		gbc_panel_5.gridx = 1;
 		gbc_panel_5.gridy = 0;
+	panel_5.setBackground(new Color(40,40,40,200));
 		CenterContent.add(panel_5, gbc_panel_5);
-		
-		JPanel panel_9 = new JPanel();
-		panel_9.setBounds(187, 5, 182, 306);
-		panel_5.add(panel_9);
-		panel_9.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+	
 		JPanel BottomUI = new JPanel();
 		BottomUI.setBackground(new Color(40,40,40));
 		GridBagConstraints gbc_BottomUI = new GridBagConstraints();
@@ -386,26 +464,104 @@ public class MainScreen extends JFrame {
 		
 		
 		JLabel RandomButton = new JLabel("");
+		RandomButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				RandomButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/randomWhite.png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				RandomButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/randomGray.png")));
+			}
+		});
 		panel_4.add(RandomButton);
-		RandomButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/iconmonstr-media-control-42-16.png")));
+		RandomButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/randomGray.png")));
 		
 		JLabel PrevButton = new JLabel("");
+		PrevButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				PrevButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/previousWhite.png")));
+			};
+			@Override
+			public void mouseExited(MouseEvent e) {
+				PrevButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/previouseGray.png")));
+			}
+		});
 		panel_4.add(PrevButton);
-		PrevButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/iconmonstr-media-control-52-16.png")));
+		PrevButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/previouseGray.png")));
 		
 		JLabel PlayButton = new JLabel("");
+		PlayButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/playGray32.png")));
+		PlayButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				IsButtonWhite = 1;
+				if(IsPlayButton == 1) {
+					PlayButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/playWhite32.png")));
+					
+				}
+				else if(IsPlayButton == 0) {
+					PlayButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/pauseWhite32.png")));
+					
+				}
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if( IsPlayButton ==1) {
+					PlayButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/pauseWhite32.png")));
+					IsPlayButton = 0;
+				}
+				else {
+					PlayButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/playWhite32.png")));
+					IsPlayButton = 1;
+				}
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				IsButtonWhite =0;
+				if(IsPlayButton ==1) {
+					PlayButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/playGray32.png")));
+				}
+				else {
+					PlayButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/pauseGray32.png")));
+				}
+			}
+		});
+		
 		panel_4.add(PlayButton);
 		PlayButton.setHorizontalAlignment(SwingConstants.CENTER);
-		PlayButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/iconmonstr-media-control-4-32.png")));
+	
 		
 		
 		JLabel NextButton = new JLabel("");
+		NextButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				NextButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/nextWhite.png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				NextButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/nextGray.png")));
+			}
+		});
 		panel_4.add(NextButton);
-		NextButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/iconmonstr-media-control-53-16.png")));
+		NextButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/nextGray.png")));
 		
 		JLabel LoopButton = new JLabel("");
+		LoopButton.addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				LoopButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/loopWhite.png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				LoopButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/loopGray.png")));
+			}
+		});
 		panel_4.add(LoopButton);
-		LoopButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/iconmonstr-media-control-39-16.png")));
+		LoopButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/loopGray.png")));
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setMinimumSize(new Dimension(10, 7));
@@ -419,8 +575,8 @@ public class MainScreen extends JFrame {
 		panel_3.setLayout(new BorderLayout(0, 0));
 		
 		ClickableProgressBar progressBar = new ClickableProgressBar();
+		progressBar.setEnabled(false);
 		progressBar.setPreferredSize(new Dimension(139, 6));
-		progressBar.setBorderPainted(false);
 		progressBar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		progressBar.setMinimumSize(new Dimension(10, 2));
 		panel_3.add(progressBar);
@@ -438,10 +594,30 @@ public class MainScreen extends JFrame {
 		JPanel panel_2 = new JPanel();
 		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
 		panel_2.setBackground(new Color(40,40,40));
+		panel_2.setLayout(null);
 		gbc_panel_2.fill = GridBagConstraints.BOTH;
 		gbc_panel_2.gridx = 2;
 		gbc_panel_2.gridy = 0;
 		BottomUI.add(panel_2, gbc_panel_2);
+		
+		JLabel lblNewLabel_6 = new JLabel("");
+		lblNewLabel_6.setBounds(42, 31, 16, 16);
+		lblNewLabel_6.setIcon(new ImageIcon(MainScreen.class.getResource("/img/volumeMute.png")));
+		panel_2.add(lblNewLabel_6);
+		
+		ClickableProgressBar clickableProgressBar = new ClickableProgressBar();
+		clickableProgressBar.setValue(50);
+		clickableProgressBar.setStringPainted(true);
+		clickableProgressBar.setString("");
+		clickableProgressBar.setPreferredSize(new Dimension(139, 6));
+		clickableProgressBar.setMinimumSize(new Dimension(10, 2));
+		clickableProgressBar.setForeground(SystemColor.controlDkShadow);
+		clickableProgressBar.setFocusable(false);
+		clickableProgressBar.setBorderPainted(false);
+		clickableProgressBar.setBorder(null);
+		clickableProgressBar.setBackground(new Color(179, 179, 179));
+		clickableProgressBar.setBounds(69, 38, 100, 6);
+		panel_2.add(clickableProgressBar);
 			
 			
 		
@@ -452,7 +628,7 @@ public class MainScreen extends JFrame {
 			
 			
 		Image img = new ImageIcon(this.getClass().getResource("/img/mainbg2.jpg")).getImage();
-		
+	
 		
 	}
 }
