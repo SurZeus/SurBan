@@ -7,9 +7,9 @@ import java.sql.SQLException;
 public class Checklogin {
 
 
-	private Connection connect=null;//uchwyt do polaczenia z baza
-	private Statement statement=null;//tu bedzie trzymane zapytanie SELECT
-	private ResultSet resultSet=null;//tu bedzie trzymany wynik tego zapytania
+	private Connection connect=null;
+	private Statement statement=null;
+	private ResultSet resultSet=null;
 	
 
 	private String user="surb";
