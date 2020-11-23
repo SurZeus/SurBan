@@ -82,40 +82,14 @@ import dependencies.RoundedJTextField;
 public class MainScreen extends JFrame {
 //xD2master
 	private JPanel contentPane;
-
+	public static String UserLogin;
+	public static JLabel lblUsername;
 	/**
 	 * Launch the application.
 	 */
 	static int IsPlayButton =1;
 	static int IsButtonWhite =0; //0 = grey/1 = whiter
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					
-				
-					//UIManager.setLookAndFeel(new SubstanceGraphiteLookAndFeel());
-					MainScreen frame = new MainScreen();
-					frame.setVisible(true);
 
-			
-				
-
-
-					 
-					 
-					 
-				UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-
-					SwingUtilities.updateComponentTreeUI(frame);
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		
-	}
 
 	/**
 	 * Create the frame.
@@ -180,10 +154,10 @@ public class MainScreen extends JFrame {
 		gbc_TopCenterPanel.gridy = 0;
 		contentPane.add(TopCenterPanel, gbc_TopCenterPanel);
 		GridBagLayout gbl_TopCenterPanel = new GridBagLayout();
-		gbl_TopCenterPanel.columnWidths = new int[]{16, 157, 130, 795, 0};
+		gbl_TopCenterPanel.columnWidths = new int[]{16, 207, 271, 309, 164, 0};
 		gbl_TopCenterPanel.rowHeights = new int[]{33, 0};
-		gbl_TopCenterPanel.columnWeights = new double[]{0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_TopCenterPanel.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		gbl_TopCenterPanel.columnWeights = new double[]{0.0, 0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_TopCenterPanel.rowWeights = new double[]{1.0, Double.MIN_VALUE};
 		TopCenterPanel.setLayout(gbl_TopCenterPanel);
 		
 		JLabel lblNewLabel_5 = new JLabel("");
@@ -204,11 +178,25 @@ public class MainScreen extends JFrame {
 		rndjtxtfldWyszukaj.setFont(new Font("Tahoma", Font.BOLD, 14));
 		rndjtxtfldWyszukaj.setHorizontalAlignment(SwingConstants.LEFT);
 		rndjtxtfldWyszukaj.setText("Wyszukaj");
+		
+		JPanel panel_11 = new JPanel();
+		GridBagConstraints gbc_panel_11 = new GridBagConstraints();
+		gbc_panel_11.fill = GridBagConstraints.BOTH;
+		gbc_panel_11.gridx = 3;
+		gbc_panel_11.gridy = 0;
+		panel_11.setBackground(new Color(36,36,36));
+		TopCenterPanel.add(panel_11, gbc_panel_11);
+		
+		lblUsername = new JLabel();
+		lblUsername.setForeground(Color.WHITE);
+		lblUsername.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblUsername.setBackground(Color.WHITE);
+		panel_11.add(lblUsername);
 		lblNewLabel_5.setIcon(new ImageIcon(MainScreen.class.getResource("/img/menu.png")));
 		GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
 		gbc_lblNewLabel_5.insets = new Insets(0, 0, 0, 20);
 		gbc_lblNewLabel_5.anchor = GridBagConstraints.NORTHEAST;
-		gbc_lblNewLabel_5.gridx = 3;
+		gbc_lblNewLabel_5.gridx = 4;
 		gbc_lblNewLabel_5.gridy = 0;
 		TopCenterPanel.add(lblNewLabel_5, gbc_lblNewLabel_5);
 		
@@ -316,11 +304,107 @@ public class MainScreen extends JFrame {
 		panel_8.setPreferredSize(new Dimension(10, 1000));
 		scrollPane.setViewportView(panel_8);
 		GridBagLayout gbl_panel_8 = new GridBagLayout();
-		gbl_panel_8.columnWidths = new int[]{0, 92, 0};
-		gbl_panel_8.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
-		gbl_panel_8.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_8.columnWidths = new int[]{0, 0};
+		gbl_panel_8.rowHeights = new int[]{20, 40, 40, 40, 40, 0};
+		gbl_panel_8.columnWeights = new double[]{1.0, Double.MIN_VALUE};
 		gbl_panel_8.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel_8.setLayout(gbl_panel_8);
+		
+		JPanel SongButtonPanel = new JPanel();
+	SongButtonPanel.setBackground(new Color(25,25,25));
+		GridBagConstraints gbc_SongButtonPanel = new GridBagConstraints();
+		gbc_SongButtonPanel.insets = new Insets(0, 0, 5, 0);
+		gbc_SongButtonPanel.gridx = 0;
+		gbc_SongButtonPanel.gridy = 1;
+		panel_8.add(SongButtonPanel, gbc_SongButtonPanel);
+		
+		JLabel lblNewLabel_3 = new JLabel("UTWORY");
+		lblNewLabel_3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				lblNewLabel_3.setForeground(new Color(179,179,179));
+			}
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				lblNewLabel_3.setForeground(new Color(255,255,255));
+			}
+		});
+		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_3.setForeground(new Color(179,179,179));
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 14));
+		SongButtonPanel.add(lblNewLabel_3);
+		
+		JPanel AlbumsButtonPanel = new JPanel();
+		AlbumsButtonPanel.setBackground(new Color(25, 25, 25));
+		GridBagConstraints gbc_AlbumsButtonPanel = new GridBagConstraints();
+		gbc_AlbumsButtonPanel.insets = new Insets(0, 0, 5, 0);
+		gbc_AlbumsButtonPanel.gridx = 0;
+		gbc_AlbumsButtonPanel.gridy = 2;
+		panel_8.add(AlbumsButtonPanel, gbc_AlbumsButtonPanel);
+		
+		JLabel lblAlbums = new JLabel("ALBUMY");
+		lblAlbums.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblAlbums.setForeground(new Color(255, 255, 255));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblAlbums.setForeground(new Color(179, 179, 179));
+			}
+		});
+		lblAlbums.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAlbums.setForeground(new Color(179, 179, 179));
+		lblAlbums.setFont(new Font("Tahoma", Font.BOLD, 14));
+		AlbumsButtonPanel.add(lblAlbums);
+		
+		
+		JPanel FavouritesButtonPanel = new JPanel();
+		FavouritesButtonPanel.setBackground(new Color(25, 25, 25));
+		GridBagConstraints gbc_FavouritesButtonPanel = new GridBagConstraints();
+		gbc_FavouritesButtonPanel.insets = new Insets(0, 0, 5, 0);
+		gbc_FavouritesButtonPanel.gridx = 0;
+		gbc_FavouritesButtonPanel.gridy = 3;
+		panel_8.add(FavouritesButtonPanel, gbc_FavouritesButtonPanel);
+		
+		JLabel lblUlubione = new JLabel("ULUBIONE");
+		lblUlubione.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblUlubione.setForeground(new Color(255, 255, 255));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblUlubione.setForeground(new Color(179, 179, 179));
+			}
+		});
+		lblUlubione.setHorizontalAlignment(SwingConstants.CENTER);
+		lblUlubione.setForeground(new Color(179, 179, 179));
+		lblUlubione.setFont(new Font("Tahoma", Font.BOLD, 14));
+		FavouritesButtonPanel.add(lblUlubione);
+		
+		JPanel PlayListsPanel = new JPanel();
+		PlayListsPanel.setBackground(new Color(25, 25, 25));
+		GridBagConstraints gbc_PlayListsPanel = new GridBagConstraints();
+		gbc_PlayListsPanel.gridx = 0;
+		gbc_PlayListsPanel.gridy = 4;
+		panel_8.add(PlayListsPanel, gbc_PlayListsPanel);
+		
+		JLabel lblPlaylisty = new JLabel("PLAYLISTY");
+		lblPlaylisty.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblPlaylisty.setForeground(new Color(255, 255, 255));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblPlaylisty.setForeground(new Color(179, 179, 179));
+			}
+		});
+		lblPlaylisty.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPlaylisty.setForeground(new Color(179, 179, 179));
+		lblPlaylisty.setFont(new Font("Tahoma", Font.BOLD, 14));
+		PlayListsPanel.add(lblPlaylisty);
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -389,6 +473,12 @@ public class MainScreen extends JFrame {
 		gbl_panel_9.columnWeights = new double[]{0.0, Double.MIN_VALUE};
 		gbl_panel_9.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		panel_9.setLayout(gbl_panel_9);
+		
+		JLabel label_3 = new JLabel("New label");
+		GridBagConstraints gbc_label_3 = new GridBagConstraints();
+		gbc_label_3.gridx = 0;
+		gbc_label_3.gridy = 0;
+		panel_9.add(label_3, gbc_label_3);
 	
 		JPanel BottomUI = new JPanel();
 		BottomUI.setBackground(new Color(36,36,36));
