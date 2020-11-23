@@ -242,15 +242,6 @@ public class MainScreen extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 	
 	
-		scrollPane.getVerticalScrollBar().setBackground(Color.BLACK);
-		scrollPane.getVerticalScrollBar().setUI(new BasicScrollBarUI() );
-		scrollPane.getHorizontalScrollBar().setUI(new BasicScrollBarUI());
-		scrollPane.getVerticalScrollBar().setUI(new BasicScrollBarUI() {
-		    @Override
-		    protected void configureScrollBarColors() {
-		        this.thumbColor = Color.BLACK;
-		    }
-		});
 		
 		JPanel panel_10 = new JPanel();
 		GridBagConstraints gbc_panel_10 = new GridBagConstraints();
