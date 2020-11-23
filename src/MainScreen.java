@@ -242,9 +242,15 @@ public class MainScreen extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 	
 	
-		 
+		scrollPane.getVerticalScrollBar().setBackground(Color.BLACK);
 		scrollPane.getVerticalScrollBar().setUI(new BasicScrollBarUI() );
 		scrollPane.getHorizontalScrollBar().setUI(new BasicScrollBarUI());
+		scrollPane.getVerticalScrollBar().setUI(new BasicScrollBarUI() {
+		    @Override
+		    protected void configureScrollBarColors() {
+		        this.thumbColor = Color.BLACK;
+		    }
+		});
 		
 		JPanel panel_10 = new JPanel();
 		GridBagConstraints gbc_panel_10 = new GridBagConstraints();
@@ -474,7 +480,7 @@ public class MainScreen extends JFrame {
 		gbl_panel_9.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		panel_9.setLayout(gbl_panel_9);
 		
-		JLabel label_3 = new JLabel("New label");
+		JLabel label_3 = new JLabel("Urban chuj");
 		GridBagConstraints gbc_label_3 = new GridBagConstraints();
 		gbc_label_3.gridx = 0;
 		gbc_label_3.gridy = 0;
@@ -545,7 +551,7 @@ public class MainScreen extends JFrame {
 		
 		JPanel panel_4 = new JPanel();
 		FlowLayout flowLayout = (FlowLayout) panel_4.getLayout();
-		flowLayout.setHgap(16);
+		flowLayout.setHgap(25);
 		panel_4.setBackground(new Color(36,36,36));
 		GridBagConstraints gbc_panel_4 = new GridBagConstraints();
 		gbc_panel_4.fill = GridBagConstraints.HORIZONTAL;
