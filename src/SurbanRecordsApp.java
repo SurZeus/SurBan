@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
 import javax.swing.JToolBar;
+import javax.swing.SwingUtilities;
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
@@ -59,6 +60,8 @@ public class SurbanRecordsApp {
 	private JPasswordField passwordRegister;
 	private JTextField emailRegister;
 	private JPasswordField passwordRRegister;
+	private static  MainScreen main_xd;
+	private static SurbanRecordsApp window;
 	/**
 	 * @wbp.nonvisual location=272,359
 	 */
@@ -70,8 +73,15 @@ public class SurbanRecordsApp {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SurbanRecordsApp window = new SurbanRecordsApp();
+					UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+					
+					window = new SurbanRecordsApp();
+					main_xd = new MainScreen();
+					//SwingUtilities.updateComponentTreeUI(window);
+					SwingUtilities.updateComponentTreeUI(main_xd);
 					window.frame.setVisible(true);
+					main_xd.setVisible(false);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -85,7 +95,8 @@ public class SurbanRecordsApp {
 	public SurbanRecordsApp() {
 		initialize();
 	}
-
+    
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -131,10 +142,18 @@ public class SurbanRecordsApp {
 		buttonLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				/*
+				
 				String login = loginLogin.getText();
 				String haslo = String.valueOf(passwordLogin.getPassword());
-	
+				
+				main_xd.lblUsername.setText(login);
+				System.out.println(main_xd.UserLogin);
+			
+				main_xd.setVisible(true);
+				window.frame.setVisible(false);
+				
+				
+	            /*
 				try {
 					baza.podajDane(login, haslo);
 				} catch (Exception e1) {
