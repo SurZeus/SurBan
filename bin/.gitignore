@@ -1,13 +1,17 @@
+/org/
+/GitPractice/
 /MainScreen$1.class
 /MainScreen$10.class
 /MainScreen$11.class
 /MainScreen$12.class
 /MainScreen$13.class
-/MainScreen$15.class
+/MainScreen$14.class
 /MainScreen$2.class
 /MainScreen$3.class
+/MainScreen$4.class
 /MainScreen$5.class
 /MainScreen$6.class
+/MainScreen$7.class
 /MainScreen$8.class
 /MainScreen$9.class
 /MainScreen.class
@@ -21,6 +25,7 @@
 /SurbanRecordsApp$4.class
 /SurbanRecordsApp.class
 /dependencies/
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 /org/
 /Checklogin.class
@@ -30,3 +35,5 @@
 /MainScreen$14.class
 /MainScreen$4.class
 /MainScreen$7.class
+=======
+>>>>>>> IS3

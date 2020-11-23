@@ -242,6 +242,9 @@ public class MainScreen extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 	
 	
+		 
+		scrollPane.getVerticalScrollBar().setUI(new BasicScrollBarUI() );
+		scrollPane.getHorizontalScrollBar().setUI(new BasicScrollBarUI());
 		
 		JPanel panel_10 = new JPanel();
 		GridBagConstraints gbc_panel_10 = new GridBagConstraints();
@@ -461,21 +464,143 @@ public class MainScreen extends JFrame {
 		    }
 		};
 		panel_9.setPreferredSize(new Dimension(10, 1000));
-		panel_9.setOpaque(false);
-		panel_9.setBackground(new Color(255,255,255,50));
+		panel_9.setBackground(new Color(36,36,36));
 		scrollPane_1.setViewportView(panel_9);
 		GridBagLayout gbl_panel_9 = new GridBagLayout();
-		gbl_panel_9.columnWidths = new int[]{1020, 0};
-		gbl_panel_9.rowHeights = new int[]{1000, 0};
-		gbl_panel_9.columnWeights = new double[]{0.0, Double.MIN_VALUE};
-		gbl_panel_9.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		gbl_panel_9.columnWidths = new int[]{90, 362, 216, 160, 160, 0};
+		gbl_panel_9.rowHeights = new int[]{40, 0, 0};
+		gbl_panel_9.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_9.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
 		panel_9.setLayout(gbl_panel_9);
 		
-		JLabel label_3 = new JLabel("Urban chuj");
-		GridBagConstraints gbc_label_3 = new GridBagConstraints();
-		gbc_label_3.gridx = 0;
-		gbc_label_3.gridy = 0;
-		panel_9.add(label_3, gbc_label_3);
+		JLabel lblNewLabel_11 = new JLabel("");
+		lblNewLabel_11.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_11.setIcon(new ImageIcon(MainScreen.class.getResource("/img/favIcon2.png")));
+		GridBagConstraints gbc_lblNewLabel_11 = new GridBagConstraints();
+		gbc_lblNewLabel_11.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_11.gridx = 0;
+		gbc_lblNewLabel_11.gridy = 0;
+		panel_9.add(lblNewLabel_11, gbc_lblNewLabel_11);
+		
+		JLabel lblJurassicPark = new JLabel("Jurassic Park");
+		lblJurassicPark.setHorizontalAlignment(SwingConstants.CENTER);
+		lblJurassicPark.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblJurassicPark.setForeground(Color.WHITE);
+		lblJurassicPark.setFont(new Font("Tahoma", Font.BOLD, 14));
+		GridBagConstraints gbc_lblJurassicPark = new GridBagConstraints();
+		gbc_lblJurassicPark.fill = GridBagConstraints.BOTH;
+		gbc_lblJurassicPark.insets = new Insets(0, 0, 0, 5);
+		gbc_lblJurassicPark.gridx = 1;
+		gbc_lblJurassicPark.gridy = 0;
+		panel_9.add(lblJurassicPark, gbc_lblJurassicPark);
+		
+		JLabel lblJohnWilliams = new JLabel("John Williams");
+		lblJohnWilliams.setForeground(Color.WHITE);
+		lblJohnWilliams.setFont(new Font("Tahoma", Font.BOLD, 14));
+		GridBagConstraints gbc_lblJohnWilliams = new GridBagConstraints();
+		gbc_lblJohnWilliams.insets = new Insets(0, 0, 5, 5);
+		gbc_lblJohnWilliams.gridx = 2;
+		gbc_lblJohnWilliams.gridy = 0;
+		panel_9.add(lblJohnWilliams, gbc_lblJohnWilliams);
+		
+		JLabel lblJpTrilogy = new JLabel("JP TRILOGY\r\n");
+		lblJpTrilogy.setForeground(Color.WHITE);
+		lblJpTrilogy.setFont(new Font("Tahoma", Font.BOLD, 14));
+		GridBagConstraints gbc_lblJpTrilogy = new GridBagConstraints();
+		gbc_lblJpTrilogy.insets = new Insets(0, 0, 5, 5);
+		gbc_lblJpTrilogy.gridx = 3;
+		gbc_lblJpTrilogy.gridy = 0;
+		panel_9.add(lblJpTrilogy, gbc_lblJpTrilogy);
+		
+		JLabel lblNewLabel_12 = new JLabel("3:30");
+		lblNewLabel_12.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_12.setForeground(Color.WHITE);
+		GridBagConstraints gbc_lblNewLabel_12 = new GridBagConstraints();
+		gbc_lblNewLabel_12.insets = new Insets(0, 0, 5, 0);
+		gbc_lblNewLabel_12.gridx = 4;
+		gbc_lblNewLabel_12.gridy = 0;
+		panel_9.add(lblNewLabel_12, gbc_lblNewLabel_12);
+		
+		JPanel SongsHeader = new JPanel();
+		SongsHeader.setBackground(new Color(25,25,25));
+		panel_5.add(SongsHeader, BorderLayout.NORTH);
+		GridBagLayout gbl_SongsHeader = new GridBagLayout();
+		gbl_SongsHeader.columnWidths = new int[]{0, 0};
+		gbl_SongsHeader.rowHeights = new int[]{60, 0};
+		gbl_SongsHeader.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl_SongsHeader.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+		SongsHeader.setLayout(gbl_SongsHeader);
+		
+		
+		
+		//pasek header, ktory zmienia zawartosc wzgledem contentu
+		JPanel HeaderChanger = new JPanel();
+		HeaderChanger.setBackground(new Color(36,36,36));
+		GridBagConstraints gbc_HeaderChanger = new GridBagConstraints();
+		gbc_HeaderChanger.anchor = GridBagConstraints.PAGE_END;
+		gbc_HeaderChanger.fill = GridBagConstraints.BOTH;
+		gbc_HeaderChanger.gridx = 0;
+		gbc_HeaderChanger.gridy = 0;
+		SongsHeader.add(HeaderChanger, gbc_HeaderChanger);
+		GridBagLayout gbl_HeaderChanger = new GridBagLayout();
+		gbl_HeaderChanger.columnWidths = new int[]{90, 362, 216, 160, 160, 0};
+		gbl_HeaderChanger.rowHeights = new int[]{60, 0};
+		gbl_HeaderChanger.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_HeaderChanger.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		HeaderChanger.setLayout(gbl_HeaderChanger);
+		
+		JLabel lblNewLabel_10 = new JLabel("");
+		lblNewLabel_10.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_10.setIcon(new ImageIcon(MainScreen.class.getResource("/img/favIcon2Grey.png")));
+		GridBagConstraints gbc_lblNewLabel_10 = new GridBagConstraints();
+		gbc_lblNewLabel_10.insets = new Insets(0, 0, 0, 5);
+		gbc_lblNewLabel_10.fill = GridBagConstraints.BOTH;
+		gbc_lblNewLabel_10.gridx = 0;
+		gbc_lblNewLabel_10.gridy = 0;
+		HeaderChanger.add(lblNewLabel_10, gbc_lblNewLabel_10);
+		
+		JLabel lblNewLabel_4 = new JLabel("TYTU\u0141");
+		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_4.setForeground(Color.LIGHT_GRAY);
+		GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
+		gbc_lblNewLabel_4.fill = GridBagConstraints.BOTH;
+		gbc_lblNewLabel_4.insets = new Insets(0, 0, 0, 5);
+		gbc_lblNewLabel_4.gridx = 1;
+		gbc_lblNewLabel_4.gridy = 0;
+		HeaderChanger.add(lblNewLabel_4, gbc_lblNewLabel_4);
+		
+		JLabel lblNewLabel_7 = new JLabel("WYKONAWCA");
+		lblNewLabel_7.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_7.setForeground(Color.LIGHT_GRAY);
+		lblNewLabel_7.setHorizontalAlignment(SwingConstants.CENTER);
+		GridBagConstraints gbc_lblNewLabel_7 = new GridBagConstraints();
+		gbc_lblNewLabel_7.fill = GridBagConstraints.BOTH;
+		gbc_lblNewLabel_7.insets = new Insets(0, 0, 0, 5);
+		gbc_lblNewLabel_7.gridx = 2;
+		gbc_lblNewLabel_7.gridy = 0;
+		HeaderChanger.add(lblNewLabel_7, gbc_lblNewLabel_7);
+		
+		JLabel lblNewLabel_8 = new JLabel("ALBUM");
+		lblNewLabel_8.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_8.setForeground(Color.LIGHT_GRAY);
+		lblNewLabel_8.setFont(new Font("Tahoma", Font.BOLD, 14));
+		GridBagConstraints gbc_lblNewLabel_8 = new GridBagConstraints();
+		gbc_lblNewLabel_8.fill = GridBagConstraints.BOTH;
+		gbc_lblNewLabel_8.insets = new Insets(0, 0, 0, 5);
+		gbc_lblNewLabel_8.gridx = 3;
+		gbc_lblNewLabel_8.gridy = 0;
+		HeaderChanger.add(lblNewLabel_8, gbc_lblNewLabel_8);
+		
+		JLabel lblNewLabel_9 = new JLabel("CZAS TRWANIA");
+		lblNewLabel_9.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_9.setForeground(Color.LIGHT_GRAY);
+		lblNewLabel_9.setHorizontalAlignment(SwingConstants.CENTER);
+		GridBagConstraints gbc_lblNewLabel_9 = new GridBagConstraints();
+		gbc_lblNewLabel_9.fill = GridBagConstraints.BOTH;
+		gbc_lblNewLabel_9.gridx = 4;
+		gbc_lblNewLabel_9.gridy = 0;
+		HeaderChanger.add(lblNewLabel_9, gbc_lblNewLabel_9);
 	
 		JPanel BottomUI = new JPanel();
 		BottomUI.setBackground(new Color(36,36,36));
@@ -542,7 +667,7 @@ public class MainScreen extends JFrame {
 		
 		JPanel panel_4 = new JPanel();
 		FlowLayout flowLayout = (FlowLayout) panel_4.getLayout();
-		flowLayout.setHgap(25);
+		flowLayout.setHgap(16);
 		panel_4.setBackground(new Color(36,36,36));
 		GridBagConstraints gbc_panel_4 = new GridBagConstraints();
 		gbc_panel_4.fill = GridBagConstraints.HORIZONTAL;

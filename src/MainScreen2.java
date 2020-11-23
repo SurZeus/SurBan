@@ -86,9 +86,6 @@ public class MainScreen2 extends JFrame {
 					MainScreen2 frame = new MainScreen2();
 					frame.setVisible(true);
 
-				
-				
-
 
 					 
 					 
