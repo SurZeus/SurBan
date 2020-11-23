@@ -141,6 +141,7 @@ public class SurbanRecordsApp {
 		ValidateAnEmail checkemail = new ValidateAnEmail();
 		Checklogin checklogin = new Checklogin();
 		
+		
 		JButton buttonLogin = new JButton("Zaloguj si\u0119");
 		buttonLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
