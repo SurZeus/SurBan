@@ -47,6 +47,7 @@ import dependencies.TransparentPanel;
 import javax.swing.event.ChangeEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
 import javax.swing.JSlider;
@@ -59,7 +60,7 @@ public class SurbanRecordsApp {
 	private JTextField loginRegister;
 	private JPasswordField passwordRegister;
 	private JTextField emailRegister;
-	private JPasswordField passwordRRegister;
+	private JPasswordField passwordRegister1;
 	private static  MainScreen main_xd;
 	private static SurbanRecordsApp window;
 	/**
@@ -185,8 +186,27 @@ public class SurbanRecordsApp {
 			public void actionPerformed(ActionEvent arg0) {
 				String login = loginRegister.getText();
 				String haslo = String.valueOf(passwordRegister.getPassword());
+				String haslo1 = String.valueOf(passwordRegister1.getPassword());
 				String email = emailRegister.getText(); 
-				if (login.isEmpty() || haslo.isEmpty() || email.isEmpty()) {
+			
+				validatePass test = new validatePass(haslo, haslo1);
+					
+				try {
+					System.out.println(test.validate());
+				} catch (NoSuchAlgorithmException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				/*	if (login.isEmpty() || haslo.isEmpty() || email.isEmpty()) {
 					showMessageDialog(null, "Nie wype³ni³eœ wszystkich danych");
 				}
 				else if(Arrays.equals(passwordRegister.getPassword(),passwordRRegister.getPassword()))
@@ -202,8 +222,8 @@ public class SurbanRecordsApp {
 	            	    windowRegister.showMessageDialog(null, "Passwords do not match.");
 	                    passwordRegister.setText(null);
 	                    passwordRRegister.setText(null);
-	                    showMessageDialog(null, "Has³a nie s¹ takie same, spróbuj ponownie");
-	            }
+	                    showMessageDialog(null, "Has³a nie s¹ takie sme, spróbuj ponownie");
+	            } */
 			}
 
 		});
@@ -222,13 +242,13 @@ public class SurbanRecordsApp {
 		passwordRegister.setBounds(90, 276, 320, 51);
 		windowRegister.add(passwordRegister);
 		
-		passwordRRegister = new JPasswordField();
-		passwordRRegister.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		passwordRRegister.setBounds(90, 373, 320, 51);
-		windowRegister.add(passwordRRegister);
-		passwordRRegister.setOpaque(false);
-		passwordRRegister.setForeground(Color.WHITE);
-		passwordRRegister.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Powt\u00F3rz has\u0142o", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255, 255, 255)));
+		passwordRegister1 = new JPasswordField();
+		passwordRegister1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		passwordRegister1.setBounds(90, 373, 320, 51);
+		windowRegister.add(passwordRegister1);
+		passwordRegister1.setOpaque(false);
+		passwordRegister1.setForeground(Color.WHITE);
+		passwordRegister1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Powt\u00F3rz has\u0142o", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255, 255, 255)));
 		
 		emailRegister = new JTextField();
 		emailRegister.setFont(new Font("Tahoma", Font.PLAIN, 16));
