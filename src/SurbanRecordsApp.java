@@ -125,23 +125,23 @@ public class SurbanRecordsApp {
 		passwordLogin.setBorder(new TitledBorder(null, "Has\u0142o", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
 		passwordLogin.setBounds(90, 179, 320, 51);
 		windowLogin.add(passwordLogin);
+		
 		Mysql baza = new Mysql();
+		ValidateAnEmail checkemail = new ValidateAnEmail();
+		Checklogin checklogin = new Checklogin();
 		
 		JButton buttonLogin = new JButton("Zaloguj si\u0119");
 		buttonLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				/*
 				String login = loginLogin.getText();
-				String haslo = String.valueOf(passwordLogin.getPassword());
-	
+				String haslo = String.valueOf(passwordRegister.getPassword());
 				try {
-					baza.podajDane(login, haslo);
+					checklogin.Pobierzlogin(login, haslo);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				*/
+			
 			}
 		});
 		buttonLogin.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -166,6 +166,14 @@ public class SurbanRecordsApp {
 				String login = loginRegister.getText();
 				String haslo = String.valueOf(passwordRegister.getPassword());
 				String email = emailRegister.getText(); 
+				
+				try {
+					checkemail.podajEmail(email);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 				if (login.isEmpty() || haslo.isEmpty() || email.isEmpty()) {
 					showMessageDialog(null, "Nie wype³ni³eœ wszystkich danych");
 				}
