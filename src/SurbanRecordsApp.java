@@ -126,16 +126,17 @@ public class SurbanRecordsApp {
 		loginLogin.setOpaque(false);
 		loginLogin.setForeground(Color.WHITE);
 		loginLogin.setBorder(new TitledBorder(null, "Login", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
-		loginLogin.setBounds(90, 82, 320, 51);
+		loginLogin.setBounds(90, 179, 320, 51);
 		windowLogin.add(loginLogin);
 		loginLogin.setColumns(10);
+		
 		
 		passwordLogin = new JPasswordField();
 		passwordLogin.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		passwordLogin.setOpaque(false);
 		passwordLogin.setForeground(Color.WHITE);
 		passwordLogin.setBorder(new TitledBorder(null, "Has\u0142o", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
-		passwordLogin.setBounds(90, 179, 320, 51);
+		passwordLogin.setBounds(90, 276, 320, 51);
 		windowLogin.add(passwordLogin);
 		Mysql baza = new Mysql();
 		
