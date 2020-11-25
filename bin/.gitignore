@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 /img/
+=======
+>>>>>>> origin/nb
 /GitPractice/
 /MainScreen$1.class
 /MainScreen$10.class
@@ -6,6 +9,12 @@
 /MainScreen$12.class
 /MainScreen$13.class
 /MainScreen$14.class
+<<<<<<< HEAD
+=======
+/MainScreen$15.class
+/MainScreen$16.class
+/MainScreen$17.class
+>>>>>>> origin/nb
 /MainScreen$2.class
 /MainScreen$3.class
 /MainScreen$4.class
@@ -25,4 +34,10 @@
 /SurbanRecordsApp$4.class
 /SurbanRecordsApp.class
 /dependencies/
+<<<<<<< HEAD
 /org/
+=======
+/img/
+/org/
+/MainScreen$18.class
+>>>>>>> origin/nb
