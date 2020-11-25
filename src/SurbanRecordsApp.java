@@ -139,7 +139,7 @@ public class SurbanRecordsApp {
 		passwordLogin.setBounds(90, 276, 320, 51);
 		windowLogin.add(passwordLogin);
 		Mysql baza = new Mysql();
-		
+		ValidateAnEmail checkmail = new ValidateAnEmail();
 		
 		JButton buttonLogin = new JButton("Zaloguj si\u0119");
 		buttonLogin.addActionListener(new ActionListener() {
@@ -154,6 +154,8 @@ public class SurbanRecordsApp {
 			
 				main_xd.setVisible(true);
 				window.frame.setVisible(false);
+				
+				
 				
 				
 	            /*
@@ -191,7 +193,7 @@ public class SurbanRecordsApp {
 				String email = emailRegister.getText(); 
 			
 				validatePass test = new validatePass(haslo, haslo1);
-					
+				
 				try {
 					System.out.println(test.validate());
 				} catch (NoSuchAlgorithmException e) {
@@ -200,7 +202,13 @@ public class SurbanRecordsApp {
 				}
 				
 				
-				
+			try {
+				checkmail.pobierzEmail(email);
+				emailRegister.setText("");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 				
 				
 				
