@@ -152,8 +152,20 @@ public class SurbanRecordsApp {
 				main_xd.lblUsername.setText(login);
 				System.out.println(main_xd.UserLogin);
 			
-				main_xd.setVisible(true);
-				window.frame.setVisible(false);
+				
+				
+				try {
+					ValidateLogin loginek = new ValidateLogin(login, haslo);
+					if(loginek.id != -1)
+					{
+						main_xd.setVisible(true);
+						window.frame.setVisible(false);
+					}
+
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
 				
 				
@@ -165,7 +177,8 @@ public class SurbanRecordsApp {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				*/
+	            */
+				
 			}
 		});
 		buttonLogin.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -209,7 +222,12 @@ public class SurbanRecordsApp {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-				
+			try {
+				baza.podajDane(login, haslo, email);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 				
 				
 				

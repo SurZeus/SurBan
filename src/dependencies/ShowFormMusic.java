@@ -38,7 +38,6 @@ public class ShowFormMusic {
 				if(rs.next()) 
 				count = rs.getInt(1);
 				
-				
 			
 				System.out.println(count);
 			 Utwory = new String[count][4];
