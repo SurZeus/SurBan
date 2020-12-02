@@ -149,7 +149,7 @@ public class SurbanRecordsApp {
 				String login = loginLogin.getText();
 				String haslo = String.valueOf(passwordLogin.getPassword());
 				
-				main_xd.lblUsername.setText(login);
+				//main_xd.lblUsername.setText(login);
 				System.out.println(main_xd.UserLogin);
 			
 				

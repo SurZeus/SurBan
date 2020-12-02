@@ -56,6 +56,7 @@ import javax.swing.table.DefaultTableModel;
 import org.pushingpixels.substance.api.skin.SubstanceGraphiteLookAndFeel;
 
 import dependencies.ClickableProgressBar;
+import dependencies.LayoutManagmentMethods;
 
 /*import org.pushingpixels.substance.api.SubstanceLookAndFeel;
 import org.pushingpixels.substance.api.skin.GraphiteGlassSkin;
@@ -84,12 +85,13 @@ import java.awt.Scrollbar;
 import java.awt.TextField;
 import dependencies.RoundedJTextField;
 import dependencies.ShowFormMusic;
+import dependencies.SideBarButtonActions;
+import dependencies.SongsScrollPane;
 //xD
 public class MainScreen extends JFrame {
 //xD2master
 	private JPanel contentPane;
 	public static String UserLogin;
-	public static JLabel lblUsername;
 	/**
 	 * Launch the application.
 	 */
@@ -103,6 +105,7 @@ public class MainScreen extends JFrame {
 	 * @throws Exception 
 	 */
 	public MainScreen() throws Exception {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(MainScreen.class.getResource("/img/songs.png")));
 		setBackground(Color.PINK);
 		
 		setMinimumSize(new Dimension(700, 400));
@@ -147,7 +150,7 @@ public class MainScreen extends JFrame {
 		}catch(Exception e){
 			e.getStackTrace();
 		}
-		int dbrowCount =ShowFormMusic.count;
+		 int dbrowCount =ShowFormMusic.count;
 		tempMusic.displayMusic();
 		contentPane.setBackground(Color.RED);
 		contentPane.setBorder(null);
@@ -168,9 +171,9 @@ public class MainScreen extends JFrame {
 		gbc_TopCenterPanel.gridy = 0;
 		contentPane.add(TopCenterPanel, gbc_TopCenterPanel);
 		GridBagLayout gbl_TopCenterPanel = new GridBagLayout();
-		gbl_TopCenterPanel.columnWidths = new int[]{200, 271, 309, 164, 0};
+		gbl_TopCenterPanel.columnWidths = new int[]{205, 271, 164, 0};
 		gbl_TopCenterPanel.rowHeights = new int[]{33, 0};
-		gbl_TopCenterPanel.columnWeights = new double[]{0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_TopCenterPanel.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
 		gbl_TopCenterPanel.rowWeights = new double[]{1.0, Double.MIN_VALUE};
 		TopCenterPanel.setLayout(gbl_TopCenterPanel);
 		
@@ -184,42 +187,29 @@ public class MainScreen extends JFrame {
 		JPanel panel_12 = new JPanel();
 		panel_12.setBackground(new Color(18,18,18));
 		GridBagConstraints gbc_panel_12 = new GridBagConstraints();
+		gbc_panel_12.insets = new Insets(0, 0, 0, 5);
 		gbc_panel_12.fill = GridBagConstraints.BOTH;
 		gbc_panel_12.gridx = 0;
 		gbc_panel_12.gridy = 0;
 		TopCenterPanel.add(panel_12, gbc_panel_12);
 		
 		JLabel lblUtwory = new JLabel("Utwory");
+		lblUtwory.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblUtwory.setHorizontalTextPosition(SwingConstants.LEFT);
 		lblUtwory.setHorizontalAlignment(SwingConstants.LEFT);
 		lblUtwory.setForeground(Color.WHITE);
 		lblUtwory.setFont(new Font("Tahoma", Font.BOLD, 16));
 		GridBagConstraints gbc_lblUtwory = new GridBagConstraints();
-		gbc_lblUtwory.insets = new Insets(0, 20, 0, 0);
-		gbc_lblUtwory.anchor = GridBagConstraints.WEST;
+		gbc_lblUtwory.anchor = GridBagConstraints.SOUTH;
+		gbc_lblUtwory.insets = new Insets(0, 20, 0, 5);
 		gbc_lblUtwory.gridx = 1;
 		gbc_lblUtwory.gridy = 0;
 		TopCenterPanel.add(lblUtwory, gbc_lblUtwory);
-		
-		JPanel panel_11 = new JPanel();
-		GridBagConstraints gbc_panel_11 = new GridBagConstraints();
-		gbc_panel_11.insets = new Insets(0, 0, 0, 5);
-		gbc_panel_11.fill = GridBagConstraints.BOTH;
-		gbc_panel_11.gridx = 2;
-		gbc_panel_11.gridy = 0;
-		panel_11.setBackground(new Color(40,40,40));
-		TopCenterPanel.add(panel_11, gbc_panel_11);
-		
-		lblUsername = new JLabel();
-		lblUsername.setForeground(Color.WHITE);
-		lblUsername.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblUsername.setBackground(Color.WHITE);
-		panel_11.add(lblUsername);
 		lblNewLabel_5.setIcon(new ImageIcon(MainScreen.class.getResource("/img/menu.png")));
 		GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
 		gbc_lblNewLabel_5.insets = new Insets(0, 0, 0, 20);
 		gbc_lblNewLabel_5.anchor = GridBagConstraints.NORTHEAST;
-		gbc_lblNewLabel_5.gridx = 3;
+		gbc_lblNewLabel_5.gridx = 2;
 		gbc_lblNewLabel_5.gridy = 0;
 		TopCenterPanel.add(lblNewLabel_5, gbc_lblNewLabel_5);
 		
@@ -348,9 +338,9 @@ public class MainScreen extends JFrame {
 		scrollPane.setViewportView(panel_8);
 		GridBagLayout gbl_panel_8 = new GridBagLayout();
 		gbl_panel_8.columnWidths = new int[]{133, 0};
-		gbl_panel_8.rowHeights = new int[]{20, 35, 35, 35, 35, 35, 0};
+		gbl_panel_8.rowHeights = new int[]{20, 35, 35, 35, 35, 35, 0, 0};
 		gbl_panel_8.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_panel_8.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_8.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel_8.setLayout(gbl_panel_8);
 		
 		JPanel SongButtonPanel = new JPanel();
@@ -361,17 +351,11 @@ public class MainScreen extends JFrame {
 		gbc_SongButtonPanel.gridy = 1;
 		panel_8.add(SongButtonPanel, gbc_SongButtonPanel);
 		
-		JLabel lblNewLabel_3 = new JLabel("Utwory");
-		lblNewLabel_3.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				lblNewLabel_3.setForeground(new Color(179,179,179));
-			}
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				lblNewLabel_3.setForeground(new Color(255,255,255));
-			}
-		});
+		SideBarButtonActions lblNewLabel_3 = new SideBarButtonActions();
+		
+		
+		lblNewLabel_3.setText("Utwory");
+		
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_3.setForeground(new Color(179,179,179));
 		lblNewLabel_3.setFont(new Font("Dubai Medium", Font.BOLD, 14));
@@ -385,18 +369,12 @@ public class MainScreen extends JFrame {
 		gbc_AlbumsButtonPanel.gridy = 2;
 		panel_8.add(AlbumsButtonPanel, gbc_AlbumsButtonPanel);
 		
-		JLabel lblAlbums = new JLabel("Albumy");
+		SideBarButtonActions lblAlbums = new SideBarButtonActions();
+		
+		lblAlbums.setText("Albumy");
 		lblAlbums.setBackground(Color.RED);
-		lblAlbums.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				lblAlbums.setForeground(new Color(255, 255, 255));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				lblAlbums.setForeground(new Color(179, 179, 179));
-			}
-		});
+	
+		
 		lblAlbums.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAlbums.setForeground(new Color(179, 179, 179));
 		lblAlbums.setFont(new Font("Dubai Medium", Font.BOLD, 14));
@@ -411,17 +389,9 @@ public class MainScreen extends JFrame {
 		gbc_FavouritesButtonPanel.gridy = 3;
 		panel_8.add(FavouritesButtonPanel, gbc_FavouritesButtonPanel);
 		
-		JLabel lblUlubione = new JLabel("Ulubione");
-		lblUlubione.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				lblUlubione.setForeground(new Color(255, 255, 255));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				lblUlubione.setForeground(new Color(179, 179, 179));
-			}
-		});
+		SideBarButtonActions lblUlubione = new SideBarButtonActions();
+		lblUlubione.setText("Ulubione");
+		
 		lblUlubione.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUlubione.setForeground(new Color(179, 179, 179));
 		lblUlubione.setFont(new Font("Dubai Medium", Font.BOLD, 14));
@@ -435,30 +405,30 @@ public class MainScreen extends JFrame {
 		gbc_PlayListsPanel.gridy = 4;
 		panel_8.add(PlayListsPanel, gbc_PlayListsPanel);
 		
-		JLabel lblPlaylisty = new JLabel("Playlisty");
-		lblPlaylisty.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				lblPlaylisty.setForeground(new Color(255, 255, 255));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				lblPlaylisty.setForeground(new Color(179, 179, 179));
-			}
-		});
+		SideBarButtonActions lblPlaylisty = new SideBarButtonActions();
+		lblPlaylisty.setText("Playlisty");
+		
 		lblPlaylisty.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPlaylisty.setForeground(new Color(179, 179, 179));
 		lblPlaylisty.setFont(new Font("Dubai Medium", Font.BOLD, 14));
 		PlayListsPanel.add(lblPlaylisty);
 		
-		JLabel lblWykonawcy = new JLabel("Wykonawcy");
+		SideBarButtonActions lblWykonawcy = new SideBarButtonActions();
+		lblWykonawcy.setText("Wykonawcy");
 		lblWykonawcy.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWykonawcy.setForeground(new Color(179, 179, 179));
 		lblWykonawcy.setFont(new Font("Dubai Medium", Font.BOLD, 14));
 		GridBagConstraints gbc_lblWykonawcy = new GridBagConstraints();
+		gbc_lblWykonawcy.insets = new Insets(0, 0, 5, 0);
 		gbc_lblWykonawcy.gridx = 0;
 		gbc_lblWykonawcy.gridy = 5;
 		panel_8.add(lblWykonawcy, gbc_lblWykonawcy);
+		
+		SideBarButtonActions sideBarButtonActions = new SideBarButtonActions();
+		GridBagConstraints gbc_sideBarButtonActions = new GridBagConstraints();
+		gbc_sideBarButtonActions.gridx = 0;
+		gbc_sideBarButtonActions.gridy = 6;
+		panel_8.add(sideBarButtonActions, gbc_sideBarButtonActions);
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -475,7 +445,7 @@ public class MainScreen extends JFrame {
 		label_1.setIcon(new ImageIcon(MainScreen.class.getResource("/img/lside.png")));
 		panel_3.add(label_1);
 		
-		JPanel panel_5 = new JPanel(){
+		JPanel Container = new JPanel(){
 		    protected void paintComponent(Graphics g)
 		    {
 		        g.setColor( getBackground() );
@@ -483,13 +453,19 @@ public class MainScreen extends JFrame {
 		        super.paintComponent(g);
 		    }
 		};
-		panel_5.setBorder(new EmptyBorder(0, 0, 0, 0));
-		GridBagConstraints gbc_panel_5 = new GridBagConstraints();
-		gbc_panel_5.fill = GridBagConstraints.BOTH;
-		gbc_panel_5.gridx = 1;
-		gbc_panel_5.gridy = 0;
-	panel_5.setBackground(Color.ORANGE);
-		CenterContent.add(panel_5, gbc_panel_5);
+		CardLayout cl = new CardLayout(0,0);
+		Container.setLayout(cl);
+		
+		JPanel SongsTab =new JPanel();
+		SongsTab.setBackground(new Color(255, 255, 255));
+		
+		Container.setBorder(new EmptyBorder(0, 0, 0, 0));
+		GridBagConstraints gbc_Container = new GridBagConstraints();
+		gbc_Container.fill = GridBagConstraints.BOTH;
+		gbc_Container.gridx = 1;
+		gbc_Container.gridy = 0;
+	Container.setBackground(Color.ORANGE);
+		CenterContent.add(Container, gbc_Container);
 		
 		JScrollPane scrollPane_1 = new JScrollPane(){
 		    protected void paintComponent(Graphics g)
@@ -499,16 +475,17 @@ public class MainScreen extends JFrame {
 		        super.paintComponent(g);
 		    }
 		};
+	
+		Container.add(scrollPane_1, "Songs");
+		cl.show(Container,"Songs");
 		scrollPane_1.setBorder(new EmptyBorder(0, 0, 0, 0));
 		 scrollPane_1.getViewport().setBackground( new Color(36,36,36));
-		 
-		panel_5.setLayout(new BorderLayout(0, 0));
 		scrollPane_1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane_1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane_1.setBackground(new Color(40,40,40));
-		panel_5.add(scrollPane_1, BorderLayout.CENTER);
+		LayoutManagmentMethods.addSongs(scrollPane_1,dbrowCount,1);
 		
-		JPanel panel_9 = new JPanel(){
+		JScrollPane scrollPane_2 = new JScrollPane(){
 		    protected void paintComponent(Graphics g)
 		    {
 		        g.setColor( getBackground() );
@@ -516,118 +493,16 @@ public class MainScreen extends JFrame {
 		        super.paintComponent(g);
 		    }
 		};
-		panel_9.setOpaque(false);
-		panel_9.setPreferredSize(new Dimension(10, 1000));
-		panel_9.setBackground(new Color(250,250,250,1));
-		JPanel panelHeaderView = new JPanel();
-		panelHeaderView.setPreferredSize(new Dimension(10, 60));
-		panelHeaderView.setBackground(new Color(40,40,40));
-		scrollPane_1.setColumnHeaderView(panelHeaderView);
-		GridBagLayout gbl_panelHeaderView = new GridBagLayout();
-		gbl_panelHeaderView.columnWidths = new int[]{70, 40, 300, 350, 300, 100, 0};
-		gbl_panelHeaderView.rowHeights = new int[]{60, 0, 0};
-		gbl_panelHeaderView.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panelHeaderView.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-		panelHeaderView.setLayout(gbl_panelHeaderView);
-		
-		JLabel lblNewLabel_4 = new JLabel("");
-		
-		//lblNewLabel_4.setIcon(new ImageIcon(MainScreen.class.getResource("/img/playWhite32.png")));
-		GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
-		gbc_lblNewLabel_4.fill = GridBagConstraints.VERTICAL;
-		gbc_lblNewLabel_4.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_4.gridx = 0;
-		gbc_lblNewLabel_4.gridy = 0;
-		panelHeaderView.add(lblNewLabel_4, gbc_lblNewLabel_4);
-		
-		JLabel lblNewLabel_7 = new JLabel("");
-		lblNewLabel_7.setIcon(null);
-		GridBagConstraints gbc_lblNewLabel_7 = new GridBagConstraints();
-		gbc_lblNewLabel_7.fill = GridBagConstraints.VERTICAL;
-		gbc_lblNewLabel_7.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_7.gridx = 1;
-		gbc_lblNewLabel_7.gridy = 0;
-		panelHeaderView.add(lblNewLabel_7, gbc_lblNewLabel_7);
-		
-		JLabel lblTytu = new JLabel("TYTU\u0141");
-		lblTytu.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTytu.setForeground(new Color(179, 179, 179));
-		lblTytu.setFont(new Font("Dubai Medium", Font.PLAIN, 12));
-		GridBagConstraints gbc_lblTytu = new GridBagConstraints();
-		gbc_lblTytu.fill = GridBagConstraints.VERTICAL;
-		gbc_lblTytu.anchor = GridBagConstraints.WEST;
-		gbc_lblTytu.insets = new Insets(0, 0, 5, 5);
-		gbc_lblTytu.gridx = 2;
-		gbc_lblTytu.gridy = 0;
-		panelHeaderView.add(lblTytu, gbc_lblTytu);
-		
-		JLabel lblWykonawca = new JLabel("WYKONAWCA");
-		lblWykonawca.setHorizontalAlignment(SwingConstants.CENTER);
-		lblWykonawca.setForeground(new Color(179, 179, 179));
-		lblWykonawca.setFont(new Font("Dubai Medium", Font.PLAIN, 12));
-		GridBagConstraints gbc_lblWykonawca = new GridBagConstraints();
-		gbc_lblWykonawca.fill = GridBagConstraints.VERTICAL;
-		gbc_lblWykonawca.anchor = GridBagConstraints.WEST;
-		gbc_lblWykonawca.insets = new Insets(0, 0, 5, 5);
-		gbc_lblWykonawca.gridx = 3;
-		gbc_lblWykonawca.gridy = 0;
-		panelHeaderView.add(lblWykonawca, gbc_lblWykonawca);
-		
-		JLabel lblAlbum = new JLabel("ALBUM");
-		lblAlbum.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAlbum.setForeground(new Color(179, 179, 179));
-		lblAlbum.setFont(new Font("Dubai Medium", Font.PLAIN, 12));
-		GridBagConstraints gbc_lblAlbum = new GridBagConstraints();
-		gbc_lblAlbum.fill = GridBagConstraints.VERTICAL;
-		gbc_lblAlbum.anchor = GridBagConstraints.WEST;
-		gbc_lblAlbum.insets = new Insets(0, 0, 5, 5);
-		gbc_lblAlbum.gridx = 4;
-		gbc_lblAlbum.gridy = 0;
-		panelHeaderView.add(lblAlbum, gbc_lblAlbum);
-		
-		JLabel label_6 = new JLabel("");
-		label_6.setIcon(new ImageIcon(MainScreen.class.getResource("/img/clockGray16.png")));
-		label_6.setHorizontalAlignment(SwingConstants.CENTER);
-		label_6.setForeground(new Color(179, 179, 179));
-		label_6.setFont(new Font("Tahoma", Font.BOLD, 14));
-		GridBagConstraints gbc_label_6 = new GridBagConstraints();
-		gbc_label_6.anchor = GridBagConstraints.WEST;
-		gbc_label_6.fill = GridBagConstraints.VERTICAL;
-		gbc_label_6.gridx = 5;
-		gbc_label_6.gridy = 0;
-		panelHeaderView.add(label_6, gbc_label_6);
-		 scrollPane_1.getColumnHeader().setBackground( Color.RED);
-		scrollPane_1.setViewportView(panel_9);
-		
-		
-	
 
-		GridBagLayout gbl_panel_9 = new GridBagLayout();
-		int numberOfRows =dbrowCount;;
-		int rowCount =numberOfRows +1;
-		int[] rowHeights = new int[rowCount];
-		double[] rowWeights = new double[rowCount +1];
-		
-		for(int i=0;i<rowCount;i++) {
-			rowHeights[i] = 40;
-			
-			
-			}
-		for(int i=0;i<=rowCount;i++) {
-		
-			if(i ==rowCount-1) {
-			rowWeights[i] = 1.0;
-		}
-		else rowWeights[i]=0.0;
-		}; 
+		Container.add(scrollPane_2, "Albums");
+
+		scrollPane_2.setBorder(new EmptyBorder(0, 0, 0, 0));
+		 scrollPane_2.getViewport().setBackground( new Color(36,36,36));
+		scrollPane_2.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane_2.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane_2.setBackground(new Color(40,40,40));
+		LayoutManagmentMethods.addAlbums(scrollPane_2,dbrowCount,2);
 	
-		gbl_panel_9.columnWidths = new int[] {70, 40, 300, 350, 300, 100, 0};
-		gbl_panel_9.rowHeights = rowHeights;
-		gbl_panel_9.columnWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panel_9.rowWeights =rowWeights;
-		panel_9.setLayout(gbl_panel_9);
-		
-		
 		
 		
 		/*gbl_panel_9.columnWidths = new int[]{90, 362, 216, 160, 160, 0};
@@ -635,85 +510,7 @@ public class MainScreen extends JFrame {
 		gbl_panel_9.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		gbl_panel_9.rowWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
 		panel_9.setLayout(gbl_panel_9);*/
-		int y_pos=-1;
 		
-		int i_pos = dbrowCount -1;
-		for(int i=0;i<rowCount-1;i++) {
-			int x_pos =0;
-			
-			
-			 y_pos++;
-			for(int z=0;z<6;z++) {
-				JLabel temp = new JLabel();
-				
-				temp.setHorizontalAlignment(SwingConstants.LEFT);
-			
-				switch(x_pos) {
-				  case 0:
-					 // temp.setIcon(new ImageIcon(MainScreen.class.getResource("/img/polack.png")));
-				    break;
-				  case 1:
-					  temp.setIcon(new ImageIcon(MainScreen.class.getResource("/img/favIcon2.png")));
-				    break;
-				  case 2:
-						 temp.setText(ShowFormMusic.Utwory[i_pos][0]);
-					    break;
-				  case 3:
-					 temp.setText(ShowFormMusic.Utwory[i_pos][1]);
-					    break;
-				  case 4:
-					  temp.setText(ShowFormMusic.Utwory[i_pos][2]);
-					    break;
-				  case 5:
-					  temp.setText("-||-");
-					    break;
-				  default:
-				    // code block
-					  
-				}
-			
-		//	temp.setHorizontalTextPosition(SwingConstants.CENTER);
-			Border loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
-			//temp.setBorder(loweredetched);
-			temp.setBorder(BorderFactory.createMatteBorder(
-                    0, 0, 1, 0,new Color(40,40,40)));
-			temp.setForeground(new Color(255,255,255));
-			temp.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		temp.setFont(new Font("Dubai Medium", Font.PLAIN, 14));
-		if(x_pos == 0) {
-		temp.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				  temp.setIcon(new ImageIcon(MainScreen.class.getResource("/img/playWhite24.png")));
-					temp.setHorizontalAlignment(SwingConstants.CENTER);
-					
-					
-			}
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				  temp.setIcon(new ImageIcon(MainScreen.class.getResource("")));
-			}
-		});
-		}
-			
-			GridBagConstraints gbc_temp= new GridBagConstraints();
-			gbc_temp.fill = GridBagConstraints.BOTH;
-			/*if(x_pos == 0 ) {
-				gbc_temp.anchor = GridBagConstraints.EAST;
-			}
-			else {
-				gbc_temp.anchor = GridBagConstraints.EAST;
-			}*/
-			gbc_temp.insets = new Insets(0, 0, 0, 0);
-			gbc_temp.gridx = x_pos;
-			gbc_temp.gridy = y_pos;
-			panel_9.add(temp, gbc_temp);
-			x_pos++;
-			
-			}
-			i_pos--;
-		}
-	
 		JPanel BottomUI = new JPanel();
 		BottomUI.setBackground(new Color(40,40,40));
 		GridBagConstraints gbc_BottomUI = new GridBagConstraints();
@@ -741,16 +538,17 @@ public class MainScreen extends JFrame {
 		JLabel SongInfoPanel_AlbumCover = new JLabel("");
 		SongInfoPanel_AlbumCover.setBounds(10, 9, 56, 52);
 		panel.add(SongInfoPanel_AlbumCover);
-		SongInfoPanel_AlbumCover.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/img/tlwlogo.png")).getImage().getScaledInstance(56, 56, Image.SCALE_SMOOTH)));
+		SongInfoPanel_AlbumCover.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/img/dkac2.jpg")).getImage().getScaledInstance(56, 56, Image.SCALE_SMOOTH)));
 		
-		JLabel lblAcdc = new JLabel("John Williams");
+		JLabel lblAcdc = new JLabel("Hans Zimmer");
 		lblAcdc.setBounds(64, 34, 117, 15);
 		panel.add(lblAcdc);
 		lblAcdc.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAcdc.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblAcdc.setForeground(Color.LIGHT_GRAY);
 		
-		JLabel lblShookMeAll = new JLabel("Jurassic Park");
+		JLabel lblShookMeAll = new JLabel("Dark Knight ");
+		lblShookMeAll.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblShookMeAll.setBounds(64, 11, 117, 15);
 		panel.add(lblShookMeAll);
 		lblShookMeAll.setHorizontalAlignment(SwingConstants.CENTER);
@@ -950,10 +748,23 @@ public class MainScreen extends JFrame {
 		clickableProgressBar.setBackground(new Color(179, 179, 179));
 		panel_2.add(clickableProgressBar);
 			
-			
+			//Mouse Listeners
 		
-			
-			
+		
+		lblAlbums.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cl.show(Container,"Albums");
+				lblUtwory.setText("Albumy");
+			}
+		});
+		lblNewLabel_3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cl.show(Container,"Songs");
+				lblUtwory.setText("Utwory");
+			}
+		});
 			
 		
 			
@@ -962,4 +773,6 @@ public class MainScreen extends JFrame {
 	
 		
 	}
+	
+	
 }
