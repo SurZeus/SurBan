@@ -25,6 +25,7 @@ public class Mysql {
 	private String login=null;
 	private String haslo=null;
 	private String email=null;
+
 	public int checkresult=-1;
 	public JOptionPane xd = null;
 	public Mysql() {
@@ -35,6 +36,9 @@ public class Mysql {
 		this.login=login;
 		this.haslo=haslo;
 		this.email=email;
+		if(this.login==null|this.haslo==null|this.email==null) {
+			return;	
+		}
 		
 		readDataBase();
 		
@@ -49,7 +53,7 @@ public class Mysql {
 			
 			statement=connect.createStatement();
 			//writeResultSet(resultSet);
-
+			
 			preparedStatement =connect.prepareStatement("INSERT INTO uzytkownik VALUES(default, ?, ?, ?)");
 			
 			preparedStatement.setString(1, login);
@@ -67,6 +71,7 @@ public class Mysql {
 				e.getStackTrace();
 			}
 			
+		
 
 		
 		}

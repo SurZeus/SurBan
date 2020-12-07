@@ -11,6 +11,7 @@ public class validatePass {
 	
 	static String pass = null;
 	static String pass1 = null;
+	public static String hashcode = null;
 	
 	public validatePass(String password, String password1)
 	{
@@ -104,10 +105,17 @@ public class validatePass {
 	                 isValid = false;
 	                 return isValid;
 	            }
+	            String specialchar = "(.*[ ].*$)";
+	            if (pass.matches(specialchar))
+	            {
+	            	JOptionPane.showMessageDialog(null, "There's space in password!", "SurbanRecordsError", JOptionPane.ERROR_MESSAGE);
+	                 isValid = false;
+	                 return isValid;
+	            }
 	            
 	            return isValid; 
 	    }
-	  
+	
 	  private String hashPass(String password) throws NoSuchAlgorithmException
 	  {
 		  
@@ -115,6 +123,7 @@ public class validatePass {
 		  {
 			  System.out.println("Haslo nie zostalo wprowadzone w konstruktorze");
 			  return null;
+			 
 		  }
 		  
 		  String hashcode = null;
@@ -126,6 +135,7 @@ public class validatePass {
 		  
 		  
 		  
+		  this.hashcode = hashcode;
 		  return hashcode;
 	  }
 	  

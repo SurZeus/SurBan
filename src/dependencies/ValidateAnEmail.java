@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 public class ValidateAnEmail {
 
 	private String email;
+	public String tested;
 	
 	public ValidateAnEmail() {
 		
@@ -16,10 +17,14 @@ public class ValidateAnEmail {
 	
 	public void pobierzEmail(String email) throws Exception {
 		this.email=email;
-		checkEmail();
+		
+		if(!this.email.isEmpty()) {
+			checkEmail();
+		}
+		return;
 	}
 	
-	public boolean checkEmail()
+	public void checkEmail()
 	{
 		String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
 	    Pattern pattern = Pattern.compile(regex);
@@ -27,10 +32,10 @@ public class ValidateAnEmail {
 	    System.out.println();
 	       if (m.matches()==false) {
 	    	   JOptionPane.showMessageDialog(null, "Email is not valid! Try again.", "SurbanRecordsError", JOptionPane.ERROR_MESSAGE);
-	    	   
+	    	   this.tested = null;
 	       }
-	       return m.matches();
-	    
+	       this.tested = email;
+	       
 	}
 }
 

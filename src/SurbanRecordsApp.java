@@ -206,12 +206,13 @@ public class SurbanRecordsApp {
 				String email = emailRegister.getText(); 
 			
 				validatePass test = new validatePass(haslo, haslo1);
+
 				
 				try {
-					System.out.println(test.validate());
-				} catch (NoSuchAlgorithmException e) {
+					test.validate();
+				} catch (NoSuchAlgorithmException e1) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					e1.printStackTrace();
 				}
 				
 				
@@ -223,7 +224,7 @@ public class SurbanRecordsApp {
 				e.printStackTrace();
 			}
 			try {
-				baza.podajDane(login, haslo, email);
+				baza.podajDane(login, test.hashcode, checkmail.tested);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -232,25 +233,7 @@ public class SurbanRecordsApp {
 				
 				
 				
-				
-				/*	if (login.isEmpty() || haslo.isEmpty() || email.isEmpty()) {
-					showMessageDialog(null, "Nie wype³ni³eœ wszystkich danych");
-				}
-				else if(Arrays.equals(passwordRegister.getPassword(),passwordRRegister.getPassword()))
-	            {
-					try {
-						baza.podajDane(login, haslo, email);
-					} catch (Exception e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-	                  
-	            }else {
-	            	    windowRegister.showMessageDialog(null, "Passwords do not match.");
-	                    passwordRegister.setText(null);
-	                    passwordRRegister.setText(null);
-	                    showMessageDialog(null, "Has³a nie s¹ takie sme, spróbuj ponownie");
-	            } */
+			
 			}
 
 		});
