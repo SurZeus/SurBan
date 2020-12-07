@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 public class ValidateLog {
 	
 	static String login = null;
+	public String tested = null;
 	
 	public static String hashcode = null;
 	
@@ -19,8 +20,12 @@ public class ValidateLog {
 	
 	public String validate() throws NoSuchAlgorithmException
 	{
+		if(!isValidLogin())
+		{
+			return null;
+		}
+		this.tested = this.login;
 		return null;
-		
 	}
 		
 		
@@ -35,7 +40,7 @@ public class ValidateLog {
 	                 isValid = false;
 	                 return isValid;
 	            }
-	            String specialchar = "(.*[ ].*$)";
+	            String specialchar = "(.*[ ,;].*$)";
 	            if (login.matches(specialchar))
 	            {
 	            	JOptionPane.showMessageDialog(null, "There's space in login", "SurbanRecordsError", JOptionPane.ERROR_MESSAGE);

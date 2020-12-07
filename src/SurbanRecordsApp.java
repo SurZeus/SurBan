@@ -165,20 +165,14 @@ public class SurbanRecordsApp {
 				} catch (ClassNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				}
-				
-				
-				
-				
-	            /*
-				try {
-					baza.podajDane(login, haslo);
-				} catch (Exception e1) {
+				} catch (NoSuchAlgorithmException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-	            */
 				
+				
+				
+			
 			}
 		});
 		buttonLogin.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -206,10 +200,12 @@ public class SurbanRecordsApp {
 				String email = emailRegister.getText(); 
 			
 				validatePass test = new validatePass(haslo, haslo1);
+				ValidateLog log = new ValidateLog(login);
 
 				
 				try {
 					test.validate();
+					log.validate();
 				} catch (NoSuchAlgorithmException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -224,7 +220,7 @@ public class SurbanRecordsApp {
 				e.printStackTrace();
 			}
 			try {
-				baza.podajDane(login, test.hashcode, checkmail.tested);
+				baza.podajDane(log.tested, test.hashcode, checkmail.tested);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

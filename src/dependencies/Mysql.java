@@ -119,37 +119,4 @@ public class Mysql {
 	
 	}
 }
-/*public boolean checkUsername(String username)
-{
-    PreparedStatement ps;
-    ResultSet rs;
-    boolean checkUser = false;
-    String query = "SELECT * FROM `the_app_users` WHERE `u_uname` =?";
-    
-    try {
-        ps = MyConnection.getConnection().prepareStatement(query);
-        ps.setString(1, username);
-        
-        rs = ps.executeQuery();
-        
-        if(rs.next())
-        {
-            checkUser = true;
-        }
-    } catch (SQLException ex) {
-        Logger.getLogger(RegisterForm.class.getName()).log(Level.SEVERE, null, ex);
-    }
-     return checkUser;
-}	
-	/*private void writeResultSet(ResultSet resultSet) throws SQLException
-	{
-		while (resultSet.next()) {
-			String login=resultSet.getString("login");
-			String city=resultSet.getString("city");
-		}
-	}
-	
-	
-	
-}
-*/
+
