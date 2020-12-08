@@ -54,11 +54,12 @@ public class Mysql {
 			statement=connect.createStatement();
 			//writeResultSet(resultSet);
 			
-			preparedStatement =connect.prepareStatement("INSERT INTO uzytkownik VALUES(default, ?, ?, ?)");
+			preparedStatement =connect.prepareStatement("INSERT INTO uzytkownik VALUES(default, ?, ?, ?, ?)");
 			
 			preparedStatement.setString(1, login);
 			preparedStatement.setString(2, haslo);
 			preparedStatement.setString(3, email);
+			preparedStatement.setInt(4, 0);
 			
 			preparedStatement.executeUpdate();
 			connect.close();
