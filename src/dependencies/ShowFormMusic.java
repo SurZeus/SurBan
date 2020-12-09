@@ -40,8 +40,8 @@ public class ShowFormMusic {
 				
 			
 				System.out.println(count);
-			 Utwory = new String[count][4];
-			 resultSet=statement.executeQuery("SELECT nazwa_utworu, nazwa_wykonawcy, album, czas_trwania FROM utwor");
+			 Utwory = new String[count][3];
+			 resultSet=statement.executeQuery("SELECT nazwa_utworu, nazwa_wykonawcy, nazwa_albumu  FROM utwor,wykonawca,album where utwor.id_wykonawcy = wykonawca.id_wykonawcy and utwor.id_albumu=album.id_albumu");
 			 writeResultSet(resultSet,count,Utwory);
 				connect.close();
 				System.out.println("Connection closed");
@@ -61,12 +61,12 @@ public class ShowFormMusic {
 			while (resultSet.next()) {
 				tb[i][0]=resultSet.getString("nazwa_utworu");
 				tb[i][1]=resultSet.getString("nazwa_wykonawcy");
-				tb[i][2]=resultSet.getString("album");
-				tb[i][3]=resultSet.getString("czas_trwania");
+				tb[i][2]=resultSet.getString("nazwa_albumu");
+			
 				i++;
 			
 			}
-			System.out.println(tb[1]);
+			System.out.println(tb[0][1]);
 		}
 		
 		
