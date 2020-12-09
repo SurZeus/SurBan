@@ -108,7 +108,7 @@ public class MainScreen extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MainScreen.class.getResource("/img/songs.png")));
 		setBackground(Color.PINK);
 		
-		setMinimumSize(new Dimension(700, 400));
+		setMinimumSize(new Dimension(1100, 400));
 		setTitle("SurBan Studio");
 		MainScreen.setDefaultLookAndFeelDecorated(true);
 		
@@ -338,9 +338,9 @@ public class MainScreen extends JFrame {
 		scrollPane.setViewportView(panel_8);
 		GridBagLayout gbl_panel_8 = new GridBagLayout();
 		gbl_panel_8.columnWidths = new int[]{133, 0};
-		gbl_panel_8.rowHeights = new int[]{20, 35, 35, 35, 35, 35, 0, 0};
+		gbl_panel_8.rowHeights = new int[]{20, 35, 35, 35, 35, 35, 0, 0, 0};
 		gbl_panel_8.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_panel_8.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_8.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		panel_8.setLayout(gbl_panel_8);
 		
 		JPanel SongButtonPanel = new JPanel();
@@ -426,9 +426,26 @@ public class MainScreen extends JFrame {
 		
 		SideBarButtonActions sideBarButtonActions = new SideBarButtonActions();
 		GridBagConstraints gbc_sideBarButtonActions = new GridBagConstraints();
+		gbc_sideBarButtonActions.insets = new Insets(0, 0, 5, 0);
 		gbc_sideBarButtonActions.gridx = 0;
 		gbc_sideBarButtonActions.gridy = 6;
 		panel_8.add(sideBarButtonActions, gbc_sideBarButtonActions);
+		
+		JPanel panel_5 = new JPanel();
+		panel_5.setBackground(new Color(18, 18, 18));
+		GridBagConstraints gbc_panel_5 = new GridBagConstraints();
+		gbc_panel_5.fill = GridBagConstraints.BOTH;
+		gbc_panel_5.gridx = 0;
+		gbc_panel_5.gridy = 7;
+		panel_8.add(panel_5, gbc_panel_5);
+		
+		SideBarButtonActions sdbrbtnctnsDevpanel = new SideBarButtonActions();
+		
+		sdbrbtnctnsDevpanel.setText("Dev_Panel");
+		sdbrbtnctnsDevpanel.setHorizontalAlignment(SwingConstants.CENTER);
+		sdbrbtnctnsDevpanel.setForeground(new Color(179, 179, 179));
+		sdbrbtnctnsDevpanel.setFont(new Font("Dubai Medium", Font.BOLD, 14));
+		panel_5.add(sdbrbtnctnsDevpanel);
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -502,7 +519,61 @@ public class MainScreen extends JFrame {
 		scrollPane_2.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane_2.setBackground(new Color(40,40,40));
 		LayoutManagmentMethods.addAlbums(scrollPane_2,dbrowCount,2);
-	
+		
+		
+		JScrollPane scrollPane_3 = new JScrollPane(){
+		    protected void paintComponent(Graphics g)
+		    {
+		        g.setColor( getBackground() );
+		        g.fillRect(0, 0, getWidth(), getHeight());
+		        super.paintComponent(g);
+		    }
+		};
+
+		Container.add(scrollPane_3, "Dev_Panel");
+
+		scrollPane_3.setBorder(new EmptyBorder(0, 0, 0, 0));
+		 scrollPane_3.getViewport().setBackground( new Color(36,36,36));
+		scrollPane_3.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane_3.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane_3.setBackground(new Color(40,40,40));
+		LayoutManagmentMethods.addDevPanel(scrollPane_3,dbrowCount,3);
+		
+		
+		JScrollPane scrollPane_4 = new JScrollPane(){
+		    protected void paintComponent(Graphics g)
+		    {
+		        g.setColor( getBackground() );
+		        g.fillRect(0, 0, getWidth(), getHeight());
+		        super.paintComponent(g);
+		    }
+		};
+
+		Container.add(scrollPane_4, "Polak_Panel");
+
+		scrollPane_4.setBorder(new EmptyBorder(0, 0, 0, 0));
+		 scrollPane_4.getViewport().setBackground( new Color(36,36,36));
+		scrollPane_4.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane_4.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane_4.setBackground(new Color(40,40,40));
+		LayoutManagmentMethods.addPolak(scrollPane_4,2,2);
+		/*JScrollPane scrollPane_3 = new JScrollPane(){
+		    protected void paintComponent(Graphics g)
+		    {
+		        g.setColor( getBackground() );
+		        g.fillRect(0, 0, getWidth(), getHeight());
+		        super.paintComponent(g);
+		    }
+		};
+
+		Container.add(scrollPane_3, "Dev ADD");
+		scrollPane_3.setBorder(new EmptyBorder(0, 0, 0, 0));
+		 scrollPane_3.getViewport().setBackground( new Color(36,36,36));
+		scrollPane_3.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane_3.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane_3.setBackground(new Color(40,40,40));
+		LayoutManagmentMethods.addDevPanel(scrollPane_3,dbrowCount,10);
+	*/
 		
 		
 		/*gbl_panel_9.columnWidths = new int[]{90, 362, 216, 160, 160, 0};
@@ -762,11 +833,27 @@ public class MainScreen extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				cl.show(Container,"Songs");
+				
+				LayoutManagmentMethods.addSongs(scrollPane_1,dbrowCount,1);
 				lblUtwory.setText("Utwory");
 			}
 		});
-			
+		sdbrbtnctnsDevpanel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				cl.show(Container,"Dev_Panel");
+				lblUtwory.setText("Dev_Panel");
+			}
+		});
 		
+		
+		lblUlubione.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				cl.show(Container,"Polak_Panel");
+				lblUtwory.setText("LazaniaPolaka");
+			}
+		});
 			
 			
 		Image img = new ImageIcon(this.getClass().getResource("/img/mainbg2.jpg")).getImage();

@@ -156,7 +156,7 @@ public class SurbanRecordsApp {
 				
 				try {
 					ValidateLogin loginek = new ValidateLogin(login, haslo);
-					if(loginek.id != -1)
+					if(loginek.id == -1)
 					{
 						main_xd.setVisible(true);
 						window.frame.setVisible(false);

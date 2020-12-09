@@ -1,3 +1,5 @@
+/dependencies/
+/TestZone$2.class
 /MainScreen$1.class
 /MainScreen$10.class
 /MainScreen$11.class
@@ -5,6 +7,10 @@
 /MainScreen$13.class
 /MainScreen$14.class
 /MainScreen$15.class
+/MainScreen$16.class
+/MainScreen$17.class
+/MainScreen$18.class
+/MainScreen$19.class
 /MainScreen$2.class
 /MainScreen$3.class
 /MainScreen$4.class
@@ -13,13 +19,4 @@
 /MainScreen$7.class
 /MainScreen$8.class
 /MainScreen$9.class
-/SurbanRecordsApp$2.class
-/SurbanRecordsApp$3.class
-/SurbanRecordsApp$4.class
-/TestZone$1.class
-/TestZone$2.class
-/TestZone$3.class
-/TestZone$4.class
-/TestZone$5.class
-/TestZone.class
-/dependencies/
+/img/
