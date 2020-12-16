@@ -95,7 +95,7 @@ public class Mysql {
 		rs = preparedStatement.executeQuery();
 		
 		if (rs.next() == false) {
-			JOptionPane.showMessageDialog(null, "User not found in database", "SurbanRecordsError", JOptionPane.ERROR_MESSAGE);
+			//JOptionPane.showMessageDialog(null, "User not found in database", "SurbanRecordsError", JOptionPane.ERROR_MESSAGE);
 			
 		}else {	
 			int id = rs.getInt(1);

@@ -1,3 +1,4 @@
+package mainpackage;
 import dependencies.*;
 import java.awt.EventQueue;
 import java.awt.Dimension;
@@ -54,6 +55,8 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.swing.JSlider;
 import static javax.swing.JOptionPane.showMessageDialog;
@@ -79,29 +82,32 @@ public class SurbanRecordsApp {
 	private JPanel LoginCardTop;
 	private JPanel LeftInfoPanel;
 	private JLabel lblNewLabel_2;
-	private JTextField LoginField;
+	private JTextField loginLogin;
 	private JLabel lblYourPassword;
 	private JLabel lblNewLabel;
 	private JPanel panel_2;
-	private JLabel SignInButton;
+	private JLabel buttonLogin;
 	private JLabel lblDontHaveAccount;
 	private JLabel SignUpAlready;
-	private JPasswordField textField;
+	private JPasswordField passwordLogin;
 	private JPanel RegisterCard;
 	private JPanel panel_3;
-	private JLabel lblSignUp;
+	private JLabel buttonRegister;
 	private JLabel lblAlreadyHaveAn;
 	private JLabel SignInAlready;
 	private JPanel panel_4;
 	private JLabel lblRegister;
-	private JTextField RegisterLogin;
+	private JTextField loginRegister;
 	private JLabel lblRepeatYourPassword;
-	private JPasswordField RegisterRepeatPassword;
+	private JPasswordField passwordRegister1;
 	private JLabel RegisterShowPassword;
 	private JLabel lblEmail;
-	private JTextField RegisterEmail;
+	private JTextField emailRegister;
 	private JLabel lblPassword;
-	private JPasswordField RegisterPassword;
+	private JPasswordField passwordRegister;
+	public static JLabel incorrectReg;
+	public static ResourceBundle language;
+	
 	/**
 	 * @wbp.nonvisual location=272,359
 	 */
@@ -113,6 +119,30 @@ public class SurbanRecordsApp {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					
+					int lang = 2;
+					String filename = null;
+					language=null;
+					Locale l = new Locale("en", "US");
+
+					
+					switch(lang)
+					{
+					    case 1:
+						filename = "pl";
+						break;
+
+						case 2:
+						filename = "en";
+						break;
+
+						case 3:
+						filename = "de";
+						break;
+					}
+
+					language = ResourceBundle.getBundle("langs//"+filename, l);
+					
 					UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 					
 					window = new SurbanRecordsApp();
@@ -120,7 +150,7 @@ public class SurbanRecordsApp {
 					//SwingUtilities.updateComponentTreeUI(window);
 					SwingUtilities.updateComponentTreeUI(main_xd);
 					window.frmWelcome.setVisible(true);
-					main_xd.setVisible(true);
+					main_xd.setVisible(false);
 					
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -223,18 +253,68 @@ public class SurbanRecordsApp {
 		gbl_LoginCardBottom.rowWeights = new double[]{1.0, 0.0, 0.0, Double.MIN_VALUE};
 		LoginCardBottom.setLayout(gbl_LoginCardBottom);
 		
-		SignInButton = new JLabel("Sign In");
-		SignInButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		RegisterCard = new JPanel() {
+			protected void paintComponent(Graphics g) {
+			}
+		};
+		RegisterCard.setLayout(null);
+		RegisterCard.setOpaque(false);
+		RegisterCard.setBackground(new Color(255, 255, 255, 1));
+		OptionsContainer.add(RegisterCard, "RegisterCard1");
 		
-		SignInButton.setFont(new Font("Tahoma", Font.BOLD, 15));
-		SignInButton.setForeground(Color.LIGHT_GRAY);
-		GridBagConstraints gbc_SignInButton = new GridBagConstraints();
-		gbc_SignInButton.insets = new Insets(0, 0, 5, 0);
-		gbc_SignInButton.gridx = 0;
-		gbc_SignInButton.gridy = 0;
-		LoginCardBottom.add(SignInButton, gbc_SignInButton);
+		JLabel incorrectPass = new JLabel(language.getString("incpass"));
+		incorrectPass.setForeground(Color.RED);
+		incorrectPass.setFont(new Font("Tahoma", Font.BOLD, 12));
+		incorrectPass.setBounds(55, 310, 311, 44);
+		LoginCard.add(incorrectPass);
+		incorrectPass.hide();
 		
-		lblDontHaveAccount = new JLabel("Dont Have Account Yet?");
+		buttonLogin = new JLabel(language.getString("zalogujsie"));
+		buttonLogin.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String login = loginLogin.getText();
+				String haslo = String.valueOf(passwordLogin.getPassword());
+				
+				//main_xd.lblUsername.setText(login);
+				System.out.println(main_xd.UserLogin);
+			
+				
+				
+				try {
+					ValidateLogin loginek = new ValidateLogin(login, haslo);
+					if(loginek.id != -1)
+					{
+						incorrectPass.hide();
+						main_xd.setVisible(true);
+						window.frmWelcome.setVisible(false);
+					}
+					else
+					{
+						passwordLogin.setText("");
+						incorrectPass.show();
+					}
+
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NoSuchAlgorithmException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		buttonLogin.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		
+		buttonLogin.setFont(new Font("Tahoma", Font.BOLD, 15));
+		buttonLogin.setForeground(Color.LIGHT_GRAY);
+		GridBagConstraints gbc_buttonLogin = new GridBagConstraints();
+		gbc_buttonLogin.insets = new Insets(0, 0, 5, 0);
+		gbc_buttonLogin.gridx = 0;
+		gbc_buttonLogin.gridy = 0;
+		LoginCardBottom.add(buttonLogin, gbc_buttonLogin);
+		
+		lblDontHaveAccount = new JLabel(language.getString("dhac"));
 		lblDontHaveAccount.setForeground(Color.WHITE);
 		lblDontHaveAccount.setFont(new Font("Tahoma", Font.BOLD, 11));
 		GridBagConstraints gbc_lblDontHaveAccount = new GridBagConstraints();
@@ -243,7 +323,7 @@ public class SurbanRecordsApp {
 		gbc_lblDontHaveAccount.gridy = 1;
 		LoginCardBottom.add(lblDontHaveAccount, gbc_lblDontHaveAccount);
 		
-		SignUpAlready = new JLabel("Sign Up");
+		SignUpAlready = new JLabel(language.getString("zarejestrujsie"));
 		SignUpAlready.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		SignUpAlready.addMouseListener(new MouseAdapter() {
 			@Override
@@ -282,33 +362,33 @@ public class SurbanRecordsApp {
 		gbl_LoginCardTop.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		LoginCardTop.setLayout(gbl_LoginCardTop);
 		
-		JLabel lblYourUserName = new JLabel("Login");
+		JLabel lblYourUserName = new JLabel(language.getString("login"));
 		lblYourUserName.setForeground(Color.WHITE);
 		lblYourUserName.setFont(new Font("Tahoma", Font.BOLD, 14));
 		GridBagConstraints gbc_lblYourUserName = new GridBagConstraints();
-		gbc_lblYourUserName.insets = new Insets(0, 0, 15, 5);
+		gbc_lblYourUserName.insets = new Insets(0, 0, 5, 5);
 		gbc_lblYourUserName.gridx = 1;
 		gbc_lblYourUserName.gridy = 0;
 		LoginCardTop.add(lblYourUserName, gbc_lblYourUserName);
 		
-		LoginField = new JTextField();
-		LoginField.setCaretColor(Color.LIGHT_GRAY);
-		LoginField.setForeground(Color.LIGHT_GRAY);
-		LoginField.setFont(new Font("Tahoma", Font.BOLD, 15));
-		LoginField.setBorder(new MatteBorder(0, 0, 1, 0, (Color) Color.WHITE));
-		LoginField.setOpaque(false);
-		LoginField.setHorizontalAlignment(SwingConstants.CENTER);
-		LoginField.setPreferredSize(new Dimension(4, 25));
-		LoginField.setMinimumSize(new Dimension(4, 20));
-		GridBagConstraints gbc_LoginField = new GridBagConstraints();
-		gbc_LoginField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_LoginField.insets = new Insets(0, 0, 5, 5);
-		gbc_LoginField.gridx = 1;
-		gbc_LoginField.gridy = 1;
-		LoginCardTop.add(LoginField, gbc_LoginField);
-		LoginField.setColumns(20);
+		loginLogin = new JTextField();
+		loginLogin.setCaretColor(Color.LIGHT_GRAY);
+		loginLogin.setForeground(Color.LIGHT_GRAY);
+		loginLogin.setFont(new Font("Tahoma", Font.BOLD, 15));
+		loginLogin.setBorder(new MatteBorder(0, 0, 1, 0, (Color) Color.WHITE));
+		loginLogin.setOpaque(false);
+		loginLogin.setHorizontalAlignment(SwingConstants.CENTER);
+		loginLogin.setPreferredSize(new Dimension(4, 25));
+		loginLogin.setMinimumSize(new Dimension(4, 20));
+		GridBagConstraints gbc_loginLogin = new GridBagConstraints();
+		gbc_loginLogin.fill = GridBagConstraints.HORIZONTAL;
+		gbc_loginLogin.insets = new Insets(0, 0, 5, 5);
+		gbc_loginLogin.gridx = 1;
+		gbc_loginLogin.gridy = 1;
+		LoginCardTop.add(loginLogin, gbc_loginLogin);
+		loginLogin.setColumns(20);
 		
-		lblYourPassword = new JLabel(" Password");
+		lblYourPassword = new JLabel(language.getString("haslo"));
 		lblYourPassword.setForeground(Color.WHITE);
 		lblYourPassword.setFont(new Font("Tahoma", Font.BOLD, 14));
 		GridBagConstraints gbc_lblYourPassword = new GridBagConstraints();
@@ -317,40 +397,40 @@ public class SurbanRecordsApp {
 		gbc_lblYourPassword.gridy = 3;
 		LoginCardTop.add(lblYourPassword, gbc_lblYourPassword);
 		
-		textField = new JPasswordField();
-		textField.setCaretColor(Color.LIGHT_GRAY);
-		textField.setPreferredSize(new Dimension(4, 25));
-		textField.setOpaque(false);
-		textField.setMinimumSize(new Dimension(4, 20));
-		textField.setHorizontalAlignment(SwingConstants.CENTER);
-		textField.setForeground(Color.LIGHT_GRAY);
-		textField.setFont(new Font("Tahoma", Font.BOLD, 15));
-		textField.setColumns(20);
-		char Ec = textField.getEchoChar();
-		textField.setBorder(new MatteBorder(0, 0, 1, 0, (Color) Color.WHITE));
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.insets = new Insets(0, 0, 5, 5);
-		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField.gridx = 1;
-		gbc_textField.gridy = 4;
-		LoginCardTop.add(textField, gbc_textField);
+		passwordLogin = new JPasswordField();
+		passwordLogin.setCaretColor(Color.LIGHT_GRAY);
+		passwordLogin.setPreferredSize(new Dimension(4, 25));
+		passwordLogin.setOpaque(false);
+		passwordLogin.setMinimumSize(new Dimension(4, 20));
+		passwordLogin.setHorizontalAlignment(SwingConstants.CENTER);
+		passwordLogin.setForeground(Color.LIGHT_GRAY);
+		passwordLogin.setFont(new Font("Tahoma", Font.BOLD, 15));
+		passwordLogin.setColumns(20);
+		char Ec = passwordLogin.getEchoChar();
+		passwordLogin.setBorder(new MatteBorder(0, 0, 1, 0, (Color) Color.WHITE));
+		GridBagConstraints gbc_passwordLogin = new GridBagConstraints();
+		gbc_passwordLogin.insets = new Insets(0, 0, 5, 5);
+		gbc_passwordLogin.fill = GridBagConstraints.HORIZONTAL;
+		gbc_passwordLogin.gridx = 1;
+		gbc_passwordLogin.gridy = 4;
+		LoginCardTop.add(passwordLogin, gbc_passwordLogin);
 		
-		JLabel lblNewLabel_1 = new JLabel("Show Password");
+		JLabel lblNewLabel_1 = new JLabel(language.getString("ph"));
 		lblNewLabel_1.addMouseListener(new MouseAdapter() {
 			int statusIdentifier = 1;
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				if(statusIdentifier == 0) {
 				lblNewLabel_1.setIcon(new ImageIcon(SurbanRecordsApp.class.getResource("/img/eye3.png")));
-				lblNewLabel_1.setText("Hide Password");
+				lblNewLabel_1.setText(language.getString("sh"));
 				statusIdentifier = 1;
-				textField.setEchoChar((char)0);
+				passwordLogin.setEchoChar((char)0);
 			}
 				else {
 					lblNewLabel_1.setIcon(new ImageIcon(SurbanRecordsApp.class.getResource("/img/eye4.png")));
-					lblNewLabel_1.setText("Show Password");
+					lblNewLabel_1.setText(language.getString("ph"));
 					statusIdentifier = 0;
-					textField.setEchoChar(Ec);
+					passwordLogin.setEchoChar(Ec);
 				}
 			};
 			@Override
@@ -374,15 +454,6 @@ public class SurbanRecordsApp {
 		gbc_lblNewLabel_1.gridy = 5;
 		LoginCardTop.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
-		RegisterCard = new JPanel() {
-			protected void paintComponent(Graphics g) {
-			}
-		};
-		RegisterCard.setLayout(null);
-		RegisterCard.setOpaque(false);
-		RegisterCard.setBackground(new Color(255, 255, 255, 1));
-		OptionsContainer.add(RegisterCard, "RegisterCard1");
-		
 		panel_3 = new JPanel() {
 			protected void paintComponent(Graphics g) {
 			}
@@ -398,18 +469,57 @@ public class SurbanRecordsApp {
 		gbl_panel_3.rowWeights = new double[]{1.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel_3.setLayout(gbl_panel_3);
 		
-		lblSignUp = new JLabel("Sign Up");
-		lblSignUp.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		Mysql baza = new Mysql();
+		ValidateAnEmail checkmail = new ValidateAnEmail();
 		
-		lblSignUp.setForeground(Color.LIGHT_GRAY);
-		lblSignUp.setFont(new Font("Tahoma", Font.BOLD, 15));
-		GridBagConstraints gbc_lblSignUp = new GridBagConstraints();
-		gbc_lblSignUp.insets = new Insets(0, 0, 5, 0);
-		gbc_lblSignUp.gridx = 0;
-		gbc_lblSignUp.gridy = 0;
-		panel_3.add(lblSignUp, gbc_lblSignUp);
+		buttonRegister = new JLabel(language.getString("zarejestrujsie"));
+		buttonRegister.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String login = loginRegister.getText();
+				String haslo = String.valueOf(passwordRegister.getPassword());
+				String haslo1 = String.valueOf(passwordRegister1.getPassword());
+				String email = emailRegister.getText(); 
+			
+				validatePass test = new validatePass(haslo, haslo1);
+				ValidateLog log = new ValidateLog(login);
+
+				
+				try {
+					test.validate();
+					log.validate();
+				} catch (NoSuchAlgorithmException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				
+			try {
+				checkmail.pobierzEmail(email);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			try {
+				baza.podajDane(log.tested, test.hashcode, checkmail.tested);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+				
+			}
+		});
+		buttonRegister.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		
-		lblAlreadyHaveAn = new JLabel("Already Have An Account?");
+		buttonRegister.setForeground(Color.LIGHT_GRAY);
+		buttonRegister.setFont(new Font("Tahoma", Font.BOLD, 15));
+		GridBagConstraints gbc_buttonRegister = new GridBagConstraints();
+		gbc_buttonRegister.insets = new Insets(0, 0, 5, 0);
+		gbc_buttonRegister.gridx = 0;
+		gbc_buttonRegister.gridy = 0;
+		panel_3.add(buttonRegister, gbc_buttonRegister);
+		
+		lblAlreadyHaveAn = new JLabel(language.getString("ahac"));
 		lblAlreadyHaveAn.setForeground(Color.WHITE);
 		lblAlreadyHaveAn.setFont(new Font("Tahoma", Font.BOLD, 11));
 		GridBagConstraints gbc_lblAlreadyHaveAn = new GridBagConstraints();
@@ -418,7 +528,7 @@ public class SurbanRecordsApp {
 		gbc_lblAlreadyHaveAn.gridy = 1;
 		panel_3.add(lblAlreadyHaveAn, gbc_lblAlreadyHaveAn);
 		
-		SignInAlready = new JLabel("Sign In");
+		SignInAlready = new JLabel(language.getString("zalogujsie"));
 		SignInAlready.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		SignInAlready.setForeground(Color.LIGHT_GRAY);
 		SignInAlready.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -438,38 +548,38 @@ public class SurbanRecordsApp {
 		RegisterCard.add(panel_4);
 		GridBagLayout gbl_panel_4 = new GridBagLayout();
 		gbl_panel_4.columnWidths = new int[]{50, 217, 50, 0};
-		gbl_panel_4.rowHeights = new int[]{20, 50, 20, 50, 0, 50, 20, 50, 0, 0};
+		gbl_panel_4.rowHeights = new int[]{20, 50, 20, 50, 0, 50, 20, 50, 0, 0, 0};
 		gbl_panel_4.columnWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_panel_4.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_4.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		panel_4.setLayout(gbl_panel_4);
 		
-		lblRegister = new JLabel("Login");
+		lblRegister = new JLabel(language.getString("login"));
 		lblRegister.setForeground(Color.WHITE);
 		lblRegister.setFont(new Font("Tahoma", Font.BOLD, 14));
 		GridBagConstraints gbc_lblRegister = new GridBagConstraints();
-		gbc_lblRegister.insets = new Insets(0, 0, 15, 5);
+		gbc_lblRegister.insets = new Insets(0, 0, 5, 5);
 		gbc_lblRegister.gridx = 1;
 		gbc_lblRegister.gridy = 0;
 		panel_4.add(lblRegister, gbc_lblRegister);
 		
-		RegisterLogin = new JTextField();
-		RegisterLogin.setPreferredSize(new Dimension(4, 25));
-		RegisterLogin.setOpaque(false);
-		RegisterLogin.setMinimumSize(new Dimension(4, 20));
-		RegisterLogin.setHorizontalAlignment(SwingConstants.CENTER);
-		RegisterLogin.setForeground(Color.LIGHT_GRAY);
-		RegisterLogin.setFont(new Font("Tahoma", Font.BOLD, 15));
-		RegisterLogin.setColumns(20);
-		RegisterLogin.setCaretColor(Color.LIGHT_GRAY);
-		RegisterLogin.setBorder(new MatteBorder(0, 0, 1, 0, (Color) Color.WHITE));
-		GridBagConstraints gbc_RegisterLogin = new GridBagConstraints();
-		gbc_RegisterLogin.fill = GridBagConstraints.HORIZONTAL;
-		gbc_RegisterLogin.insets = new Insets(0, 0, 5, 5);
-		gbc_RegisterLogin.gridx = 1;
-		gbc_RegisterLogin.gridy = 1;
-		panel_4.add(RegisterLogin, gbc_RegisterLogin);
+		loginRegister = new JTextField();
+		loginRegister.setPreferredSize(new Dimension(4, 25));
+		loginRegister.setOpaque(false);
+		loginRegister.setMinimumSize(new Dimension(4, 20));
+		loginRegister.setHorizontalAlignment(SwingConstants.CENTER);
+		loginRegister.setForeground(Color.LIGHT_GRAY);
+		loginRegister.setFont(new Font("Tahoma", Font.BOLD, 15));
+		loginRegister.setColumns(20);
+		loginRegister.setCaretColor(Color.LIGHT_GRAY);
+		loginRegister.setBorder(new MatteBorder(0, 0, 1, 0, (Color) Color.WHITE));
+		GridBagConstraints gbc_loginRegister = new GridBagConstraints();
+		gbc_loginRegister.fill = GridBagConstraints.HORIZONTAL;
+		gbc_loginRegister.insets = new Insets(0, 0, 5, 5);
+		gbc_loginRegister.gridx = 1;
+		gbc_loginRegister.gridy = 1;
+		panel_4.add(loginRegister, gbc_loginRegister);
 		
-		lblEmail = new JLabel("Email");
+		lblEmail = new JLabel(language.getString("email"));
 		lblEmail.setForeground(Color.WHITE);
 		lblEmail.setFont(new Font("Tahoma", Font.BOLD, 14));
 		GridBagConstraints gbc_lblEmail = new GridBagConstraints();
@@ -478,24 +588,24 @@ public class SurbanRecordsApp {
 		gbc_lblEmail.gridy = 2;
 		panel_4.add(lblEmail, gbc_lblEmail);
 		
-		RegisterEmail = new JTextField();
-		RegisterEmail.setPreferredSize(new Dimension(4, 25));
-		RegisterEmail.setOpaque(false);
-		RegisterEmail.setMinimumSize(new Dimension(4, 20));
-		RegisterEmail.setHorizontalAlignment(SwingConstants.CENTER);
-		RegisterEmail.setForeground(Color.LIGHT_GRAY);
-		RegisterEmail.setFont(new Font("Tahoma", Font.BOLD, 15));
-		RegisterEmail.setColumns(20);
-		RegisterEmail.setCaretColor(Color.LIGHT_GRAY);
-		RegisterEmail.setBorder(new MatteBorder(0, 0, 1, 0, (Color) Color.WHITE));
-		GridBagConstraints gbc_RegisterEmail = new GridBagConstraints();
-		gbc_RegisterEmail.insets = new Insets(0, 0, 5, 5);
-		gbc_RegisterEmail.fill = GridBagConstraints.HORIZONTAL;
-		gbc_RegisterEmail.gridx = 1;
-		gbc_RegisterEmail.gridy = 3;
-		panel_4.add(RegisterEmail, gbc_RegisterEmail);
+		emailRegister = new JTextField();
+		emailRegister.setPreferredSize(new Dimension(4, 25));
+		emailRegister.setOpaque(false);
+		emailRegister.setMinimumSize(new Dimension(4, 20));
+		emailRegister.setHorizontalAlignment(SwingConstants.CENTER);
+		emailRegister.setForeground(Color.LIGHT_GRAY);
+		emailRegister.setFont(new Font("Tahoma", Font.BOLD, 15));
+		emailRegister.setColumns(20);
+		emailRegister.setCaretColor(Color.LIGHT_GRAY);
+		emailRegister.setBorder(new MatteBorder(0, 0, 1, 0, (Color) Color.WHITE));
+		GridBagConstraints gbc_emailRegister = new GridBagConstraints();
+		gbc_emailRegister.insets = new Insets(0, 0, 5, 5);
+		gbc_emailRegister.fill = GridBagConstraints.HORIZONTAL;
+		gbc_emailRegister.gridx = 1;
+		gbc_emailRegister.gridy = 3;
+		panel_4.add(emailRegister, gbc_emailRegister);
 		
-		lblPassword = new JLabel("Password");
+		lblPassword = new JLabel(language.getString("haslo"));
 		lblPassword.setForeground(Color.WHITE);
 		lblPassword.setFont(new Font("Tahoma", Font.BOLD, 14));
 		GridBagConstraints gbc_lblPassword = new GridBagConstraints();
@@ -504,24 +614,24 @@ public class SurbanRecordsApp {
 		gbc_lblPassword.gridy = 4;
 		panel_4.add(lblPassword, gbc_lblPassword);
 		
-		RegisterPassword = new JPasswordField();
-		RegisterPassword.setPreferredSize(new Dimension(4, 25));
-		RegisterPassword.setOpaque(false);
-		RegisterPassword.setMinimumSize(new Dimension(4, 20));
-		RegisterPassword.setHorizontalAlignment(SwingConstants.CENTER);
-		RegisterPassword.setForeground(Color.LIGHT_GRAY);
-		RegisterPassword.setFont(new Font("Tahoma", Font.BOLD, 15));
-		RegisterPassword.setColumns(20);
-		RegisterPassword.setCaretColor(Color.LIGHT_GRAY);
-		RegisterPassword.setBorder(new MatteBorder(0, 0, 1, 0, (Color) Color.WHITE));
-		GridBagConstraints gbc_RegisterPassword = new GridBagConstraints();
-		gbc_RegisterPassword.insets = new Insets(0, 0, 5, 5);
-		gbc_RegisterPassword.fill = GridBagConstraints.HORIZONTAL;
-		gbc_RegisterPassword.gridx = 1;
-		gbc_RegisterPassword.gridy = 5;
-		panel_4.add(RegisterPassword, gbc_RegisterPassword);
+		passwordRegister = new JPasswordField();
+		passwordRegister.setPreferredSize(new Dimension(4, 25));
+		passwordRegister.setOpaque(false);
+		passwordRegister.setMinimumSize(new Dimension(4, 20));
+		passwordRegister.setHorizontalAlignment(SwingConstants.CENTER);
+		passwordRegister.setForeground(Color.LIGHT_GRAY);
+		passwordRegister.setFont(new Font("Tahoma", Font.BOLD, 15));
+		passwordRegister.setColumns(20);
+		passwordRegister.setCaretColor(Color.LIGHT_GRAY);
+		passwordRegister.setBorder(new MatteBorder(0, 0, 1, 0, (Color) Color.WHITE));
+		GridBagConstraints gbc_passwordRegister = new GridBagConstraints();
+		gbc_passwordRegister.insets = new Insets(0, 0, 5, 5);
+		gbc_passwordRegister.fill = GridBagConstraints.HORIZONTAL;
+		gbc_passwordRegister.gridx = 1;
+		gbc_passwordRegister.gridy = 5;
+		panel_4.add(passwordRegister, gbc_passwordRegister);
 		
-		lblRepeatYourPassword = new JLabel("Repeat Your Password");
+		lblRepeatYourPassword = new JLabel(language.getString("powtorzhaslo"));
 		lblRepeatYourPassword.setForeground(Color.WHITE);
 		lblRepeatYourPassword.setFont(new Font("Tahoma", Font.BOLD, 14));
 		GridBagConstraints gbc_lblRepeatYourPassword = new GridBagConstraints();
@@ -530,30 +640,30 @@ public class SurbanRecordsApp {
 		gbc_lblRepeatYourPassword.gridy = 6;
 		panel_4.add(lblRepeatYourPassword, gbc_lblRepeatYourPassword);
 		
-		RegisterRepeatPassword = new JPasswordField();
-		RegisterRepeatPassword.setPreferredSize(new Dimension(4, 25));
-		RegisterRepeatPassword.setOpaque(false);
-		RegisterRepeatPassword.setMinimumSize(new Dimension(4, 20));
-		RegisterRepeatPassword.setHorizontalAlignment(SwingConstants.CENTER);
-		RegisterRepeatPassword.setForeground(Color.LIGHT_GRAY);
-		RegisterRepeatPassword.setFont(new Font("Tahoma", Font.BOLD, 15));
-		RegisterRepeatPassword.setColumns(20);
-		RegisterRepeatPassword.setCaretColor(Color.LIGHT_GRAY);
-		RegisterRepeatPassword.setBorder(new MatteBorder(0, 0, 1, 0, (Color) Color.WHITE));
-		GridBagConstraints gbc_RegisterRepeatPassword = new GridBagConstraints();
-		gbc_RegisterRepeatPassword.fill = GridBagConstraints.HORIZONTAL;
-		gbc_RegisterRepeatPassword.insets = new Insets(0, 0, 5, 5);
-		gbc_RegisterRepeatPassword.gridx = 1;
-		gbc_RegisterRepeatPassword.gridy = 7;
-		panel_4.add(RegisterRepeatPassword, gbc_RegisterRepeatPassword);
+		passwordRegister1 = new JPasswordField();
+		passwordRegister1.setPreferredSize(new Dimension(4, 25));
+		passwordRegister1.setOpaque(false);
+		passwordRegister1.setMinimumSize(new Dimension(4, 20));
+		passwordRegister1.setHorizontalAlignment(SwingConstants.CENTER);
+		passwordRegister1.setForeground(Color.LIGHT_GRAY);
+		passwordRegister1.setFont(new Font("Tahoma", Font.BOLD, 15));
+		passwordRegister1.setColumns(20);
+		passwordRegister1.setCaretColor(Color.LIGHT_GRAY);
+		passwordRegister1.setBorder(new MatteBorder(0, 0, 1, 0, (Color) Color.WHITE));
+		GridBagConstraints gbc_passwordRegister1 = new GridBagConstraints();
+		gbc_passwordRegister1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_passwordRegister1.insets = new Insets(0, 0, 5, 5);
+		gbc_passwordRegister1.gridx = 1;
+		gbc_passwordRegister1.gridy = 7;
+		panel_4.add(passwordRegister1, gbc_passwordRegister1);
 		
-		RegisterShowPassword = new JLabel("Show Password");
+		RegisterShowPassword = new JLabel(language.getString("ph"));
 		RegisterShowPassword.setIconTextGap(8);
 		RegisterShowPassword.setForeground(Color.LIGHT_GRAY);
 		RegisterShowPassword.setFont(new Font("Tahoma", Font.BOLD, 11));
 		GridBagConstraints gbc_RegisterShowPassword = new GridBagConstraints();
 		gbc_RegisterShowPassword.anchor = GridBagConstraints.WEST;
-		gbc_RegisterShowPassword.insets = new Insets(0, 0, 0, 5);
+		gbc_RegisterShowPassword.insets = new Insets(0, 0, 5, 5);
 		gbc_RegisterShowPassword.gridx = 1;
 		gbc_RegisterShowPassword.gridy = 8;
 		panel_4.add(RegisterShowPassword, gbc_RegisterShowPassword);
@@ -563,15 +673,15 @@ public class SurbanRecordsApp {
 			public void mouseClicked(MouseEvent arg0) {
 				if(statusIdentifier == 0) {
 					RegisterShowPassword.setIcon(new ImageIcon(SurbanRecordsApp.class.getResource("/img/eye3.png")));
-					RegisterShowPassword.setText("Hide Password");
+					RegisterShowPassword.setText(language.getString("sh"));
 				statusIdentifier = 1;
-			RegisterPassword.setEchoChar((char)0);
+			passwordRegister.setEchoChar((char)0);
 			}
 				else {
 					RegisterShowPassword.setIcon(new ImageIcon(SurbanRecordsApp.class.getResource("/img/eye4.png")));
-					RegisterShowPassword.setText("Show Password");
+					RegisterShowPassword.setText(language.getString("ph"));
 					statusIdentifier = 0;
-					RegisterPassword.setEchoChar(Ec);
+					passwordRegister.setEchoChar(Ec);
 				}
 			};
 			@Override
@@ -585,6 +695,18 @@ public class SurbanRecordsApp {
 		});
 		RegisterShowPassword.setIconTextGap(8);
 		RegisterShowPassword.setIcon(new ImageIcon(SurbanRecordsApp.class.getResource("/img/eye4.png")));
+		
+		incorrectReg = new JLabel(language.getString("incpass"));
+		GridBagConstraints gbc_incorrectReg = new GridBagConstraints();
+		gbc_incorrectReg.anchor = GridBagConstraints.NORTH;
+		gbc_incorrectReg.fill = GridBagConstraints.HORIZONTAL;
+		gbc_incorrectReg.insets = new Insets(0, 0, 0, 5);
+		gbc_incorrectReg.gridx = 1;
+		gbc_incorrectReg.gridy = 9;
+		panel_4.add(incorrectReg, gbc_incorrectReg);
+		incorrectReg.setForeground(Color.RED);
+		incorrectReg.setFont(new Font("Tahoma", Font.BOLD, 12));
+		incorrectReg.hide();
 		
 		JPanel panel_1 = new JPanel() {
 		protected void paintComponent(Graphics g)
@@ -609,7 +731,7 @@ public class SurbanRecordsApp {
 		panel_2.add(lblNewLabel);
 		lblNewLabel.setIcon(new ImageIcon(SurbanRecordsApp.class.getResource("/img/settings.png")));
 		
-		JLabel lblWelcome = new JLabel("Hello There !");
+		JLabel lblWelcome = new JLabel("SurbanRecords");
 		lblWelcome.setFont(new Font("Dubai Medium", Font.BOLD, 56));
 		lblWelcome.setForeground(Color.DARK_GRAY);
 		lblWelcome.setHorizontalAlignment(SwingConstants.CENTER);
@@ -620,8 +742,7 @@ public class SurbanRecordsApp {
 		LoginWindowBackgroundLabel.setBounds(412, 0, 872, 700);
 		frmWelcome.getContentPane().add(LoginWindowBackgroundLabel);
 		LoginWindowBackgroundLabel.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bgcart.png")).getImage().getScaledInstance(1000, 725, Image.SCALE_SMOOTH)));
-		Mysql baza = new Mysql();
-		ValidateAnEmail checkmail = new ValidateAnEmail();
+		
 		
 		SignUpAlready.addMouseListener(new MouseAdapter() {
 			@Override
