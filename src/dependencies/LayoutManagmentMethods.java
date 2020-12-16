@@ -645,13 +645,14 @@ public class LayoutManagmentMethods {
 				GridBagConstraints gbc_button = new GridBagConstraints();
 				gbc_button.gridx = 0;
 				gbc_button.gridy = 5;
+				
 				panel_4.add(button, gbc_button);
 				button.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent arg0) {
 						AddSongToDb temp = new AddSongToDb();
 						String title = textField_3.getText();
-					
+			
 						int album = Integer.parseInt(textField_5.getText());
 						int artist = Integer.parseInt(textField_4.getText());
 						try {
