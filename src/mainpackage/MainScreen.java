@@ -1,3 +1,4 @@
+package mainpackage;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Graphics;
@@ -42,6 +43,7 @@ import java.awt.event.AdjustmentListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ResourceBundle;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollBar;
 import javax.swing.JComboBox;
@@ -98,6 +100,7 @@ public class MainScreen extends JFrame {
 	static int IsPlayButton =1;
 	static int IsButtonWhite =0; //0 = grey/1 = whiter
 public static int dbrowCount;
+public static ResourceBundle language = SurbanRecordsApp.language;
 
 
 	/**
@@ -187,7 +190,7 @@ public static int dbrowCount;
 		gbc_panel_12.gridy = 0;
 		TopCenterPanel.add(panel_12, gbc_panel_12);
 		
-		JLabel lblUtwory = new JLabel("Utwory");
+		JLabel lblUtwory = new JLabel(language.getString("utwory"));
 		lblUtwory.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblUtwory.setHorizontalTextPosition(SwingConstants.LEFT);
 		lblUtwory.setHorizontalAlignment(SwingConstants.LEFT);
@@ -349,7 +352,7 @@ public static int dbrowCount;
 		
 		
 		
-		SideBarButtonSongs.setText("Utwory");
+		SideBarButtonSongs.setText(language.getString("utwory"));
 		
 		SideBarButtonSongs.setHorizontalAlignment(SwingConstants.CENTER);
 		SideBarButtonSongs.setForeground(new Color(179,179,179));
@@ -385,7 +388,7 @@ public static int dbrowCount;
 		panel_8.add(FavouritesButtonPanel, gbc_FavouritesButtonPanel);
 		
 		SideBarButtonActions lblUlubione = new SideBarButtonActions();
-		lblUlubione.setText("Ulubione");
+		lblUlubione.setText(language.getString("ulubione"));
 		
 		lblUlubione.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUlubione.setForeground(new Color(179, 179, 179));
@@ -401,7 +404,7 @@ public static int dbrowCount;
 		panel_8.add(PlayListsPanel, gbc_PlayListsPanel);
 		
 		SideBarButtonActions lblPlaylisty = new SideBarButtonActions();
-		lblPlaylisty.setText("Playlisty");
+		lblPlaylisty.setText(language.getString("playlisty"));
 		
 		lblPlaylisty.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPlaylisty.setForeground(new Color(179, 179, 179));
@@ -409,7 +412,7 @@ public static int dbrowCount;
 		PlayListsPanel.add(lblPlaylisty);
 		
 		SideBarButtonActions lblWykonawcy = new SideBarButtonActions();
-		lblWykonawcy.setText("Wykonawcy");
+		lblWykonawcy.setText(language.getString("wykonawcy"));
 		lblWykonawcy.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWykonawcy.setForeground(new Color(179, 179, 179));
 		lblWykonawcy.setFont(new Font("Dubai Medium", Font.BOLD, 14));
@@ -527,7 +530,6 @@ public static int dbrowCount;
 		    }
 		};
 
-		Container.add(scrollPane_4, "Polak_Panel");
 
 		scrollPane_4.setBorder(new EmptyBorder(0, 0, 0, 0));
 		 scrollPane_4.getViewport().setBackground( new Color(36,36,36));
@@ -584,7 +586,7 @@ public static int dbrowCount;
 		gbc_SongsRowFavoriteButton.gridy = 0;
 		SongsRowTemplate.add(SongsRowFavoriteButton, gbc_SongsRowFavoriteButton);
 		
-		JLabel SongsRowTitle = new JLabel("Title");
+		JLabel SongsRowTitle = new JLabel(language.getString("tytul"));
 		SongsRowTitle.setForeground(Color.WHITE);
 		SongsRowTitle.setFont(new Font("Dubai Medium", Font.PLAIN, 14));
 		SongsRowTitle.setHorizontalAlignment(SwingConstants.CENTER);
@@ -595,7 +597,7 @@ public static int dbrowCount;
 		gbc_SongsRowTitle.gridy = 0;
 		SongsRowTemplate.add(SongsRowTitle, gbc_SongsRowTitle);
 		
-		JLabel lblCreator = new JLabel("Creator");
+		JLabel lblCreator = new JLabel(language.getString("wykonawca"));
 		lblCreator.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCreator.setForeground(Color.WHITE);
 		lblCreator.setFont(new Font("Dubai Medium", Font.PLAIN, 14));
@@ -606,7 +608,7 @@ public static int dbrowCount;
 		gbc_lblCreator.gridy = 0;
 		SongsRowTemplate.add(lblCreator, gbc_lblCreator);
 		
-		JLabel label = new JLabel("Creator");
+		JLabel label = new JLabel(language.getString("album"));
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setForeground(Color.WHITE);
 		label.setFont(new Font("Dubai Medium", Font.PLAIN, 14));
@@ -617,7 +619,7 @@ public static int dbrowCount;
 		gbc_label.gridy = 0;
 		SongsRowTemplate.add(label, gbc_label);
 		
-		JLabel lblDuration = new JLabel("Date Added");
+		JLabel lblDuration = new JLabel(language.getString("data"));
 		lblDuration.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDuration.setForeground(Color.WHITE);
 		lblDuration.setFont(new Font("Dubai Medium", Font.PLAIN, 14));
@@ -628,7 +630,7 @@ public static int dbrowCount;
 		gbc_lblDuration.gridy = 0;
 		SongsRowTemplate.add(lblDuration, gbc_lblDuration);
 		
-		JLabel lblDuration_1 = new JLabel("Duration");
+		JLabel lblDuration_1 = new JLabel(language.getString("czas"));
 		lblDuration_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDuration_1.setForeground(Color.WHITE);
 		lblDuration_1.setFont(new Font("Dubai Medium", Font.PLAIN, 14));
@@ -644,31 +646,7 @@ public static int dbrowCount;
 		SongsHeader.setBackground(new Color(36,36,36,50));
 		SongsHeader.setPreferredSize(new Dimension(10, 60));
 		SongsTab_1.setColumnHeaderView(SongsHeader);
-		/*JScrollPane scrollPane_3 = new JScrollPane(){
-		    protected void paintComponent(Graphics g)
-		    {
-		        g.setColor( getBackground() );
-		        g.fillRect(0, 0, getWidth(), getHeight());
-		        super.paintComponent(g);
-		    }
-		};
 
-		Container.add(scrollPane_3, "Dev ADD");
-		scrollPane_3.setBorder(new EmptyBorder(0, 0, 0, 0));
-		 scrollPane_3.getViewport().setBackground( new Color(36,36,36));
-		scrollPane_3.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane_3.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane_3.setBackground(new Color(40,40,40));
-		LayoutManagmentMethods.addDevPanel(scrollPane_3,dbrowCount,10);
-	*/
-		
-		
-		/*gbl_panel_9.columnWidths = new int[]{90, 362, 216, 160, 160, 0};
-		gbl_panel_9.rowHeights = rowHeights;
-		gbl_panel_9.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_panel_9.rowWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
-		panel_9.setLayout(gbl_panel_9);*/
-		
 		JPanel BottomUI = new JPanel();
 		BottomUI.setBackground(new Color(40,40,40));
 		GridBagConstraints gbc_BottomUI = new GridBagConstraints();
@@ -858,25 +836,6 @@ public static int dbrowCount;
 		gbc_progressBar.gridy = 1;
 		panel_1.add(progressBar, gbc_progressBar);
 		
-		/*ClickableProgressBar progressBar = new ClickableProgressBar();
-		GridBagConstraints gbc_progressBar = new GridBagConstraints();
-		gbc_progressBar.gridx = 0;
-		gbc_progressBar.gridy = 1;
-		panel_1.add(progressBar, gbc_progressBar);
-		progressBar.setEnabled(false);
-		progressBar.setPreferredSize(new Dimension(139, 6));
-		progressBar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		progressBar.setMinimumSize(new Dimension(10, 2));
-		progressBar.setBounds(440, 56, 350, 7);
-		progressBar.setFocusable(false);
-		progressBar.setBorder(null);
-		progressBar.setForeground(new Color(105,105,105));
-		progressBar.setValue(50);
-		progressBar.setBackground(new Color(179, 179, 179));
-		progressBar.setStringPainted(true);
-		progressBar.setForeground(Color.gray);
-		progressBar.setString("");
-		*/
 		
 		JPanel panel_2 = new JPanel();
 		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
@@ -913,34 +872,16 @@ public static int dbrowCount;
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				cl.show(Container,"Albums");
-				lblUtwory.setText("Albumy");
+				lblUtwory.setText(language.getString("albumy"));
 			}
 		});
-		/*SideBarButtonSongs.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				System.out.println("Liczba wierszy przed aktualizacja: " + dbrowCount);
-				 dbrowCount =ShowFormMusic.count;
-				 System.out.println("Liczba wierszy po aktualizacja: " + dbrowCount);
-				
-				LayoutManagmentMethods.addSongs(scrollPane_1,dbrowCount,1);
-				lblUtwory.setText("Utwory");
-				cl.show(Container,"Songs");
-			}
-		});*/
+		
 		
 		SideBarButtonSongs.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-			
-			
-				//System.out.println("Row count: " +dbRowCount);
-				//System.out.println("Row count: " +dbRowCount);
-				//MainContentCardsMethods.SongsCardAddContent(SongsTabViewPort,0);
-		
-				//check if oldRowCount is up to date;
-				
-				//cl.show(Container,"SongsTab");
+				cl.show(Container,"SongsTab");
+
 			}
 		});
 		sdbrbtnctnsDevpanel.addMouseListener(new MouseAdapter() {
@@ -957,7 +898,6 @@ public static int dbrowCount;
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				cl.show(Container,"Polak_Panel");
-				lblUtwory.setText("LazaniaPolaka");
 			}
 		});
 			

@@ -1,5 +1,7 @@
 package dependencies;
+import mainpackage.SurbanRecordsApp;
 
+import java.awt.Color;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -31,7 +33,9 @@ public class ValidateAnEmail {
 	    Matcher m = pattern.matcher(email);
 	    System.out.println();
 	       if (m.matches()==false) {
-	    	   JOptionPane.showMessageDialog(null, "Email is not valid! Try again.", "SurbanRecordsError", JOptionPane.ERROR_MESSAGE);
+	    	   SurbanRecordsApp.incorrectReg.setForeground(Color.RED);
+	    	   SurbanRecordsApp.incorrectReg.setText("Email is not valid! Try again.");
+           	   SurbanRecordsApp.incorrectReg.show();
 	    	   this.tested = null;
 	       }
 	       this.tested = email;

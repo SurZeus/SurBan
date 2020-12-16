@@ -1,5 +1,7 @@
 package dependencies;
+import  mainpackage.SurbanRecordsApp;
 
+import java.awt.Color;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
@@ -27,9 +29,12 @@ public class validatePass {
 		
 		 if(this.pass.isEmpty() || this.pass1.isEmpty())
 		  {
-			  System.out.println("Haslo nie zostalo wprowadzone w konstruktorze");
+			  SurbanRecordsApp.incorrectReg.setForeground(Color.RED);
+        	  SurbanRecordsApp.incorrectReg.setText("Nie podano has³a. WprowadŸ has³o.");
+        	  SurbanRecordsApp.incorrectReg.show();
 			  return null;
 		  }
+		 
 	
 		boolean validPassword = isValidPassword();
 		
@@ -44,19 +49,19 @@ public class validatePass {
         	}
         	else
         	{
-        		System.out.println("Second hashing failed.");
+        		//System.out.println("Second hashing failed.");
         		return null;
         	}
         	
         }
         else
         {
-        	System.out.println("Password hashing or verification failed.");
+        	//System.out.println("Password hashing or verification failed.");
         	return null;
         }
         
-        
-      
+        SurbanRecordsApp.incorrectReg.setForeground(Color.GREEN);
+        SurbanRecordsApp.incorrectReg.setText("Pomyœlnie zarejestrowano!");
 		return hashcode;
 		
 	}
@@ -66,49 +71,62 @@ public class validatePass {
 	            boolean isValid = true;
 	            if (pass.length() > 20 || pass.length() < 8)
 	            {
-	                    
-	            	 JOptionPane.showMessageDialog(null, "Password must be less than 20 and more than 8 characters in length.", "SurbanRecordsError", JOptionPane.ERROR_MESSAGE);
+	            	SurbanRecordsApp.incorrectReg.setForeground(Color.RED);
+	            	 SurbanRecordsApp.incorrectReg.setText("<HTML>Password must be less than 20 and </br> more than 8 characters in length.<HTML>");
+	            	 SurbanRecordsApp.incorrectReg.show();
 	                 isValid = false;
 	                 return isValid;
 	            }
 	            String upperCaseChars = "(.*[A-Z].*)";
 	            if (!pass.matches(upperCaseChars ))
 	            {
-	            	JOptionPane.showMessageDialog(null, "Password must have atleast one uppercase character.", "SurbanRecordsError", JOptionPane.ERROR_MESSAGE);
+	            	SurbanRecordsApp.incorrectReg.setForeground(Color.RED);
+	            	SurbanRecordsApp.incorrectReg.setText("Password must have atleast one uppercase character.");
+	            	SurbanRecordsApp.incorrectReg.show();
 	                 isValid = false;
 	                 return isValid;
 	            }
 	            String lowerCaseChars = "(.*[a-z].*)";
 	            if (!pass.matches(lowerCaseChars ))
 	            {
-	            	JOptionPane.showMessageDialog(null, "Password must have atleast one lowercase character.", "SurbanRecordsError", JOptionPane.ERROR_MESSAGE);
+	            	SurbanRecordsApp.incorrectReg.setForeground(Color.RED);
+	            	SurbanRecordsApp.incorrectReg.setText("Password must have atleast one lowercase character.");
+	            	SurbanRecordsApp.incorrectReg.show();
 	                 isValid = false;
 	                 return isValid;
 	            }
 	            String numbers = "(.*[0-9].*)";
 	            if (!pass.matches(numbers ))
 	            {
-	            	JOptionPane.showMessageDialog(null, "Password must have atleast one number.", "SurbanRecordsError", JOptionPane.ERROR_MESSAGE);
+	            	SurbanRecordsApp.incorrectReg.setForeground(Color.RED);
+	            	SurbanRecordsApp.incorrectReg.setText("Password must have atleast one number.");
+	            	SurbanRecordsApp.incorrectReg.show();
 	                 isValid = false;
 	                 return isValid;
 	            }
 	            String specialChars = "(.*[@,#,$,%].*$)";
 	            if (!pass.matches(specialChars ))
 	            {
-	            	JOptionPane.showMessageDialog(null, "Password must have atleast one special character among @#$%", "SurbanRecordsError", JOptionPane.ERROR_MESSAGE);
+	            	SurbanRecordsApp.incorrectReg.setForeground(Color.RED);
+	            	SurbanRecordsApp.incorrectReg.setText("Password must have atleast one special character among @#$%");
+	            	SurbanRecordsApp.incorrectReg.show();
 	                 isValid = false;
 	                 return isValid;
 	            }
 	            if(!pass.equals(pass1))
 	            {
-	            	JOptionPane.showMessageDialog(null, "Password must be equal.", "SurbanRecordsError", JOptionPane.ERROR_MESSAGE);
+	            	SurbanRecordsApp.incorrectReg.setForeground(Color.RED);
+	            	SurbanRecordsApp.incorrectReg.setText("Password must be equal.");
+	            	SurbanRecordsApp.incorrectReg.show();
 	                 isValid = false;
 	                 return isValid;
 	            }
 	            String specialchar = "(.*[ ].*$)";
 	            if (pass.matches(specialchar))
 	            {
-	            	JOptionPane.showMessageDialog(null, "There's space in password!", "SurbanRecordsError", JOptionPane.ERROR_MESSAGE);
+	            	SurbanRecordsApp.incorrectReg.setForeground(Color.RED);
+	            	SurbanRecordsApp.incorrectReg.setText("There's space in password!");
+	            	SurbanRecordsApp.incorrectReg.show();
 	                 isValid = false;
 	                 return isValid;
 	            }
@@ -121,7 +139,7 @@ public class validatePass {
 		  
 		   if(this.pass.isEmpty() || this.pass1.isEmpty())
 		  {
-			  System.out.println("Haslo nie zostalo wprowadzone w konstruktorze");
+			  //System.out.println("Haslo nie zostalo wprowadzone w konstruktorze");
 			  return null;
 			 
 		  }
