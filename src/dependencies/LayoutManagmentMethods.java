@@ -470,7 +470,7 @@ public class LayoutManagmentMethods {
 			
 			
 			};
-			public static void LeftDevPanel_addSongCard(JPanel cardContainer) {
+			public static void LeftDevPanel_addSongCard(JPanel cardContainer,JPanel SongsCardsContainer) {
 				JPanel Card1 = new JPanel();
 				Card1.setBackground(Color.DARK_GRAY);
 				Card1.setBounds(33, 517, 300, 341);
@@ -650,9 +650,14 @@ public class LayoutManagmentMethods {
 				button.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent arg0) {
+						int pressed = 0;
 						AddSongToDb temp = new AddSongToDb();
 						String title = textField_3.getText();
-			
+						
+						SongsCardsContainer.removeAll();
+					
+						
+						//MainContentCardsMethods.addSongsRow(SongsCardsContainer, rowNumber);
 						int album = Integer.parseInt(textField_5.getText());
 						int artist = Integer.parseInt(textField_4.getText());
 						try {
@@ -661,8 +666,7 @@ public class LayoutManagmentMethods {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-					
-						
+						MainContentCardsMethods.SongsCardAddContent(SongsCardsContainer, 0, 1,0);
 					}
 				});
 				cardContainer.add(Card1,"AddSongsCard");
@@ -1004,7 +1008,7 @@ public class LayoutManagmentMethods {
 				cardsContainer.add(Card1,"AddArtistCard");
 				
 			}
-			public static void addLeftDevPanel(JPanel panel, int rowCount) {
+			public static void addLeftDevPanel(JPanel panel, int rowCount,JPanel SongsCardsPanel) {
 				int y_pos=-1;
 
 				JTextField textField;
@@ -1067,7 +1071,7 @@ public class LayoutManagmentMethods {
 					//	}
 					//}*/
 				//});
-				LeftDevPanel_addSongCard(SettingsCardsContainer);
+				LeftDevPanel_addSongCard(SettingsCardsContainer,SongsCardsPanel);
 				LeftDevPanel_addAlbumCard(SettingsCardsContainer);
 				LeftDevPanel_addArtistCard(SettingsCardsContainer);
 				cl.show(SettingsCardsContainer, "AddSongsCard");
@@ -1115,7 +1119,7 @@ public class LayoutManagmentMethods {
 					panel.add(DB_View);
 				}
 			
-			public static void addDevPanel(JScrollPane scrollPane, int dbrowCount, int cardNumber) {
+			public static void addDevPanel(JScrollPane scrollPane, int dbrowCount, int cardNumber,JPanel SongsCardsContainer) {
 				JPanel panel_9 = new JPanel(){
 				    protected void paintComponent(Graphics g)
 				    {
@@ -1224,7 +1228,7 @@ public class LayoutManagmentMethods {
 			
 
 				
-				LayoutManagmentMethods.addLeftDevPanel(panel_9,dbrowCount);
+				LayoutManagmentMethods.addLeftDevPanel(panel_9,dbrowCount,SongsCardsContainer);
 				LayoutManagmentMethods.addRightDevPanel(panel_9);
 			
 				

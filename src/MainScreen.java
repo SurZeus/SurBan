@@ -102,9 +102,10 @@ public static int dbrowCount;
 
 	/**
 	 * Create the frame.
+	 * @param SongsTabViewPort 
 	 * @throws Exception 
 	 */
-	public MainScreen() throws Exception {
+	public MainScreen(){
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MainScreen.class.getResource("/img/polack.png")));
 		setBackground(Color.PINK);
 		
@@ -138,7 +139,7 @@ public static int dbrowCount;
 		  };
 		contentPane.setOpaque(false);
 		 
-		BufferedImage myPicture = ImageIO.read(this.getClass().getResource("/img/rwd.jpg"));
+	
 		contentPane.setRequestFocusEnabled(false);
 		contentPane.setFocusable(false);
 		contentPane.setForeground(SystemColor.activeCaptionBorder);
@@ -515,7 +516,7 @@ public static int dbrowCount;
 		scrollPane_3.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane_3.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane_3.setBackground(new Color(40,40,40));
-		LayoutManagmentMethods.addDevPanel(scrollPane_3,dbrowCount,3);
+	
 		
 		
 		JScrollPane scrollPane_4 = new JScrollPane(){
@@ -535,7 +536,7 @@ public static int dbrowCount;
 		scrollPane_4.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane_4.setBackground(new Color(40,40,40));
 		LayoutManagmentMethods.addPolak(scrollPane_4,2,2);
-		int dbRowCountOld;
+		/*int dbRowCountOld;
 		ShowFormMusic tempMusic = new ShowFormMusic();
 		dbRowCountOld =ShowFormMusic.count;
 		
@@ -545,12 +546,13 @@ public static int dbrowCount;
 		}catch(Exception e){
 			e.getStackTrace();
 		}
-		dbRowCountOld =ShowFormMusic.count;
+		dbRowCountOld =ShowFormMusic.count;*/
 		JScrollPane SongsTab_1 = new JScrollPane();
+		SongsTab_1.setBorder(new EmptyBorder(0, 0, 0, 0));
 		Container.add(SongsTab_1, "SongsTab");
 		
 		JPanel SongsTabViewPort = new JPanel();
-		SongsTabViewPort.setBackground(Color.GRAY);
+		SongsTabViewPort.setBackground(Color.DARK_GRAY);
 		SongsTab_1.setViewportView(SongsTabViewPort);
 		Dimension SongsDim = new Dimension();
 		SongsDim = SongsTabViewPort.getSize();
@@ -558,7 +560,18 @@ public static int dbrowCount;
 		SongsTabViewPort.setLayout(new BoxLayout(SongsTabViewPort, BoxLayout.Y_AXIS));
 		
 		JPanel SongsRowTemplate = new JPanel();
-		SongsRowTemplate.setBackground(Color.DARK_GRAY);
+		SongsRowTemplate.setBorder(new MatteBorder(0, 0, 1, 0, (Color) Color.LIGHT_GRAY));
+		SongsRowTemplate.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				SongsRowTemplate.setBackground(new Color(50,50,50));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				SongsRowTemplate.setBackground(new Color(36,36,36));
+			}
+		});
+		SongsRowTemplate.setBackground(new Color(36,36,36));
 		SongsRowTemplate.setMaximumSize(new Dimension(32767, 40));
 		SongsTabViewPort.add(SongsRowTemplate);
 		GridBagLayout gbl_SongsRowTemplate = new GridBagLayout();
@@ -569,8 +582,13 @@ public static int dbrowCount;
 		SongsRowTemplate.setLayout(gbl_SongsRowTemplate);
 		
 		JLabel SongsRowPlayButton = new JLabel("");
-		SongsRowPlayButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/playWhite24.png")));
+		
+		SongsRowPlayButton.setHorizontalAlignment(SwingConstants.CENTER);
+		SongsRowPlayButton.setPreferredSize(new Dimension(64, 40));
+		SongsRowPlayButton.setIcon(null);
+
 		GridBagConstraints gbc_SongsRowPlayButton = new GridBagConstraints();
+		gbc_SongsRowPlayButton.fill = GridBagConstraints.BOTH;
 		gbc_SongsRowPlayButton.insets = new Insets(0, 0, 0, 5);
 		gbc_SongsRowPlayButton.gridx = 0;
 		gbc_SongsRowPlayButton.gridy = 0;
@@ -579,6 +597,7 @@ public static int dbrowCount;
 		JLabel SongsRowFavoriteButton = new JLabel("");
 		SongsRowFavoriteButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/favIcon2.png")));
 		GridBagConstraints gbc_SongsRowFavoriteButton = new GridBagConstraints();
+		gbc_SongsRowFavoriteButton.fill = GridBagConstraints.VERTICAL;
 		gbc_SongsRowFavoriteButton.insets = new Insets(0, 0, 0, 5);
 		gbc_SongsRowFavoriteButton.gridx = 1;
 		gbc_SongsRowFavoriteButton.gridy = 0;
@@ -589,6 +608,7 @@ public static int dbrowCount;
 		SongsRowTitle.setFont(new Font("Dubai Medium", Font.PLAIN, 14));
 		SongsRowTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_SongsRowTitle = new GridBagConstraints();
+		gbc_SongsRowTitle.fill = GridBagConstraints.VERTICAL;
 		gbc_SongsRowTitle.insets = new Insets(0, 0, 0, 5);
 		gbc_SongsRowTitle.anchor = GridBagConstraints.WEST;
 		gbc_SongsRowTitle.gridx = 2;
@@ -600,28 +620,31 @@ public static int dbrowCount;
 		lblCreator.setForeground(Color.WHITE);
 		lblCreator.setFont(new Font("Dubai Medium", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblCreator = new GridBagConstraints();
+		gbc_lblCreator.fill = GridBagConstraints.VERTICAL;
 		gbc_lblCreator.insets = new Insets(0, 0, 0, 5);
 		gbc_lblCreator.anchor = GridBagConstraints.WEST;
 		gbc_lblCreator.gridx = 3;
 		gbc_lblCreator.gridy = 0;
 		SongsRowTemplate.add(lblCreator, gbc_lblCreator);
 		
-		JLabel label = new JLabel("Creator");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setForeground(Color.WHITE);
-		label.setFont(new Font("Dubai Medium", Font.PLAIN, 14));
-		GridBagConstraints gbc_label = new GridBagConstraints();
-		gbc_label.insets = new Insets(0, 0, 0, 5);
-		gbc_label.anchor = GridBagConstraints.WEST;
-		gbc_label.gridx = 4;
-		gbc_label.gridy = 0;
-		SongsRowTemplate.add(label, gbc_label);
+		JLabel lblAlbum = new JLabel("Album");
+		lblAlbum.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAlbum.setForeground(Color.WHITE);
+		lblAlbum.setFont(new Font("Dubai Medium", Font.PLAIN, 14));
+		GridBagConstraints gbc_lblAlbum = new GridBagConstraints();
+		gbc_lblAlbum.fill = GridBagConstraints.VERTICAL;
+		gbc_lblAlbum.insets = new Insets(0, 0, 0, 5);
+		gbc_lblAlbum.anchor = GridBagConstraints.WEST;
+		gbc_lblAlbum.gridx = 4;
+		gbc_lblAlbum.gridy = 0;
+		SongsRowTemplate.add(lblAlbum, gbc_lblAlbum);
 		
 		JLabel lblDuration = new JLabel("Date Added");
 		lblDuration.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDuration.setForeground(Color.WHITE);
 		lblDuration.setFont(new Font("Dubai Medium", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblDuration = new GridBagConstraints();
+		gbc_lblDuration.fill = GridBagConstraints.VERTICAL;
 		gbc_lblDuration.anchor = GridBagConstraints.WEST;
 		gbc_lblDuration.insets = new Insets(0, 0, 0, 5);
 		gbc_lblDuration.gridx = 5;
@@ -633,17 +656,31 @@ public static int dbrowCount;
 		lblDuration_1.setForeground(Color.WHITE);
 		lblDuration_1.setFont(new Font("Dubai Medium", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblDuration_1 = new GridBagConstraints();
-		gbc_lblDuration_1.anchor = GridBagConstraints.WEST;
+		gbc_lblDuration_1.fill = GridBagConstraints.VERTICAL;
 		gbc_lblDuration_1.gridx = 6;
 		gbc_lblDuration_1.gridy = 0;
 		SongsRowTemplate.add(lblDuration_1, gbc_lblDuration_1);
-		MainContentCardsMethods.SongsCardAddContent(SongsTabViewPort,0,dbRowCountOld);
-		
+		//MainContentCardsMethods.SongsCardAddContent(SongsTabViewPort,0,dbRowCountOld,0);
+		MainContentCardsMethods.SongsCardAddContent(SongsTabViewPort, 0, 1,0);
+		SongsRowPlayButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				SongsRowPlayButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/playWhite24.png")));
+				SongsRowTemplate.setBackground(new Color(50,50,50));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				SongsRowPlayButton.setIcon(null);
+				SongsRowTemplate.setBackground(new Color(36,36,36));
+			}
+		});
 		cl.show(Container,"SongsTab");
+		//cl.show(Container,"SongsTab");
 		JPanel SongsHeader = new JPanel();
-		SongsHeader.setBackground(new Color(36,36,36,50));
+		SongsHeader.setBackground(new Color(40,40,40));
 		SongsHeader.setPreferredSize(new Dimension(10, 60));
 		SongsTab_1.setColumnHeaderView(SongsHeader);
+		
 		/*JScrollPane scrollPane_3 = new JScrollPane(){
 		    protected void paintComponent(Graphics g)
 		    {
@@ -939,8 +976,12 @@ public static int dbrowCount;
 				//MainContentCardsMethods.SongsCardAddContent(SongsTabViewPort,0);
 		
 				//check if oldRowCount is up to date;
-				
-				//cl.show(Container,"SongsTab");
+				/*int tempDbRow = ShowFormMusic.count;
+				if(dbRowCountOld != tempDbRow) {
+					MainContentCardsMethods.addSongsRow(SongsTabViewPort, 2,temP);*/
+				//}
+				//MainContentCardsMethods.SongsCardAddContent(SongsTabViewPort, 0, 1,0);
+				cl.show(Container,"SongsTab");
 			}
 		});
 		sdbrbtnctnsDevpanel.addMouseListener(new MouseAdapter() {
@@ -963,7 +1004,7 @@ public static int dbrowCount;
 			
 			
 		Image img = new ImageIcon(this.getClass().getResource("/img/mainbg2.jpg")).getImage();
-	
+		LayoutManagmentMethods.addDevPanel(scrollPane_3,dbrowCount,3,SongsTabViewPort);
 		
 	}
 }
