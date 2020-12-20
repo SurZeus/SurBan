@@ -101,6 +101,11 @@ public class MainScreen extends JFrame {
 	static int IsButtonWhite =0; //0 = grey/1 = whiter
 public static int dbrowCount;
 public static ResourceBundle language = SurbanRecordsApp.language;
+private JTextField textField;
+private JTextField textField_1;
+private JTextField textField_2;
+private JTextField textField_4;
+private JTextField textField_5;
 
 
 	/**
@@ -169,9 +174,9 @@ public static ResourceBundle language = SurbanRecordsApp.language;
 		gbc_TopCenterPanel.gridy = 0;
 		contentPane.add(TopCenterPanel, gbc_TopCenterPanel);
 		GridBagLayout gbl_TopCenterPanel = new GridBagLayout();
-		gbl_TopCenterPanel.columnWidths = new int[]{205, 271, 164, 0};
+		gbl_TopCenterPanel.columnWidths = new int[]{205, 271, 0, 164, 0};
 		gbl_TopCenterPanel.rowHeights = new int[]{33, 0};
-		gbl_TopCenterPanel.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_TopCenterPanel.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_TopCenterPanel.rowWeights = new double[]{1.0, Double.MIN_VALUE};
 		TopCenterPanel.setLayout(gbl_TopCenterPanel);
 		
@@ -208,10 +213,19 @@ public static ResourceBundle language = SurbanRecordsApp.language;
 		gbc_lblUtwory.gridx = 1;
 		gbc_lblUtwory.gridy = 0;
 		TopCenterPanel.add(lblUtwory, gbc_lblUtwory);
+		
+		JLabel lblUsername = new JLabel("User_Name");
+		lblUsername.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblUsername.setForeground(Color.WHITE);
+		GridBagConstraints gbc_lblUsername = new GridBagConstraints();
+		gbc_lblUsername.insets = new Insets(0, 0, 0, 5);
+		gbc_lblUsername.gridx = 2;
+		gbc_lblUsername.gridy = 0;
+		TopCenterPanel.add(lblUsername, gbc_lblUsername);
 		lblNewLabel_5.setIcon(null);
 		GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
 		gbc_lblNewLabel_5.insets = new Insets(0, 0, 0, 20);
-		gbc_lblNewLabel_5.gridx = 2;
+		gbc_lblNewLabel_5.gridx = 3;
 		gbc_lblNewLabel_5.gridy = 0;
 		TopCenterPanel.add(lblNewLabel_5, gbc_lblNewLabel_5);
 		
@@ -340,9 +354,9 @@ public static ResourceBundle language = SurbanRecordsApp.language;
 		scrollPane.setViewportView(panel_8);
 		GridBagLayout gbl_panel_8 = new GridBagLayout();
 		gbl_panel_8.columnWidths = new int[]{133, 0};
-		gbl_panel_8.rowHeights = new int[]{20, 35, 35, 35, 35, 35, 0, 0, 0};
+		gbl_panel_8.rowHeights = new int[]{20, 35, 35, 35, 35, 35, 0, 0, 0, 0};
 		gbl_panel_8.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_panel_8.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_8.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		panel_8.setLayout(gbl_panel_8);
 		
 		JPanel SongButtonPanel = new JPanel();
@@ -374,7 +388,7 @@ public static ResourceBundle language = SurbanRecordsApp.language;
 		
 		SideBarButtonActions lblAlbums = new SideBarButtonActions();
 		
-		lblAlbums.setText("Albumy");
+		lblAlbums.setText(language.getString("albumy"));
 		lblAlbums.setBackground(Color.RED);
 	
 		
@@ -427,11 +441,21 @@ public static ResourceBundle language = SurbanRecordsApp.language;
 		gbc_lblWykonawcy.gridy = 5;
 		panel_8.add(lblWykonawcy, gbc_lblWykonawcy);
 		
+		JLabel lblSettings = new JLabel("Settings");
+		lblSettings.setFont(new Font("Dubai Medium", Font.BOLD, 14));
+		
+		lblSettings.setForeground(new Color(179, 179, 179));
+		GridBagConstraints gbc_lblSettings = new GridBagConstraints();
+		gbc_lblSettings.insets = new Insets(0, 0, 5, 0);
+		gbc_lblSettings.gridx = 0;
+		gbc_lblSettings.gridy = 6;
+		panel_8.add(lblSettings, gbc_lblSettings);
+		
 		SideBarButtonActions sideBarButtonActions = new SideBarButtonActions();
 		GridBagConstraints gbc_sideBarButtonActions = new GridBagConstraints();
 		gbc_sideBarButtonActions.insets = new Insets(0, 0, 5, 0);
 		gbc_sideBarButtonActions.gridx = 0;
-		gbc_sideBarButtonActions.gridy = 6;
+		gbc_sideBarButtonActions.gridy = 7;
 		panel_8.add(sideBarButtonActions, gbc_sideBarButtonActions);
 		
 		JPanel panel_5 = new JPanel();
@@ -439,7 +463,7 @@ public static ResourceBundle language = SurbanRecordsApp.language;
 		GridBagConstraints gbc_panel_5 = new GridBagConstraints();
 		gbc_panel_5.fill = GridBagConstraints.BOTH;
 		gbc_panel_5.gridx = 0;
-		gbc_panel_5.gridy = 7;
+		gbc_panel_5.gridy = 8;
 		panel_8.add(panel_5, gbc_panel_5);
 		
 		SideBarButtonActions sdbrbtnctnsDevpanel = new SideBarButtonActions();
@@ -558,7 +582,7 @@ public static ResourceBundle language = SurbanRecordsApp.language;
 		Container.add(SongsTab_1, "SongsTab");
 		
 		JPanel SongsTabViewPort = new JPanel();
-		SongsTabViewPort.setBackground(Color.DARK_GRAY);
+		SongsTabViewPort.setBackground(new Color(36,36,36));
 		SongsTab_1.setViewportView(SongsTabViewPort);
 		Dimension SongsDim = new Dimension();
 		SongsDim = SongsTabViewPort.getSize();
@@ -969,10 +993,446 @@ public static ResourceBundle language = SurbanRecordsApp.language;
 				cl.show(Container,"Polak_Panel");
 			}
 		});
-			
+		lblSettings.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				cl.show(Container,"SettingsTab");
+				lblUtwory.setText("Manage");
+			}
+		});
 			
 		Image img = new ImageIcon(this.getClass().getResource("/img/mainbg2.jpg")).getImage();
 		LayoutManagmentMethods.addDevPanel(scrollPane_3,dbrowCount,3,SongsTabViewPort);
+		
+		JScrollPane SettingsTab = new JScrollPane();
+		SettingsTab.setBorder(new EmptyBorder(0, 0, 0, 0));
+		Container.add(SettingsTab, "SettingsTab");
+		
+		JPanel SettingsTabViewPort = new JPanel();
+		SettingsTabViewPort.setBackground(new Color(36,36,36));
+		SettingsTab.setViewportView(SettingsTabViewPort);
+		
+		JPanel SettingsMenu = new JPanel();
+		SettingsMenu.setBackground(SettingsTabViewPort.getBackground());
+		SettingsMenu.setPreferredSize(new Dimension(800, 800));
+		SettingsMenu.setMinimumSize(new Dimension(300, 10));
+		SettingsTabViewPort.add(SettingsMenu);
+		SettingsMenu.setLayout(null);
+		
+		JPanel panel_9 = new JPanel();
+		panel_9.setOpaque(false);
+		panel_9.setBounds(0, 99, 800, 310);
+		SettingsMenu.add(panel_9);
+		panel_9.setLayout(null);
+		
+		JLabel lblNewLabel_4 = new JLabel("");
+	
+		lblNewLabel_4.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/img/dkac2.jpg")).getImage().getScaledInstance(182, 182, Image.SCALE_SMOOTH)));
+		lblNewLabel_4.setBounds(0, 11, 182, 182);
+		panel_9.add(lblNewLabel_4);
+		
+		JPanel UserSettingsContainer = new JPanel();
+		UserSettingsContainer.setOpaque(false);
+		UserSettingsContainer.setBackground(SettingsTabViewPort.getBackground());
+		UserSettingsContainer.setBounds(265, 0, 535, 310);
+		panel_9.add(UserSettingsContainer);
+		CardLayout SL = new CardLayout();
+		UserSettingsContainer.setLayout(SL);
+		
+		JPanel SettingsButtonsCard = new JPanel();
+		SettingsButtonsCard.setOpaque(false);
+		UserSettingsContainer.add(SettingsButtonsCard, "SettingsButtonsCard");
+		SettingsButtonsCard.setLayout(new BoxLayout(SettingsButtonsCard, BoxLayout.Y_AXIS));
+		
+		JLabel lblAddFounds = new JLabel("Add Founds");
+		lblAddFounds.setHorizontalAlignment(SwingConstants.LEFT);
+		lblAddFounds.setIconTextGap(10);
+		lblAddFounds.setIcon(new ImageIcon(MainScreen.class.getResource("/img/hajsGray.png")));
+		lblAddFounds.setMaximumSize(new Dimension(700, 35));
+		lblAddFounds.setForeground(Color.LIGHT_GRAY);
+		lblAddFounds.setFont(new Font("Dubai Medium", Font.BOLD, 15));
+		SettingsButtonsCard.add(lblAddFounds);
+		
+		JLabel ChangePasswordButton = new JLabel("Change Password");
+		
+		ChangePasswordButton.setHorizontalAlignment(SwingConstants.LEFT);
+		ChangePasswordButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/passwordGray.png")));
+		ChangePasswordButton.setMaximumSize(new Dimension(700, 35));
+		ChangePasswordButton.setIconTextGap(10);
+		ChangePasswordButton.setForeground(Color.LIGHT_GRAY);
+		ChangePasswordButton.setFont(new Font("Dubai Medium", Font.BOLD, 15));
+		SettingsButtonsCard.add(ChangePasswordButton);
+		
+		JLabel lblChangeEmail = new JLabel("Change Email");
+		
+		lblChangeEmail.setHorizontalAlignment(SwingConstants.LEFT);
+		lblChangeEmail.setIcon(new ImageIcon(MainScreen.class.getResource("/img/emailGray.png")));
+		lblChangeEmail.setMaximumSize(new Dimension(700, 35));
+		lblChangeEmail.setIconTextGap(10);
+		lblChangeEmail.setForeground(Color.LIGHT_GRAY);
+		lblChangeEmail.setFont(new Font("Dubai Medium", Font.BOLD, 15));
+		SettingsButtonsCard.add(lblChangeEmail);
+		
+		JPanel ChangePasswordCard = new JPanel();
+		ChangePasswordCard.setOpaque(false);
+		UserSettingsContainer.add(ChangePasswordCard, "ChangePasswordCard");
+		GridBagLayout gbl_ChangePasswordCard = new GridBagLayout();
+		gbl_ChangePasswordCard.columnWidths = new int[]{171, 193, 169, 0};
+		gbl_ChangePasswordCard.rowHeights = new int[]{60, 60, 60, 32, 0};
+		gbl_ChangePasswordCard.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_ChangePasswordCard.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		ChangePasswordCard.setLayout(gbl_ChangePasswordCard);
+		
+		JLabel lblOldPassword = new JLabel("Old Password:");
+		lblOldPassword.setVerticalAlignment(SwingConstants.TOP);
+		lblOldPassword.setHorizontalAlignment(SwingConstants.LEFT);
+		lblOldPassword.setForeground(Color.LIGHT_GRAY);
+		lblOldPassword.setFont(new Font("Dubai Medium", Font.BOLD, 15));
+		GridBagConstraints gbc_lblOldPassword = new GridBagConstraints();
+		gbc_lblOldPassword.insets = new Insets(0, 0, 5, 5);
+		gbc_lblOldPassword.gridx = 0;
+		gbc_lblOldPassword.gridy = 0;
+		ChangePasswordCard.add(lblOldPassword, gbc_lblOldPassword);
+		
+		textField = new JTextField();
+		textField.setCaretColor(Color.LIGHT_GRAY);
+		textField.setHorizontalAlignment(SwingConstants.CENTER);
+		textField.setForeground(Color.LIGHT_GRAY);
+		textField.setFont(new Font("Tahoma", Font.BOLD, 15));
+		textField.setBorder(new EmptyBorder(0, 0, 0, 0));
+		textField.setBackground(Color.DARK_GRAY);
+		textField.setPreferredSize(new Dimension(5, 30));
+		textField.setMinimumSize(new Dimension(5, 30));
+		GridBagConstraints gbc_textField = new GridBagConstraints();
+		gbc_textField.insets = new Insets(0, 0, 5, 5);
+		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField.gridx = 1;
+		gbc_textField.gridy = 0;
+		ChangePasswordCard.add(textField, gbc_textField);
+		textField.setColumns(10);
+		
+		JLabel lblNewPassword = new JLabel("New Password:");
+		lblNewPassword.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewPassword.setForeground(Color.LIGHT_GRAY);
+		lblNewPassword.setFont(new Font("Dubai Medium", Font.BOLD, 15));
+		GridBagConstraints gbc_lblNewPassword = new GridBagConstraints();
+		gbc_lblNewPassword.fill = GridBagConstraints.VERTICAL;
+		gbc_lblNewPassword.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewPassword.gridx = 0;
+		gbc_lblNewPassword.gridy = 1;
+		ChangePasswordCard.add(lblNewPassword, gbc_lblNewPassword);
+		
+		textField_1 = new JTextField();
+		textField_1.setCaretColor(Color.LIGHT_GRAY);
+		textField_1.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_1.setForeground(Color.LIGHT_GRAY);
+		textField_1.setFont(new Font("Tahoma", Font.BOLD, 15));
+		textField_1.setBorder(new EmptyBorder(0, 0, 0, 0));
+		textField_1.setPreferredSize(new Dimension(5, 30));
+		textField_1.setMinimumSize(new Dimension(5, 30));
+		textField_1.setColumns(10);
+		textField_1.setBackground(Color.DARK_GRAY);
+		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
+		gbc_textField_1.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_1.gridx = 1;
+		gbc_textField_1.gridy = 1;
+		ChangePasswordCard.add(textField_1, gbc_textField_1);
+		
+		JLabel lblConfirmPassword = new JLabel("Confirm Password:");
+		lblConfirmPassword.setHorizontalAlignment(SwingConstants.LEFT);
+		lblConfirmPassword.setForeground(Color.LIGHT_GRAY);
+		lblConfirmPassword.setFont(new Font("Dubai Medium", Font.BOLD, 15));
+		GridBagConstraints gbc_lblConfirmPassword = new GridBagConstraints();
+		gbc_lblConfirmPassword.fill = GridBagConstraints.VERTICAL;
+		gbc_lblConfirmPassword.insets = new Insets(0, 0, 5, 5);
+		gbc_lblConfirmPassword.gridx = 0;
+		gbc_lblConfirmPassword.gridy = 2;
+		ChangePasswordCard.add(lblConfirmPassword, gbc_lblConfirmPassword);
+		
+		textField_2 = new JTextField();
+		textField_2.setCaretColor(Color.LIGHT_GRAY);
+		textField_2.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_2.setForeground(Color.LIGHT_GRAY);
+		textField_2.setFont(new Font("Tahoma", Font.BOLD, 15));
+		textField_2.setBorder(new EmptyBorder(0, 0, 0, 0));
+		textField_2.setPreferredSize(new Dimension(5, 30));
+		textField_2.setMinimumSize(new Dimension(5, 30));
+		textField_2.setColumns(10);
+		textField_2.setBackground(Color.DARK_GRAY);
+		GridBagConstraints gbc_textField_2 = new GridBagConstraints();
+		gbc_textField_2.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_2.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_2.gridx = 1;
+		gbc_textField_2.gridy = 2;
+		ChangePasswordCard.add(textField_2, gbc_textField_2);
+		
+		JLabel lblApply = new JLabel("Apply");
+		lblApply.setHorizontalAlignment(SwingConstants.CENTER);
+		lblApply.setIconTextGap(10);
+		lblApply.setForeground(Color.LIGHT_GRAY);
+		lblApply.setFont(new Font("Tahoma", Font.BOLD, 14));
+		GridBagConstraints gbc_lblApply = new GridBagConstraints();
+		gbc_lblApply.fill = GridBagConstraints.VERTICAL;
+		gbc_lblApply.insets = new Insets(0, 0, 0, 5);
+		gbc_lblApply.gridx = 1;
+		gbc_lblApply.gridy = 3;
+		ChangePasswordCard.add(lblApply, gbc_lblApply);
+		
+		JPanel ChangeEmailCard = new JPanel();
+		ChangeEmailCard.setOpaque(false);
+		UserSettingsContainer.add(ChangeEmailCard, "ChangeEmailCard");
+		GridBagLayout gbl_ChangeEmailCard = new GridBagLayout();
+		gbl_ChangeEmailCard.columnWidths = new int[]{171, 193, 169, 0};
+		gbl_ChangeEmailCard.rowHeights = new int[]{60, 60, 32, 0};
+		gbl_ChangeEmailCard.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_ChangeEmailCard.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		ChangeEmailCard.setLayout(gbl_ChangeEmailCard);
+		
+		JLabel lblNewEmail = new JLabel("New Email:");
+		lblNewEmail.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewEmail.setForeground(Color.LIGHT_GRAY);
+		lblNewEmail.setFont(new Font("Dubai Medium", Font.BOLD, 15));
+		GridBagConstraints gbc_lblNewEmail = new GridBagConstraints();
+		gbc_lblNewEmail.fill = GridBagConstraints.VERTICAL;
+		gbc_lblNewEmail.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewEmail.gridx = 0;
+		gbc_lblNewEmail.gridy = 0;
+		ChangeEmailCard.add(lblNewEmail, gbc_lblNewEmail);
+		
+		textField_4 = new JTextField();
+		textField_4.setPreferredSize(new Dimension(5, 30));
+		textField_4.setMinimumSize(new Dimension(5, 30));
+		textField_4.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_4.setForeground(Color.LIGHT_GRAY);
+		textField_4.setFont(new Font("Tahoma", Font.BOLD, 15));
+		textField_4.setColumns(10);
+		textField_4.setCaretColor(Color.LIGHT_GRAY);
+		textField_4.setBorder(new EmptyBorder(0, 0, 0, 0));
+		textField_4.setBackground(Color.DARK_GRAY);
+		GridBagConstraints gbc_textField_4 = new GridBagConstraints();
+		gbc_textField_4.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_4.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_4.gridx = 1;
+		gbc_textField_4.gridy = 0;
+		ChangeEmailCard.add(textField_4, gbc_textField_4);
+		
+		JLabel lblConfirmEmail = new JLabel("Confirm Email:");
+		lblConfirmEmail.setHorizontalAlignment(SwingConstants.LEFT);
+		lblConfirmEmail.setForeground(Color.LIGHT_GRAY);
+		lblConfirmEmail.setFont(new Font("Dubai Medium", Font.BOLD, 15));
+		GridBagConstraints gbc_lblConfirmEmail = new GridBagConstraints();
+		gbc_lblConfirmEmail.fill = GridBagConstraints.VERTICAL;
+		gbc_lblConfirmEmail.insets = new Insets(0, 0, 5, 5);
+		gbc_lblConfirmEmail.gridx = 0;
+		gbc_lblConfirmEmail.gridy = 1;
+		ChangeEmailCard.add(lblConfirmEmail, gbc_lblConfirmEmail);
+		
+		textField_5 = new JTextField();
+		textField_5.setPreferredSize(new Dimension(5, 30));
+		textField_5.setMinimumSize(new Dimension(5, 30));
+		textField_5.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_5.setForeground(Color.LIGHT_GRAY);
+		textField_5.setFont(new Font("Tahoma", Font.BOLD, 15));
+		textField_5.setColumns(10);
+		textField_5.setCaretColor(Color.LIGHT_GRAY);
+		textField_5.setBorder(new EmptyBorder(0, 0, 0, 0));
+		textField_5.setBackground(Color.DARK_GRAY);
+		GridBagConstraints gbc_textField_5 = new GridBagConstraints();
+		gbc_textField_5.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_5.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_5.gridx = 1;
+		gbc_textField_5.gridy = 1;
+		ChangeEmailCard.add(textField_5, gbc_textField_5);
+		
+		JLabel label_7 = new JLabel("Apply");
+		label_7.setIconTextGap(10);
+		label_7.setHorizontalAlignment(SwingConstants.CENTER);
+		label_7.setForeground(Color.LIGHT_GRAY);
+		label_7.setFont(new Font("Tahoma", Font.BOLD, 14));
+		GridBagConstraints gbc_label_7 = new GridBagConstraints();
+		gbc_label_7.fill = GridBagConstraints.VERTICAL;
+		gbc_label_7.insets = new Insets(0, 0, 0, 5);
+		gbc_label_7.gridx = 1;
+		gbc_label_7.gridy = 2;
+		ChangeEmailCard.add(label_7, gbc_label_7);
+		
+		JPanel panel_11 = new JPanel();
+		panel_11.setBackground(SettingsTabViewPort.getBackground());
+		panel_11.setBounds(0, 460, 800, 192);
+		SettingsMenu.add(panel_11);
+		panel_11.setLayout(new BoxLayout(panel_11, BoxLayout.Y_AXIS));
+		
+		JPanel panel_14 = new JPanel();
+		panel_14.setOpaque(false);
+		panel_11.add(panel_14);
+		panel_14.setLayout(null);
+		
+		JLabel lblMode = new JLabel("Mode");
+		lblMode.setBounds(0, 63, 174, 45);
+		panel_14.add(lblMode);
+		lblMode.setIcon(new ImageIcon(MainScreen.class.getResource("/img/modeGray.png")));
+		lblMode.setVerticalTextPosition(SwingConstants.TOP);
+		lblMode.setMaximumSize(new Dimension(4000, 50));
+		lblMode.setHorizontalAlignment(SwingConstants.LEFT);
+		lblMode.setForeground(Color.LIGHT_GRAY);
+		lblMode.setFont(new Font("Dubai Medium", Font.BOLD, 15));
+		
+		JLabel lblLanguage = new JLabel("Language");
+		lblLanguage.setBounds(0, 0, 97, 52);
+		panel_14.add(lblLanguage);
+		lblLanguage.setIcon(new ImageIcon(MainScreen.class.getResource("/img/languageGray.png")));
+		lblLanguage.setVerticalTextPosition(SwingConstants.TOP);
+		lblLanguage.setMaximumSize(new Dimension(4000, 50));
+		lblLanguage.setHorizontalAlignment(SwingConstants.LEFT);
+		lblLanguage.setForeground(Color.LIGHT_GRAY);
+		lblLanguage.setFont(new Font("Dubai Medium", Font.BOLD, 15));
+		
+		JLabel lblchangeLanguage = new JLabel("//Change Language");
+		lblchangeLanguage.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblchangeLanguage.setVerticalTextPosition(SwingConstants.TOP);
+		lblchangeLanguage.setMaximumSize(new Dimension(4000, 50));
+		lblchangeLanguage.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblchangeLanguage.setForeground(Color.LIGHT_GRAY);
+		lblchangeLanguage.setFont(new Font("Dubai Medium", Font.BOLD, 15));
+		lblchangeLanguage.setBounds(254, 0, 536, 52);
+		panel_14.add(lblchangeLanguage);
+		
+		JLabel lblChangeApplicationMode = new JLabel("//Change Application Mode");
+		lblChangeApplicationMode.setVerticalTextPosition(SwingConstants.TOP);
+		lblChangeApplicationMode.setMaximumSize(new Dimension(4000, 50));
+		lblChangeApplicationMode.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblChangeApplicationMode.setForeground(Color.LIGHT_GRAY);
+		lblChangeApplicationMode.setFont(new Font("Dubai Medium", Font.BOLD, 15));
+		lblChangeApplicationMode.setBounds(254, 56, 536, 52);
+		panel_14.add(lblChangeApplicationMode);
+		
+		JLabel GoBackButton = new JLabel("Go Back");
+		GoBackButton.setBackground(Color.DARK_GRAY);
+		GoBackButton.setOpaque(true);
+		GoBackButton.setBounds(718, 0, 82, 40);
+		SettingsMenu.add(GoBackButton);
+		GoBackButton.setHorizontalTextPosition(SwingConstants.LEFT);
+		GoBackButton.setHorizontalAlignment(SwingConstants.CENTER);
+		GoBackButton.setForeground(Color.LIGHT_GRAY);
+		GoBackButton.setFont(new Font("Dubai Medium", Font.BOLD, 15));
+		
+		JLabel lblChangePassword = new JLabel("User");
+		lblChangePassword.setBackground(Color.DARK_GRAY);
+		lblChangePassword.setOpaque(true);
+		lblChangePassword.setBorder(null);
+		lblChangePassword.setBounds(0, -1, 719, 41);
+		SettingsMenu.add(lblChangePassword);
+		lblChangePassword.setPreferredSize(new Dimension(64, 30));
+		lblChangePassword.setMinimumSize(new Dimension(64, 18));
+		lblChangePassword.setHorizontalAlignment(SwingConstants.LEFT);
+		lblChangePassword.setMaximumSize(new Dimension(4000, 50));
+		lblChangePassword.setVerticalTextPosition(SwingConstants.TOP);
+		lblChangePassword.setForeground(Color.LIGHT_GRAY);
+		lblChangePassword.setFont(new Font("Dubai Medium", Font.BOLD, 18));
+		
+		JLabel lblLoggedAs = new JLabel("Logged As:");
+		lblLoggedAs.setBounds(0, 53, 140, 14);
+		SettingsMenu.add(lblLoggedAs);
+		lblLoggedAs.setFont(new Font("Dubai Medium", Font.BOLD, 15));
+		lblLoggedAs.setForeground(Color.LIGHT_GRAY);
+		
+		JLabel lblNewLabel_3 = new JLabel("SurZeus");
+		lblNewLabel_3.setBorder(new MatteBorder(0, 0, 1, 0, (Color) Color.LIGHT_GRAY));
+		lblNewLabel_3.setBounds(0, 67, 800, 34);
+		SettingsMenu.add(lblNewLabel_3);
+		lblNewLabel_3.setFont(new Font("Dubai Medium", Font.BOLD, 18));
+		lblNewLabel_3.setForeground(Color.WHITE);
+		
+		JLabel lblAppearance = new JLabel("Appearance");
+		lblAppearance.setBounds(0, 420, 261, 40);
+		SettingsMenu.add(lblAppearance);
+		lblAppearance.setOpaque(true);
+		lblAppearance.setBackground(Color.DARK_GRAY);
+		lblAppearance.setVerticalTextPosition(SwingConstants.TOP);
+		lblAppearance.setPreferredSize(new Dimension(64, 40));
+		lblAppearance.setMinimumSize(new Dimension(64, 40));
+		lblAppearance.setMaximumSize(new Dimension(4000, 50));
+		lblAppearance.setHorizontalAlignment(SwingConstants.LEFT);
+		lblAppearance.setForeground(Color.LIGHT_GRAY);
+		lblAppearance.setFont(new Font("Dubai Medium", Font.BOLD, 18));
+		lblAppearance.setBorder(null);
+		
+		JLabel lblDescription = new JLabel("Description");
+		lblDescription.setBounds(260, 420, 540, 40);
+		SettingsMenu.add(lblDescription);
+		lblDescription.setBackground(Color.DARK_GRAY);
+		lblDescription.setOpaque(true);
+		lblDescription.setVerticalTextPosition(SwingConstants.TOP);
+		lblDescription.setPreferredSize(new Dimension(64, 40));
+		lblDescription.setMinimumSize(new Dimension(64, 40));
+		lblDescription.setMaximumSize(new Dimension(4000, 50));
+		lblDescription.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblDescription.setForeground(Color.LIGHT_GRAY);
+		lblDescription.setFont(new Font("Dubai Medium", Font.BOLD, 18));
+		lblDescription.setBorder(null);
+		
+		JLabel lblBalance = new JLabel("Balance:");
+		lblBalance.setBounds(647, 74, 99, 14);
+		SettingsMenu.add(lblBalance);
+		lblBalance.setIcon(new ImageIcon(MainScreen.class.getResource("/img/BalanceGray.png")));
+		lblBalance.setForeground(Color.LIGHT_GRAY);
+		lblBalance.setFont(new Font("Dubai Medium", Font.BOLD, 15));
+		
+		JLabel label_3 = new JLabel("3000");
+		label_3.setBounds(737, 74, 53, 14);
+		SettingsMenu.add(label_3);
+		label_3.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_3.setForeground(Color.LIGHT_GRAY);
+		label_3.setFont(new Font("Dubai Medium", Font.BOLD, 15));
+		ChangePasswordButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				SL.show(UserSettingsContainer, "ChangePasswordCard");
+				
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				ChangePasswordButton.setForeground(Color.WHITE);
+				ChangePasswordButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/passwordWhite.png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				ChangePasswordButton.setForeground(Color.LIGHT_GRAY);
+				ChangePasswordButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/passwordGray.png")));
+			}
+		});
+		GoBackButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				SL.show(UserSettingsContainer, "SettingsButtonsCard");
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				GoBackButton.setForeground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				GoBackButton.setForeground(Color.LIGHT_GRAY);
+			}
+		});
+		lblChangeEmail.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				SL.show(UserSettingsContainer, "ChangeEmailCard");
+				
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblChangeEmail.setForeground(Color.WHITE);
+				lblChangeEmail.setIcon(new ImageIcon(MainScreen.class.getResource("/img/emailWhite.png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblChangeEmail.setForeground(Color.LIGHT_GRAY);
+				lblChangeEmail.setIcon(new ImageIcon(MainScreen.class.getResource("/img/emailGray.png")));
+			}
+		});
 		
 	}
 }

@@ -303,6 +303,14 @@ public class SurbanRecordsApp {
 					e1.printStackTrace();
 				}
 			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				buttonLogin.setForeground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				buttonLogin.setForeground(Color.LIGHT_GRAY);
+			}
 		});
 		buttonLogin.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		
@@ -507,6 +515,14 @@ public class SurbanRecordsApp {
 				e1.printStackTrace();
 			}
 				
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				buttonRegister.setForeground(Color.WHITE);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				buttonRegister.setForeground(Color.LIGHT_GRAY);
 			}
 		});
 		buttonRegister.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
