@@ -73,23 +73,23 @@ import java.awt.Cursor;
 import javax.swing.BoxLayout;
 public class SurbanRecordsApp {
 
-	private JFrame frmWelcome;
-	private static  MainScreen main_xd;
-	private static SurbanRecordsApp window;
+	static JFrame frmWelcome;
+	static  MainScreen main_xd;
+	static SurbanRecordsApp window;
 	private JPanel OptionsContainer;
 	private JPanel LoginCard;
 	private JPanel LoginCardBottom;
 	private JPanel LoginCardTop;
 	private JPanel LeftInfoPanel;
 	private JLabel lblNewLabel_2;
-	private JTextField loginLogin;
+	static JTextField loginLogin;
 	private JLabel lblYourPassword;
 	private JLabel lblNewLabel;
 	private JPanel panel_2;
 	private JLabel buttonLogin;
 	private JLabel lblDontHaveAccount;
 	private JLabel SignUpAlready;
-	private JPasswordField passwordLogin;
+	static JPasswordField passwordLogin;
 	private JPanel RegisterCard;
 	private JPanel panel_3;
 	private JLabel buttonRegister;
@@ -97,14 +97,14 @@ public class SurbanRecordsApp {
 	private JLabel SignInAlready;
 	private JPanel panel_4;
 	private JLabel lblRegister;
-	private JTextField loginRegister;
+	public static JTextField loginRegister;
 	private JLabel lblRepeatYourPassword;
-	private JPasswordField passwordRegister1;
+	public static JPasswordField passwordRegister1;
 	private JLabel RegisterShowPassword;
 	private JLabel lblEmail;
-	private JTextField emailRegister;
+	public static JTextField emailRegister;
 	private JLabel lblPassword;
-	private JPasswordField passwordRegister;
+	public static JPasswordField passwordRegister;
 	public static JLabel incorrectReg;
 	public static ResourceBundle language;
 	public static ValidateLogin loginek;
@@ -120,7 +120,7 @@ public class SurbanRecordsApp {
 			public void run() {
 				try {
 					
-					int lang = 3;
+					int lang = 2;
 					String filename = null;
 					language=null;
 					Locale l = new Locale("en", "US");
@@ -484,13 +484,15 @@ public class SurbanRecordsApp {
 		gbl_panel_3.rowWeights = new double[]{1.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel_3.setLayout(gbl_panel_3);
 		
-		Mysql baza = new Mysql();
-		ValidateAnEmail checkmail = new ValidateAnEmail();
+		
 		
 		buttonRegister = new JLabel(language.getString("zarejestrujsie"));
 		buttonRegister.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				Mysql baza = new Mysql();
+				ValidateAnEmail checkmail = new ValidateAnEmail();
+				
 				String login = loginRegister.getText();
 				String haslo = String.valueOf(passwordRegister.getPassword());
 				String haslo1 = String.valueOf(passwordRegister1.getPassword());
@@ -522,7 +524,7 @@ public class SurbanRecordsApp {
 				e1.printStackTrace();
 			}
 				
-			}
+			}	
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				buttonRegister.setForeground(Color.WHITE);
@@ -531,6 +533,8 @@ public class SurbanRecordsApp {
 			public void mouseExited(MouseEvent e) {
 				buttonRegister.setForeground(Color.LIGHT_GRAY);
 			}
+			
+		
 		});
 		buttonRegister.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		

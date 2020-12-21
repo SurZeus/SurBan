@@ -185,6 +185,19 @@ private ValidateLogin loginek = SurbanRecordsApp.loginek;
 		TopCenterPanel.setLayout(gbl_TopCenterPanel);
 		
 		JLabel lblNewLabel_5 = new JLabel(language.getString("wyloguj"));
+		lblNewLabel_5.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				SurbanRecordsApp.loginLogin.setText("");
+				SurbanRecordsApp.passwordLogin.setText("");
+				SurbanRecordsApp.window.frmWelcome.setVisible(true);
+				SurbanRecordsApp.main_xd.dispose();
+				
+				
+				
+			}
+		});
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblNewLabel_5.setForeground(Color.WHITE);
 		lblNewLabel_5.setHorizontalAlignment(SwingConstants.CENTER);
@@ -218,6 +231,7 @@ private ValidateLogin loginek = SurbanRecordsApp.loginek;
 		gbc_lblUtwory.gridy = 0;
 		TopCenterPanel.add(lblUtwory, gbc_lblUtwory);
 		JLabel lblUsername = new JLabel(loginek.username);
+		
 		
 		lblUsername.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblUsername.setForeground(Color.WHITE);
@@ -1437,6 +1451,14 @@ private ValidateLogin loginek = SurbanRecordsApp.loginek;
 				lblChangeEmail.setIcon(new ImageIcon(MainScreen.class.getResource("/img/emailGray.png")));
 			}
 		});
-		
+		lblUsername.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cl.show(Container,"SettingsTab");
+				lblUtwory.setText("Manage");
+				
+				
+			}
+		});
 	}
 }

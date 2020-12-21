@@ -1,15 +1,20 @@
 package dependencies;
 import java.sql.Statement;
+import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.swing.JOptionPane;
 
+import mainpackage.SurbanRecordsApp;
+
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 
 public class Mysql {
 
@@ -17,7 +22,7 @@ public class Mysql {
 	private Statement statement=null;//tu bedzie trzymane zapytanie SELECT
 	private ResultSet resultSet=null;//tu bedzie trzymany wynik tego zapytania
 	private PreparedStatement preparedStatement=null;//do przygotowania INSERTA
-	
+	public static ResourceBundle language = SurbanRecordsApp.language;
 	//private String host="192.166.219.220";
 	private String user="surb";
 	private String pass="zlRhOdY232..0";
@@ -42,20 +47,29 @@ public class Mysql {
 			return;	
 		}
 		
+		if(checkDataBase(login)==true) {
+		
 		readDataBase();
+		
+		}else {
+			SurbanRecordsApp.incorrectReg.setForeground(Color.RED);
+			SurbanRecordsApp.incorrectReg.setText(language.getString("niezarejestrowano"));
+			SurbanRecordsApp.incorrectReg.show();
+		}
 		
 	}
 	public void readDataBase() throws ClassNotFoundException {
 		
-			Class.forName("com.mysql.jdbc.Driver");
+		    Class.forName("com.mysql.jdbc.Driver");
 
 			url="jdbc:mysql://192.166.219.220:3306/surban";
 			try {
 			connect = DriverManager.getConnection(url,user,pass);
 			
+			
 			statement=connect.createStatement();
 			//writeResultSet(resultSet);
-			
+		
 			preparedStatement =connect.prepareStatement("INSERT INTO uzytkownik VALUES(default, ?, ?, ?, ?)");
 			
 			preparedStatement.setString(1, login);
@@ -65,7 +79,16 @@ public class Mysql {
 			
 			preparedStatement.executeUpdate();
 			connect.close();
-			System.out.println("Connection closed");
+			//System.out.println("Connection closed");
+			SurbanRecordsApp.incorrectReg.setForeground(Color.GREEN);
+			SurbanRecordsApp.incorrectReg.setText(language.getString("zarejestrowano"));
+			SurbanRecordsApp.incorrectReg.show();
+			SurbanRecordsApp.loginRegister.setText("");
+			SurbanRecordsApp.emailRegister.setText("");
+			SurbanRecordsApp.passwordRegister.setText("");
+			SurbanRecordsApp.passwordRegister1.setText("");
+			
+			
 			}
 			catch(SQLException e1) {
 				e1.getStackTrace();
@@ -76,9 +99,11 @@ public class Mysql {
 			
 		
 
-		
+			
 		}
+
 	public void checkDataBase(String login,String haslo) throws ClassNotFoundException {
+		
 		
 		Class.forName("com.mysql.jdbc.Driver");
 
@@ -118,6 +143,46 @@ public class Mysql {
 		catch(Exception e) {
 			e.getStackTrace();
 		}
+	}
+		
+public boolean checkDataBase(String login) throws ClassNotFoundException {
+		
+		Class.forName("com.mysql.jdbc.Driver");
+
+		url="jdbc:mysql://192.166.219.220:3306/surban";
+		try {
+		connect = DriverManager.getConnection(url,user,pass);
+		
+		statement=connect.createStatement();
+		preparedStatement =connect.prepareStatement("SELECT id_uzytkownika FROM `uzytkownik` WHERE login=?");
+		
+		preparedStatement.setString(1, login);
+		
+		
+		
+		ResultSet rs;
+		rs = preparedStatement.executeQuery();
+		
+		if (rs.next() == false) {
+			connect.close();
+			return true;
+		}else {	
+			
+		}
+	
+		
+		
+		connect.close();
+		System.out.println("Connection closed");
+		
+		}
+		catch(SQLException e1) {
+			e1.getStackTrace();
+		}
+		catch(Exception e) {
+			e.getStackTrace();
+		}
+		return false;
 	}
 		
 
