@@ -7,6 +7,7 @@ import java.util.Base64;
 public class ValidateLogin {
    public Mysql baza = null;
    public String hashcode = null;
+   public String username;
    public int id = -1;
  
    
@@ -26,6 +27,7 @@ public class ValidateLogin {
 	 }
 	 baza.checkDataBase(login, hashcode);
 	 this.id = baza.checkresult;
+	 this.username = baza.username;
  }
  
  public String hash(String tohash) throws NoSuchAlgorithmException

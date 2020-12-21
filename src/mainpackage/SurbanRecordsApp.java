@@ -107,7 +107,7 @@ public class SurbanRecordsApp {
 	private JPasswordField passwordRegister;
 	public static JLabel incorrectReg;
 	public static ResourceBundle language;
-	
+	public static ValidateLogin loginek;
 	/**
 	 * @wbp.nonvisual location=272,359
 	 */
@@ -120,7 +120,7 @@ public class SurbanRecordsApp {
 			public void run() {
 				try {
 					
-					int lang = 2;
+					int lang = 3;
 					String filename = null;
 					language=null;
 					Locale l = new Locale("en", "US");
@@ -146,11 +146,11 @@ public class SurbanRecordsApp {
 					UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 					
 					window = new SurbanRecordsApp();
-					main_xd = new MainScreen();
+					//main_xd = new MainScreen();
 					//SwingUtilities.updateComponentTreeUI(window);
-					SwingUtilities.updateComponentTreeUI(main_xd);
+					//SwingUtilities.updateComponentTreeUI(main_xd);
 					window.frmWelcome.setVisible(true);
-					main_xd.setVisible(false);
+					//main_xd.setVisible(false);
 					
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -171,6 +171,8 @@ public class SurbanRecordsApp {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
+		
 		
 		frmWelcome = new JFrame();
 		frmWelcome.setTitle("Welcome");
@@ -269,6 +271,7 @@ public class SurbanRecordsApp {
 		LoginCard.add(incorrectPass);
 		incorrectPass.hide();
 		
+		 
 		buttonLogin = new JLabel(language.getString("zalogujsie"));
 		buttonLogin.addMouseListener(new MouseAdapter() {
 			@Override
@@ -276,16 +279,20 @@ public class SurbanRecordsApp {
 				String login = loginLogin.getText();
 				String haslo = String.valueOf(passwordLogin.getPassword());
 				
+				
 				//main_xd.lblUsername.setText(login);
 				System.out.println(main_xd.UserLogin);
 			
 				
 				
 				try {
-					ValidateLogin loginek = new ValidateLogin(login, haslo);
+					loginek = new ValidateLogin(login, haslo);
 					if(loginek.id != -1)
 					{
 						incorrectPass.hide();
+						System.out.print(loginek.username);
+						main_xd = new MainScreen();
+						SwingUtilities.updateComponentTreeUI(main_xd);
 						main_xd.setVisible(true);
 						window.frmWelcome.setVisible(false);
 					}

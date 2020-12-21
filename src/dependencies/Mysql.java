@@ -27,7 +27,9 @@ public class Mysql {
 	private String email=null;
 
 	public int checkresult=-1;
+	public String username;
 	public JOptionPane xd = null;
+	
 	public Mysql() {
 		
 	}
@@ -85,7 +87,7 @@ public class Mysql {
 		connect = DriverManager.getConnection(url,user,pass);
 		
 		statement=connect.createStatement();
-		preparedStatement =connect.prepareStatement("SELECT id_uzytkownika FROM `uzytkownik` WHERE login=? AND haslo=?");
+		preparedStatement =connect.prepareStatement("SELECT id_uzytkownika,login FROM `uzytkownik` WHERE login=? AND haslo=?");
 		
 		preparedStatement.setString(1, login);
 		preparedStatement.setString(2, haslo);
@@ -99,7 +101,9 @@ public class Mysql {
 			
 		}else {	
 			int id = rs.getInt(1);
+			String uzytkownik = rs.getString(2);
 			this.checkresult = id;
+			this.username = uzytkownik;
 		}
 	
 		
@@ -114,10 +118,10 @@ public class Mysql {
 		catch(Exception e) {
 			e.getStackTrace();
 		}
-		
+	}
 		
 
 	
 	}
-}
+
 
