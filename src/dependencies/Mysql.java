@@ -63,7 +63,7 @@ public class Mysql {
 	public void changePassDatebase(String oldPassHash, String newPassHash, String loginus) throws ClassNotFoundException {
 	
 	    
-		if(!(checkPasswordChange(loginus, oldPassHash).equals(loginus))) {
+		if(!(checkPasswordChange(loginus, oldPassHash).equals(loginus)) || oldPassHash.isEmpty() || newPassHash.isEmpty()) {
 			
 			MainScreen.changePassCom.setForeground(Color.RED);
 		    MainScreen.changePassCom.setText(language.getString("nieudalosie"));
@@ -145,7 +145,7 @@ public class Mysql {
 		catch(Exception e) {
 			e.getStackTrace();
 		}
-		return null;
+		return "";
 		
 	}
 

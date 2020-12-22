@@ -166,7 +166,7 @@ public class validatePass {
 	  public String simplehash(String password) throws NoSuchAlgorithmException
 	  {
 		  
-		   if(password.isEmpty())
+		   if(password==null)
 		  {
 			  //System.out.println("Haslo nie zostalo wprowadzone w konstruktorze");
 			  return null;
