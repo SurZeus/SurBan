@@ -44,6 +44,7 @@ import java.awt.event.AdjustmentListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollBar;
@@ -104,13 +105,13 @@ public class MainScreen extends JFrame {
 	static int IsButtonWhite =0; //0 = grey/1 = whiter
 public static int dbrowCount;
 public static ResourceBundle language = SurbanRecordsApp.language;
-private JTextField textField;
-private JTextField textField_1;
-private JTextField textField_2;
-private JTextField textField_4;
-private JTextField textField_5;
+public static JTextField oldPass;
+public static JTextField newPass;
+public static JTextField newCPass;
+private JTextField newEmail;
+private JTextField changeEmailPass;
 private ValidateLogin loginek = SurbanRecordsApp.loginek;
-
+public static JLabel changePassCom;
 
 	/**
 	 * Create the frame.
@@ -1096,9 +1097,9 @@ private ValidateLogin loginek = SurbanRecordsApp.loginek;
 		UserSettingsContainer.add(ChangePasswordCard, "ChangePasswordCard");
 		GridBagLayout gbl_ChangePasswordCard = new GridBagLayout();
 		gbl_ChangePasswordCard.columnWidths = new int[]{171, 193, 169, 0};
-		gbl_ChangePasswordCard.rowHeights = new int[]{60, 60, 60, 32, 0};
+		gbl_ChangePasswordCard.rowHeights = new int[]{60, 60, 60, 32, 0, 0};
 		gbl_ChangePasswordCard.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
-		gbl_ChangePasswordCard.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_ChangePasswordCard.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		ChangePasswordCard.setLayout(gbl_ChangePasswordCard);
 		
 		JLabel lblOldPassword = new JLabel(language.getString("zmienhaslo"));
@@ -1112,22 +1113,22 @@ private ValidateLogin loginek = SurbanRecordsApp.loginek;
 		gbc_lblOldPassword.gridy = 0;
 		ChangePasswordCard.add(lblOldPassword, gbc_lblOldPassword);
 		
-		textField = new JTextField();
-		textField.setCaretColor(Color.LIGHT_GRAY);
-		textField.setHorizontalAlignment(SwingConstants.CENTER);
-		textField.setForeground(Color.LIGHT_GRAY);
-		textField.setFont(new Font("Tahoma", Font.BOLD, 15));
-		textField.setBorder(new EmptyBorder(0, 0, 0, 0));
-		textField.setBackground(Color.DARK_GRAY);
-		textField.setPreferredSize(new Dimension(5, 30));
-		textField.setMinimumSize(new Dimension(5, 30));
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.insets = new Insets(0, 0, 5, 5);
-		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField.gridx = 1;
-		gbc_textField.gridy = 0;
-		ChangePasswordCard.add(textField, gbc_textField);
-		textField.setColumns(10);
+		oldPass = new JTextField();
+		oldPass.setCaretColor(Color.LIGHT_GRAY);
+		oldPass.setHorizontalAlignment(SwingConstants.CENTER);
+		oldPass.setForeground(Color.LIGHT_GRAY);
+		oldPass.setFont(new Font("Tahoma", Font.BOLD, 15));
+		oldPass.setBorder(new EmptyBorder(0, 0, 0, 0));
+		oldPass.setBackground(Color.DARK_GRAY);
+		oldPass.setPreferredSize(new Dimension(5, 30));
+		oldPass.setMinimumSize(new Dimension(5, 30));
+		GridBagConstraints gbc_oldPass = new GridBagConstraints();
+		gbc_oldPass.insets = new Insets(0, 0, 5, 5);
+		gbc_oldPass.fill = GridBagConstraints.HORIZONTAL;
+		gbc_oldPass.gridx = 1;
+		gbc_oldPass.gridy = 0;
+		ChangePasswordCard.add(oldPass, gbc_oldPass);
+		oldPass.setColumns(10);
 		
 		JLabel lblNewPassword = new JLabel(language.getString("nowehaslo"));
 		lblNewPassword.setHorizontalAlignment(SwingConstants.LEFT);
@@ -1140,22 +1141,22 @@ private ValidateLogin loginek = SurbanRecordsApp.loginek;
 		gbc_lblNewPassword.gridy = 1;
 		ChangePasswordCard.add(lblNewPassword, gbc_lblNewPassword);
 		
-		textField_1 = new JTextField();
-		textField_1.setCaretColor(Color.LIGHT_GRAY);
-		textField_1.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_1.setForeground(Color.LIGHT_GRAY);
-		textField_1.setFont(new Font("Tahoma", Font.BOLD, 15));
-		textField_1.setBorder(new EmptyBorder(0, 0, 0, 0));
-		textField_1.setPreferredSize(new Dimension(5, 30));
-		textField_1.setMinimumSize(new Dimension(5, 30));
-		textField_1.setColumns(10);
-		textField_1.setBackground(Color.DARK_GRAY);
-		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
-		gbc_textField_1.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_1.gridx = 1;
-		gbc_textField_1.gridy = 1;
-		ChangePasswordCard.add(textField_1, gbc_textField_1);
+		newPass = new JTextField();
+		newPass.setCaretColor(Color.LIGHT_GRAY);
+		newPass.setHorizontalAlignment(SwingConstants.CENTER);
+		newPass.setForeground(Color.LIGHT_GRAY);
+		newPass.setFont(new Font("Tahoma", Font.BOLD, 15));
+		newPass.setBorder(new EmptyBorder(0, 0, 0, 0));
+		newPass.setPreferredSize(new Dimension(5, 30));
+		newPass.setMinimumSize(new Dimension(5, 30));
+		newPass.setColumns(10);
+		newPass.setBackground(Color.DARK_GRAY);
+		GridBagConstraints gbc_newPass = new GridBagConstraints();
+		gbc_newPass.insets = new Insets(0, 0, 5, 5);
+		gbc_newPass.fill = GridBagConstraints.HORIZONTAL;
+		gbc_newPass.gridx = 1;
+		gbc_newPass.gridy = 1;
+		ChangePasswordCard.add(newPass, gbc_newPass);
 		
 		JLabel lblConfirmPassword = new JLabel(language.getString("potwierdzhaslo"));
 		lblConfirmPassword.setHorizontalAlignment(SwingConstants.LEFT);
@@ -1168,34 +1169,77 @@ private ValidateLogin loginek = SurbanRecordsApp.loginek;
 		gbc_lblConfirmPassword.gridy = 2;
 		ChangePasswordCard.add(lblConfirmPassword, gbc_lblConfirmPassword);
 		
-		textField_2 = new JTextField();
-		textField_2.setCaretColor(Color.LIGHT_GRAY);
-		textField_2.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_2.setForeground(Color.LIGHT_GRAY);
-		textField_2.setFont(new Font("Tahoma", Font.BOLD, 15));
-		textField_2.setBorder(new EmptyBorder(0, 0, 0, 0));
-		textField_2.setPreferredSize(new Dimension(5, 30));
-		textField_2.setMinimumSize(new Dimension(5, 30));
-		textField_2.setColumns(10);
-		textField_2.setBackground(Color.DARK_GRAY);
-		GridBagConstraints gbc_textField_2 = new GridBagConstraints();
-		gbc_textField_2.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_2.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_2.gridx = 1;
-		gbc_textField_2.gridy = 2;
-		ChangePasswordCard.add(textField_2, gbc_textField_2);
+		newCPass = new JTextField();
+		newCPass.setCaretColor(Color.LIGHT_GRAY);
+		newCPass.setHorizontalAlignment(SwingConstants.CENTER);
+		newCPass.setForeground(Color.LIGHT_GRAY);
+		newCPass.setFont(new Font("Tahoma", Font.BOLD, 15));
+		newCPass.setBorder(new EmptyBorder(0, 0, 0, 0));
+		newCPass.setPreferredSize(new Dimension(5, 30));
+		newCPass.setMinimumSize(new Dimension(5, 30));
+		newCPass.setColumns(10);
+		newCPass.setBackground(Color.DARK_GRAY);
+		GridBagConstraints gbc_newCPass = new GridBagConstraints();
+		gbc_newCPass.insets = new Insets(0, 0, 5, 5);
+		gbc_newCPass.fill = GridBagConstraints.HORIZONTAL;
+		gbc_newCPass.gridx = 1;
+		gbc_newCPass.gridy = 2;
+		ChangePasswordCard.add(newCPass, gbc_newCPass);
 		
-		JLabel lblApply = new JLabel(language.getString("zastosuj"));
-		lblApply.setHorizontalAlignment(SwingConstants.CENTER);
-		lblApply.setIconTextGap(10);
-		lblApply.setForeground(Color.LIGHT_GRAY);
-		lblApply.setFont(new Font("Tahoma", Font.BOLD, 14));
-		GridBagConstraints gbc_lblApply = new GridBagConstraints();
-		gbc_lblApply.fill = GridBagConstraints.VERTICAL;
-		gbc_lblApply.insets = new Insets(0, 0, 0, 5);
-		gbc_lblApply.gridx = 1;
-		gbc_lblApply.gridy = 3;
-		ChangePasswordCard.add(lblApply, gbc_lblApply);
+		JLabel PassApply = new JLabel(language.getString("zastosuj"));
+		PassApply.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				String oldPassword = oldPass.getText();
+				String newPassword = newPass.getText();
+				String newCPassword = newCPass.getText();
+				
+				validatePass newpass = new validatePass(newPassword, newCPassword);
+				try {
+					newpass.validate();
+				} catch (NoSuchAlgorithmException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+				
+				
+				
+				
+				Mysql urbanski = new Mysql();
+			
+				try {
+					urbanski.changePassDatebase(newpass.simplehash(newpass.simplehash(oldPassword)), newpass.hashcode, loginek.username);
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block 
+					e1.printStackTrace();
+				} catch (NoSuchAlgorithmException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				
+				
+			}
+		});
+		PassApply.setHorizontalAlignment(SwingConstants.CENTER);
+		PassApply.setIconTextGap(10);
+		PassApply.setForeground(Color.LIGHT_GRAY);
+		PassApply.setFont(new Font("Tahoma", Font.BOLD, 14));
+		GridBagConstraints gbc_PassApply = new GridBagConstraints();
+		gbc_PassApply.fill = GridBagConstraints.VERTICAL;
+		gbc_PassApply.insets = new Insets(0, 0, 5, 5);
+		gbc_PassApply.gridx = 1;
+		gbc_PassApply.gridy = 3;
+		ChangePasswordCard.add(PassApply, gbc_PassApply);
+		
+		changePassCom = new JLabel("uRBANSKI CHUJ");
+		GridBagConstraints gbc_changePassCom = new GridBagConstraints();
+		gbc_changePassCom.gridwidth = 3;
+		gbc_changePassCom.insets = new Insets(0, 0, 0, 5);
+		gbc_changePassCom.gridx = 0;
+		gbc_changePassCom.gridy = 4;
+		ChangePasswordCard.add(changePassCom, gbc_changePassCom);
 		
 		JPanel ChangeEmailCard = new JPanel();
 		ChangeEmailCard.setOpaque(false);
@@ -1218,22 +1262,22 @@ private ValidateLogin loginek = SurbanRecordsApp.loginek;
 		gbc_lblNewEmail.gridy = 0;
 		ChangeEmailCard.add(lblNewEmail, gbc_lblNewEmail);
 		
-		textField_4 = new JTextField();
-		textField_4.setPreferredSize(new Dimension(5, 30));
-		textField_4.setMinimumSize(new Dimension(5, 30));
-		textField_4.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_4.setForeground(Color.LIGHT_GRAY);
-		textField_4.setFont(new Font("Tahoma", Font.BOLD, 15));
-		textField_4.setColumns(10);
-		textField_4.setCaretColor(Color.LIGHT_GRAY);
-		textField_4.setBorder(new EmptyBorder(0, 0, 0, 0));
-		textField_4.setBackground(Color.DARK_GRAY);
-		GridBagConstraints gbc_textField_4 = new GridBagConstraints();
-		gbc_textField_4.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_4.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_4.gridx = 1;
-		gbc_textField_4.gridy = 0;
-		ChangeEmailCard.add(textField_4, gbc_textField_4);
+		newEmail = new JTextField();
+		newEmail.setPreferredSize(new Dimension(5, 30));
+		newEmail.setMinimumSize(new Dimension(5, 30));
+		newEmail.setHorizontalAlignment(SwingConstants.CENTER);
+		newEmail.setForeground(Color.LIGHT_GRAY);
+		newEmail.setFont(new Font("Tahoma", Font.BOLD, 15));
+		newEmail.setColumns(10);
+		newEmail.setCaretColor(Color.LIGHT_GRAY);
+		newEmail.setBorder(new EmptyBorder(0, 0, 0, 0));
+		newEmail.setBackground(Color.DARK_GRAY);
+		GridBagConstraints gbc_newEmail = new GridBagConstraints();
+		gbc_newEmail.fill = GridBagConstraints.HORIZONTAL;
+		gbc_newEmail.insets = new Insets(0, 0, 5, 5);
+		gbc_newEmail.gridx = 1;
+		gbc_newEmail.gridy = 0;
+		ChangeEmailCard.add(newEmail, gbc_newEmail);
 		
 		JLabel lblConfirmEmail = new JLabel(language.getString("haslo"));
 		lblConfirmEmail.setHorizontalAlignment(SwingConstants.LEFT);
@@ -1246,34 +1290,34 @@ private ValidateLogin loginek = SurbanRecordsApp.loginek;
 		gbc_lblConfirmEmail.gridy = 1;
 		ChangeEmailCard.add(lblConfirmEmail, gbc_lblConfirmEmail);
 		
-		textField_5 = new JTextField();
-		textField_5.setPreferredSize(new Dimension(5, 30));
-		textField_5.setMinimumSize(new Dimension(5, 30));
-		textField_5.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_5.setForeground(Color.LIGHT_GRAY);
-		textField_5.setFont(new Font("Tahoma", Font.BOLD, 15));
-		textField_5.setColumns(10);
-		textField_5.setCaretColor(Color.LIGHT_GRAY);
-		textField_5.setBorder(new EmptyBorder(0, 0, 0, 0));
-		textField_5.setBackground(Color.DARK_GRAY);
-		GridBagConstraints gbc_textField_5 = new GridBagConstraints();
-		gbc_textField_5.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_5.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_5.gridx = 1;
-		gbc_textField_5.gridy = 1;
-		ChangeEmailCard.add(textField_5, gbc_textField_5);
+		changeEmailPass = new JTextField();
+		changeEmailPass.setPreferredSize(new Dimension(5, 30));
+		changeEmailPass.setMinimumSize(new Dimension(5, 30));
+		changeEmailPass.setHorizontalAlignment(SwingConstants.CENTER);
+		changeEmailPass.setForeground(Color.LIGHT_GRAY);
+		changeEmailPass.setFont(new Font("Tahoma", Font.BOLD, 15));
+		changeEmailPass.setColumns(10);
+		changeEmailPass.setCaretColor(Color.LIGHT_GRAY);
+		changeEmailPass.setBorder(new EmptyBorder(0, 0, 0, 0));
+		changeEmailPass.setBackground(Color.DARK_GRAY);
+		GridBagConstraints gbc_changeEmailPass = new GridBagConstraints();
+		gbc_changeEmailPass.fill = GridBagConstraints.HORIZONTAL;
+		gbc_changeEmailPass.insets = new Insets(0, 0, 5, 5);
+		gbc_changeEmailPass.gridx = 1;
+		gbc_changeEmailPass.gridy = 1;
+		ChangeEmailCard.add(changeEmailPass, gbc_changeEmailPass);
 		
-		JLabel label_7 = new JLabel(language.getString("zastosuj"));
-		label_7.setIconTextGap(10);
-		label_7.setHorizontalAlignment(SwingConstants.CENTER);
-		label_7.setForeground(Color.LIGHT_GRAY);
-		label_7.setFont(new Font("Tahoma", Font.BOLD, 14));
-		GridBagConstraints gbc_label_7 = new GridBagConstraints();
-		gbc_label_7.fill = GridBagConstraints.VERTICAL;
-		gbc_label_7.insets = new Insets(0, 0, 0, 5);
-		gbc_label_7.gridx = 1;
-		gbc_label_7.gridy = 2;
-		ChangeEmailCard.add(label_7, gbc_label_7);
+		JLabel EmailApply = new JLabel(language.getString("zastosuj"));
+		EmailApply.setIconTextGap(10);
+		EmailApply.setHorizontalAlignment(SwingConstants.CENTER);
+		EmailApply.setForeground(Color.LIGHT_GRAY);
+		EmailApply.setFont(new Font("Tahoma", Font.BOLD, 14));
+		GridBagConstraints gbc_EmailApply = new GridBagConstraints();
+		gbc_EmailApply.fill = GridBagConstraints.VERTICAL;
+		gbc_EmailApply.insets = new Insets(0, 0, 0, 5);
+		gbc_EmailApply.gridx = 1;
+		gbc_EmailApply.gridy = 2;
+		ChangeEmailCard.add(EmailApply, gbc_EmailApply);
 		
 		JPanel panel_11 = new JPanel();
 		panel_11.setBackground(SettingsTabViewPort.getBackground());

@@ -22,6 +22,10 @@ public class validatePass {
 		this.pass = password;
 		this.pass1 = password1;
 	}
+	public validatePass()
+	{
+	
+	}
 	
 	public String validate() throws NoSuchAlgorithmException
 	{
@@ -136,7 +140,7 @@ public class validatePass {
 	            return isValid; 
 	    }
 	
-	  private String hashPass(String password) throws NoSuchAlgorithmException
+	  public String hashPass(String password) throws NoSuchAlgorithmException
 	  {
 		  
 		   if(this.pass.isEmpty() || this.pass1.isEmpty())
@@ -156,6 +160,26 @@ public class validatePass {
 		  
 		  
 		  this.hashcode = hashcode;
+		  return hashcode;
+	  }
+	  
+	  public String simplehash(String password) throws NoSuchAlgorithmException
+	  {
+		  
+		   if(password.isEmpty())
+		  {
+			  //System.out.println("Haslo nie zostalo wprowadzone w konstruktorze");
+			  return null;
+			 
+		  }
+		  
+		  String hashcode = null;
+		  MessageDigest md = MessageDigest.getInstance("MD5");
+		  md.update(password.getBytes());
+		  byte[] digest = md.digest();
+		  hashcode = Base64.getEncoder().encodeToString(digest);
+		  
+		  
 		  return hashcode;
 	  }
 	  

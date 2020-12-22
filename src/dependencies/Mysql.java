@@ -6,6 +6,7 @@ import java.util.TimerTask;
 
 import javax.swing.JOptionPane;
 
+import mainpackage.MainScreen;
 import mainpackage.SurbanRecordsApp;
 
 import java.awt.Color;
@@ -58,6 +59,111 @@ public class Mysql {
 		}
 		
 	}
+	/*
+	public void changePassDatebase(String oldPassHash, String newPassHash, String loginus) throws ClassNotFoundException {
+	
+	
+	
+		if(checkPasswordChange(oldPassHash,loginus)!=loginus) {
+			
+			return;
+		}
+		
+		
+		System.out.println("MarcinusDebuggerus");
+		Class.forName("com.mysql.jdbc.Driver");
+
+		url="jdbc:mysql://192.166.219.220:3306/surban";
+		try {
+		connect = DriverManager.getConnection(url,user,pass);
+		
+		statement=connect.createStatement();
+		//writeResultSet(resultSet);
+	
+		preparedStatement =connect.prepareStatement("UPDATE 'uzytkownik' SET haslo=? WHERE login=?");
+		
+		preparedStatement.setString(1, newPassHash);
+		preparedStatement.setString(2, loginus);
+	
+		
+		preparedStatement.executeUpdate();
+		connect.close();
+		
+		//System.out.println("Connection closed");
+	   
+		MainScreen.changePassCom.setForeground(Color.GREEN);
+	    MainScreen.changePassCom.setText(language.getString("Pomyslnie"));
+	    MainScreen.changePassCom.show();
+		
+		
+		MainScreen.oldPass.setText("");
+		MainScreen.newPass.setText("");
+		MainScreen.newCPass.setText("");
+
+		
+		
+		}
+		catch(SQLException e1) {
+			e1.getStackTrace();
+		}
+		catch(Exception e) {
+			e.getStackTrace();
+		}
+		  
+	
+
+	}
+	*/
+	/*
+	public String checkPasswordChange(String login,String haslo) throws ClassNotFoundException {
+		
+		
+		Class.forName("com.mysql.jdbc.Driver");
+
+		url="jdbc:mysql://192.166.219.220:3306/surban";
+		
+		String  result = null;
+		
+		try {
+		connect = DriverManager.getConnection(url,user,pass);
+		
+		statement=connect.createStatement();
+		preparedStatement =connect.prepareStatement("SELECT haslo FROM `uzytkownik` WHERE haslo='' ");
+		
+		preparedStatement.setString(1, haslo);
+		//preparedStatement.setString(2, haslo);
+		
+		ResultSet rs;
+		rs = preparedStatement.executeQuery();
+	
+		
+		if(rs.next()) 
+		{ 		
+			String l=rs.getString("haslo");
+			System.out.println(l);
+		}
+			 
+		
+																										
+		
+		connect.close();
+		//System.out.println("Connection closed");
+	
+	
+		}
+		
+		catch(SQLException e1) {
+			e1.getStackTrace();
+		}
+		catch(Exception e) {
+			e.getStackTrace();
+		}
+		System.out.println(result); 
+		
+		return null;
+		
+	}
+*/
 	public void readDataBase() throws ClassNotFoundException {
 		
 		    Class.forName("com.mysql.jdbc.Driver");
@@ -158,7 +264,7 @@ public boolean checkDataBase(String login) throws ClassNotFoundException {
 		
 		preparedStatement.setString(1, login);
 		
-		
+	
 		
 		ResultSet rs;
 		rs = preparedStatement.executeQuery();
