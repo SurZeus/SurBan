@@ -1207,7 +1207,8 @@ public static JLabel changePassCom;
 				
 				
 				Mysql urbanski = new Mysql();
-			
+				
+				
 				try {
 					urbanski.changePassDatebase(newpass.simplehash(newpass.simplehash(oldPassword)), newpass.hashcode, loginek.username);
 				} catch (ClassNotFoundException e1) {
@@ -1233,7 +1234,7 @@ public static JLabel changePassCom;
 		gbc_PassApply.gridy = 3;
 		ChangePasswordCard.add(PassApply, gbc_PassApply);
 		
-		changePassCom = new JLabel("uRBANSKI CHUJ");
+		changePassCom = new JLabel("Udalo sie");
 		GridBagConstraints gbc_changePassCom = new GridBagConstraints();
 		gbc_changePassCom.gridwidth = 3;
 		gbc_changePassCom.insets = new Insets(0, 0, 0, 5);
