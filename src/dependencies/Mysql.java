@@ -64,6 +64,11 @@ public class Mysql {
 	
 	    
 		if(!(checkPasswordChange(loginus, oldPassHash).equals(loginus))) {
+			
+			MainScreen.changePassCom.setForeground(Color.RED);
+		    MainScreen.changePassCom.setText(language.getString("nieudalosie"));
+		    MainScreen.changePassCom.show();
+			
 			return;
 		}
 		
@@ -88,7 +93,7 @@ public class Mysql {
 		connect.close();
 	   
 		MainScreen.changePassCom.setForeground(Color.GREEN);
-	    MainScreen.changePassCom.setText(language.getString("Pomyslnie"));
+	    MainScreen.changePassCom.setText(language.getString("udalosie"));
 	    MainScreen.changePassCom.show();
 		
 		MainScreen.oldPass.setText("");

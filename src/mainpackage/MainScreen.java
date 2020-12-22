@@ -1234,7 +1234,7 @@ public static JLabel changePassCom;
 		gbc_PassApply.gridy = 3;
 		ChangePasswordCard.add(PassApply, gbc_PassApply);
 		
-		changePassCom = new JLabel("Udalo sie");
+		changePassCom = new JLabel();
 		GridBagConstraints gbc_changePassCom = new GridBagConstraints();
 		gbc_changePassCom.gridwidth = 3;
 		gbc_changePassCom.insets = new Insets(0, 0, 0, 5);
