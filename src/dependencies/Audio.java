@@ -60,6 +60,7 @@ public class Audio
 	public int getFramePosition()
 	{
 		return clip.getFramePosition();
+		
 	}
 	
 	public boolean getIsRunning()

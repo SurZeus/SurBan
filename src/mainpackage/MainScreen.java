@@ -47,6 +47,7 @@ import java.awt.event.AdjustmentListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 import java.awt.event.ActionEvent;
@@ -118,7 +119,11 @@ private JTextField changeEmailPass;
 private ValidateLogin loginek = SurbanRecordsApp.loginek;
 public static JLabel changePassCom;
 public static Audio audioPlayer;
-
+private Audio song;
+private boolean isFirst = false;
+private float volume = -20.0f;
+private int framePos = 0;
+private String song_name = "C:\\Users\\Rihvo\\Desktop\\muzykaDlaDziadka\\cd2\\MyPierwszaBrygada.wav";
 
 	/**
 	 * Create the frame.
@@ -135,7 +140,6 @@ public static Audio audioPlayer;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1400, 700);
-	
 		
 		
 		
@@ -894,12 +898,33 @@ public static Audio audioPlayer;
 				if( IsPlayButton ==1){
 					PlayButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/pauseWhite32.png")));
 					IsPlayButton = 0;		
+					try {
+						song = new Audio(song_name);
+					} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					if (!isFirst)
+					{
+						
+						song.stop();
+						song.play(volume, framePos);
+						song.playAfterPause(framePos);
+					}
+					else
+					{
+						song.play(volume, framePos);
+						
+					}
 
 				}
 				else {
 					
 					PlayButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/playWhite32.png")));
 					IsPlayButton = 1;
+					framePos = song.getFramePosition();
+					song.stop();
+					
 				}
 			}
 			@Override
@@ -1547,5 +1572,31 @@ public static Audio audioPlayer;
 				
 			}
 		});
+		
 	}
+	public void playSong(String song_name, float volume, int framePos)
+	
+	{
+	
+		if (!isFirst)
+		{
+		song.stop();
+		song.close();
+		}
+		else
+		{
+		isFirst = false;
+		}
+		try {
+			
+			//System.out.print(url);
+			song = new Audio(song_name);
+		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		framePos=0;
+		song.play(volume, framePos);
+		
+		}
 }
