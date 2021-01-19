@@ -287,7 +287,7 @@ public class SurbanRecordsApp {
 				
 				try {
 					loginek = new ValidateLogin(login, haslo);
-					if(loginek.id != -1)
+					if(loginek.id == -1) //skip login
 					{
 						incorrectPass.hide();
 						

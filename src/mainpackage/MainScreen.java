@@ -459,6 +459,7 @@ public static Audio audioPlayer;
 		lblPlaylisty.setFont(new Font("Dubai Medium", Font.BOLD, 14));
 		PlayListsPanel.add(lblPlaylisty);
 		
+		
 		SideBarButtonActions lblWykonawcy = new SideBarButtonActions();
 		lblWykonawcy.setText(language.getString("wykonawcy"));
 		lblWykonawcy.setHorizontalAlignment(SwingConstants.CENTER);
@@ -723,6 +724,7 @@ public static Audio audioPlayer;
 		SongsRowTemplate.add(lblDuration_1, gbc_lblDuration_1);
 		//MainContentCardsMethods.SongsCardAddContent(SongsTabViewPort,0,dbRowCountOld,0);
 		MainContentCardsMethods.SongsCardAddContent(SongsTabViewPort, 0, 1,0);
+	
 		SongsRowPlayButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -1034,7 +1036,7 @@ public static Audio audioPlayer;
 		});
 			
 		Image img = new ImageIcon(this.getClass().getResource("/img/mainbg2.jpg")).getImage();
-		LayoutManagmentMethods.addDevPanel(scrollPane_3,dbrowCount,3,SongsTabViewPort);
+		
 		
 		JScrollPane SettingsTab = new JScrollPane();
 		SettingsTab.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -1461,6 +1463,24 @@ public static Audio audioPlayer;
 		label_3.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_3.setForeground(Color.LIGHT_GRAY);
 		label_3.setFont(new Font("Dubai Medium", Font.BOLD, 15));
+		
+		JScrollPane CreatorsTab = new JScrollPane();
+		CreatorsTab.setBackground(new Color(36,36,36));
+		CreatorsTab.setBorder(new EmptyBorder(0, 0, 0, 0));
+		Container.add(CreatorsTab, "CreatorsCard");
+		
+		JPanel CreatorsTabViewPort = new JPanel();
+		CreatorsTabViewPort.setBackground(new Color(36,36,36));
+		CreatorsTab.setViewportView(CreatorsTabViewPort);
+		LayoutManagmentMethods.addDevPanel(scrollPane_3,dbrowCount,3,SongsTabViewPort,CreatorsTabViewPort);
+		MainContentCardsMethods.ArtistsCardAddContent(CreatorsTabViewPort,0,1,0);
+
+		lblWykonawcy.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				cl.show(Container, "CreatorsCard");
+			}
+		});
 		ChangePasswordButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
