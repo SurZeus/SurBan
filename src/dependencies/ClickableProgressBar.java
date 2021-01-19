@@ -65,7 +65,7 @@ public class ClickableProgressBar extends JProgressBar implements MouseListener 
 		SetProgressBarValue(this.getMaximum());
 		}
 		
-		System.out.println(this.getValue());
+		//System.out.println(this.getValue());
 		
 	}
 

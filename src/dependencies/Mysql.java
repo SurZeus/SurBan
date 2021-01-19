@@ -148,8 +148,48 @@ public class Mysql {
 		return "";
 		
 	}
+	public boolean checkUser() throws ClassNotFoundException {
+		
+		boolean exists=false;
+		
+		Class.forName("com.mysql.jdbc.Driver");
+
+		url="jdbc:mysql://192.166.219.220:3306/surban";
+		try {
+		connect = DriverManager.getConnection(url,user,pass);
+		
+		statement=connect.createStatement();
+		preparedStatement =connect.prepareStatement("SELECT id_uzytkownika FROM `uzytkownik`");
+		
+		
+		ResultSet rs;
+		rs = preparedStatement.executeQuery();
+		
+		if (rs.next() == false) {
+			exists = false;
+			
+		}else {	
+			exists = true;
+			
+		}
+	
+		connect.close();
+	
+		}
+		catch(SQLException e1) {
+			e1.getStackTrace();
+		}
+		catch(Exception e) {
+			e.getStackTrace();
+		}
+		
+		return exists;
+	
+	} 
 
 	public void readDataBase() throws ClassNotFoundException {
+		
+		    boolean polack = checkUser();
 		
 		    Class.forName("com.mysql.jdbc.Driver");
 
@@ -166,7 +206,15 @@ public class Mysql {
 			preparedStatement.setString(1, login);
 			preparedStatement.setString(2, haslo);
 			preparedStatement.setString(3, email);
-			preparedStatement.setInt(4, 0);
+			
+			if(polack == false)
+			{
+				preparedStatement.setInt(4, 1);
+			}
+			else
+			{
+				preparedStatement.setInt(4, 0);
+			}
 			
 			preparedStatement.executeUpdate();
 			connect.close();
@@ -192,7 +240,8 @@ public class Mysql {
 
 			
 		}
-
+	
+	
 	public void checkDataBase(String login,String haslo) throws ClassNotFoundException {
 		
 		
@@ -225,7 +274,7 @@ public class Mysql {
 		
 		
 		connect.close();
-		System.out.println("Connection closed");
+		//System.out.println("Connection closed");
 		
 		}
 		catch(SQLException e1) {
@@ -264,7 +313,7 @@ public boolean checkDataBase(String login) throws ClassNotFoundException {
 		
 		
 		connect.close();
-		System.out.println("Connection closed");
+		//System.out.println("Connection closed");
 		
 		}
 		catch(SQLException e1) {

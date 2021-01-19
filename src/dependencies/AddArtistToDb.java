@@ -45,7 +45,7 @@ public class AddArtistToDb {
 		
 		preparedStatement.executeUpdate();
 		connect.close();
-		System.out.println("Connection clossed");
+		//System.out.println("Connection clossed");
 		}
 		catch(SQLException e1) {
 			e1.getStackTrace();

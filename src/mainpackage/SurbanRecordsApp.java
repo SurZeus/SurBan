@@ -281,7 +281,7 @@ public class SurbanRecordsApp {
 				
 				
 				//main_xd.lblUsername.setText(login);
-				System.out.println(main_xd.UserLogin);
+				
 			
 				
 				
@@ -290,7 +290,7 @@ public class SurbanRecordsApp {
 					if(loginek.id != -1)
 					{
 						incorrectPass.hide();
-						System.out.print(loginek.username);
+						
 						main_xd = new MainScreen();
 						SwingUtilities.updateComponentTreeUI(main_xd);
 						main_xd.setVisible(true);

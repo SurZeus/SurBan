@@ -1,5 +1,6 @@
 package mainpackage;
 import dependencies.*;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Graphics;
@@ -26,6 +27,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.JSlider;
 import javax.imageio.ImageIO;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import java.awt.FlowLayout;
@@ -93,6 +96,8 @@ import dependencies.ShowFormMusic;
 import dependencies.SideBarButtonActions;
 import dependencies.SongsScrollPane;
 import dependencies.ValidateLogin;
+
+
 //xD
 public class MainScreen extends JFrame {
 //xD2master
@@ -112,6 +117,8 @@ private JTextField newEmail;
 private JTextField changeEmailPass;
 private ValidateLogin loginek = SurbanRecordsApp.loginek;
 public static JLabel changePassCom;
+public static Audio audioPlayer;
+
 
 	/**
 	 * Create the frame.
@@ -129,6 +136,9 @@ public static JLabel changePassCom;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1400, 700);
 	
+		
+		
+		
 		this.setLocationRelativeTo(null);
 		contentPane = new JPanel() {
 		
@@ -605,7 +615,7 @@ public static JLabel changePassCom;
 		SongsTab_1.setViewportView(SongsTabViewPort);
 		Dimension SongsDim = new Dimension();
 		SongsDim = SongsTabViewPort.getSize();
-		System.out.println("Dim" +SongsDim.height);
+	
 		SongsTabViewPort.setLayout(new BoxLayout(SongsTabViewPort, BoxLayout.Y_AXIS));
 		
 		JPanel SongsRowTemplate = new JPanel();
@@ -754,15 +764,16 @@ public static JLabel changePassCom;
 		contentPane.add(BottomUI, gbc_BottomUI);
 		GridBagLayout gbl_BottomUI = new GridBagLayout();
 		gbl_BottomUI.columnWidths = new int[]{250, 0, 200, 0};
-		gbl_BottomUI.rowHeights = new int[]{53, 0};
+		gbl_BottomUI.rowHeights = new int[]{53, 0, 0};
 		gbl_BottomUI.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
-		gbl_BottomUI.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		gbl_BottomUI.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 		BottomUI.setLayout(gbl_BottomUI);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(40,40,40));
 		panel.setLayout(null);
 		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.insets = new Insets(0, 0, 5, 5);
 		gbc_panel.fill = GridBagConstraints.BOTH;
 		gbc_panel.gridx = 0;
 		gbc_panel.gridy = 0;
@@ -799,7 +810,7 @@ public static JLabel changePassCom;
 		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
 		gbc_panel_1.anchor = GridBagConstraints.NORTH;
 		gbc_panel_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_panel_1.insets = new Insets(0, 0, 0, 5);
+		gbc_panel_1.insets = new Insets(0, 0, 5, 5);
 		gbc_panel_1.gridx = 1;
 		gbc_panel_1.gridy = 0;
 		BottomUI.add(panel_1, gbc_panel_1);
@@ -868,11 +879,14 @@ public static JLabel changePassCom;
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if( IsPlayButton ==1) {
+	
+				if( IsPlayButton ==1){
 					PlayButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/pauseWhite32.png")));
-					IsPlayButton = 0;
+					IsPlayButton = 0;		
+
 				}
 				else {
+					
 					PlayButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/playWhite32.png")));
 					IsPlayButton = 1;
 				}
@@ -923,19 +937,10 @@ public static JLabel changePassCom;
 		panel_4.add(LoopButton);
 		LoopButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/loopGray.png")));
 		
-		JProgressBar progressBar = new JProgressBar();
-		progressBar.setPreferredSize(new Dimension(146, 5));
-		GridBagConstraints gbc_progressBar = new GridBagConstraints();
-		gbc_progressBar.anchor = GridBagConstraints.NORTH;
-		gbc_progressBar.fill = GridBagConstraints.HORIZONTAL;
-		gbc_progressBar.insets = new Insets(0, 100, 0, 100);
-		gbc_progressBar.gridx = 0;
-		gbc_progressBar.gridy = 1;
-		panel_1.add(progressBar, gbc_progressBar);
-		
 		
 		JPanel panel_2 = new JPanel();
 		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
+		gbc_panel_2.insets = new Insets(0, 0, 5, 0);
 		panel_2.setBackground(new Color(40,40,40));
 		panel_2.setLayout(null);
 		gbc_panel_2.fill = GridBagConstraints.BOTH;
@@ -961,6 +966,14 @@ public static JLabel changePassCom;
 		clickableProgressBar.setBorder(null);
 		clickableProgressBar.setBackground(new Color(179, 179, 179));
 		panel_2.add(clickableProgressBar);
+		
+		JProgressBar progressBar = new JProgressBar();
+		GridBagConstraints gbc_progressBar = new GridBagConstraints();
+		gbc_progressBar.insets = new Insets(0, 0, 0, 5);
+		gbc_progressBar.gridx = 1;
+		gbc_progressBar.gridy = 1;
+		BottomUI.add(progressBar, gbc_progressBar);
+		progressBar.setPreferredSize(new Dimension(146, 5));
 			
 			//Mouse Listeners
 		

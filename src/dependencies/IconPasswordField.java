@@ -2,10 +2,6 @@ package dependencies;
 
 
 
-
-
-
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
@@ -55,13 +51,3 @@ public class IconPasswordField extends JPasswordField {
     }
 };
     
-   /* this.addMouseListener(new MouseAdapter() {
-		@Override
-		public void mouseExited(MouseEvent arg0) {
-			SignInButton.setForeground(Color.LIGHT_GRAY);
-		}
-		@Override
-		public void mouseEntered(MouseEvent arg0) {
-			SignInButton.setForeground(Color.WHITE);
-		}
-	});*/

@@ -31,7 +31,7 @@ class IconTextComponentHelper {
         if (mIcon != null) {
             Insets iconInsets = mOrigBorder.getBorderInsets(mTextComponent);
             mIcon.paintIcon(mTextComponent, g, 250, iconInsets.top);
-            System.out.println(iconInsets.left);
+           // System.out.println(iconInsets.left);
         }
     }
 

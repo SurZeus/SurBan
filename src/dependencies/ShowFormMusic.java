@@ -39,12 +39,12 @@ public class ShowFormMusic {
 				count = rs.getInt(1);
 				
 			
-				System.out.println(count);
+			
 			 Utwory = new String[count][3];
 			 resultSet=statement.executeQuery("SELECT nazwa_utworu, nazwa_wykonawcy, nazwa_albumu  FROM utwor,wykonawca,album where utwor.id_wykonawcy = wykonawca.id_wykonawcy and utwor.id_albumu=album.id_albumu");
 			 writeResultSet(resultSet,count,Utwory);
 				connect.close();
-				System.out.println("Connection closed");
+				//System.out.println("Connection closed");
 				////INSERT//////////////////////////////////////
 			}catch (Exception e) {
 				System.out.println("Blad polaczenia z baza danych");
@@ -66,7 +66,7 @@ public class ShowFormMusic {
 				i++;
 			
 			}
-			System.out.println(tb[0][1]);
+			
 		}
 		
 		
