@@ -349,15 +349,27 @@ public class LayoutManagmentMethods {
 			scrollPane.setViewportView(panel_9);
 			
 			
-		
+			ShowFormAlbums tempMusic1 = new ShowFormAlbums();
 
 			
+			try {
+				tempMusic1.displayMusic();
+			}catch(Exception e){
+				e.getStackTrace();
+			}
+		
+			dbrowCount =ShowFormAlbums.count;
+			//ShowFormMusic.Utwory[][];
+			for(int i=0;i<dbrowCount;i++) {
+			//addSongsRow(rowContainer,i,status);
+			LayoutManagmentMethods.addContent1(panel_9,dbrowCount,i);
+			}
+			/*LayoutManagmentMethods.addContent1(panel_9,dbrowCount);
 			LayoutManagmentMethods.addContent1(panel_9,dbrowCount);
 			LayoutManagmentMethods.addContent1(panel_9,dbrowCount);
-			LayoutManagmentMethods.addContent1(panel_9,dbrowCount);
-			LayoutManagmentMethods.addContent1(panel_9,dbrowCount);
+			LayoutManagmentMethods.addContent1(panel_9,dbrowCount);*/
 		};
-		public static void addContent1(JPanel panel, int rowCount) {
+		public static void addContent1(JPanel panel, int rowCount,int rowNumber) {
 			int y_pos=-1;
 
 			JPanel AlbumTile = new JPanel();
@@ -924,10 +936,12 @@ public class LayoutManagmentMethods {
 					}
 				});
 				
+				
+				
 				cardContainer.add(Card1,"AddAlbumsCard");
 			}
 			
-			public static void LeftDevPanel_addArtistCard(JPanel cardsContainer) {
+			public static void LeftDevPanel_addArtistCard(JPanel cardsContainer, JPanel ArtistsCardsPanel) {
 				JPanel Card1 = new JPanel();
 				Card1.setBackground(Color.DARK_GRAY);
 				Card1.setBounds(33, 517, 300, 341);
@@ -993,6 +1007,7 @@ public class LayoutManagmentMethods {
 					public void mouseClicked(MouseEvent arg0) {
 						AddArtistToDb temp = new AddArtistToDb();
 						String artist = textField_3.getText();
+						ArtistsCardsPanel.removeAll();
 					
 		
 						try {
@@ -1002,13 +1017,17 @@ public class LayoutManagmentMethods {
 							e.printStackTrace();
 						}
 					
-						
+						MainContentCardsMethods.ArtistsCardAddContent(ArtistsCardsPanel,0,1,0);
 					}
 				});
+				
+				
+				
+				
 				cardsContainer.add(Card1,"AddArtistCard");
 				
 			}
-			public static void addLeftDevPanel(JPanel panel, int rowCount,JPanel SongsCardsPanel) {
+			public static void addLeftDevPanel(JPanel panel, int rowCount,JPanel SongsCardsPanel, JPanel ArtistsCardsPanel) {
 				int y_pos=-1;
 
 				JTextField textField;
@@ -1073,7 +1092,7 @@ public class LayoutManagmentMethods {
 				//});
 				LeftDevPanel_addSongCard(SettingsCardsContainer,SongsCardsPanel);
 				LeftDevPanel_addAlbumCard(SettingsCardsContainer);
-				LeftDevPanel_addArtistCard(SettingsCardsContainer);
+				LeftDevPanel_addArtistCard(SettingsCardsContainer,ArtistsCardsPanel);
 				cl.show(SettingsCardsContainer, "AddSongsCard");
 				btnNewButton_4.addMouseListener(new MouseAdapter() {
 					@Override
@@ -1119,7 +1138,7 @@ public class LayoutManagmentMethods {
 					panel.add(DB_View);
 				}
 			
-			public static void addDevPanel(JScrollPane scrollPane, int dbrowCount, int cardNumber,JPanel SongsCardsContainer) {
+			public static void addDevPanel(JScrollPane scrollPane, int dbrowCount, int cardNumber,JPanel SongsCardsContainer,JPanel ArtistsCardsContainer) {
 				JPanel panel_9 = new JPanel(){
 				    protected void paintComponent(Graphics g)
 				    {
@@ -1228,7 +1247,7 @@ public class LayoutManagmentMethods {
 			
 
 				
-				LayoutManagmentMethods.addLeftDevPanel(panel_9,dbrowCount,SongsCardsContainer);
+				LayoutManagmentMethods.addLeftDevPanel(panel_9,dbrowCount,SongsCardsContainer,ArtistsCardsContainer);
 				LayoutManagmentMethods.addRightDevPanel(panel_9);
 			
 				
