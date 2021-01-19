@@ -8,6 +8,7 @@ public class ValidateLogin {
    public Mysql baza = null;
    public String hashcode = null;
    public String username;
+   public int isAdmin = 0;
    public int id = -1;
  
    
@@ -28,6 +29,7 @@ public class ValidateLogin {
 	 baza.checkDataBase(login, hashcode);
 	 this.id = baza.checkresult;
 	 this.username = baza.username;
+	 this.isAdmin = baza.isAdmin;
  }
  
  public String hash(String tohash) throws NoSuchAlgorithmException

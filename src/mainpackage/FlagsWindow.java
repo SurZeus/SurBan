@@ -28,6 +28,9 @@ import java.awt.Cursor;
 public class FlagsWindow {
 
 	private JFrame frmWelcome;
+	private SurbanRecordsApp wind;
+	private FlagsWindow flag;
+	public int LangNo = 0;
 	/**
 	 * @wbp.nonvisual location=499,269
 	 */
@@ -99,6 +102,15 @@ public class FlagsWindow {
 		        super.paintComponent(g);
 		    }
 		};
+		Overlay.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				wind = new SurbanRecordsApp(3);
+				wind.frmWelcome.setVisible(true);
+				frmWelcome.setVisible(false);
+				
+			}
+		});
 		Overlay.setHorizontalAlignment(SwingConstants.CENTER);
 		Overlay.setHorizontalTextPosition(SwingConstants.CENTER);
 		Overlay.setIcon(new ImageIcon(FlagsWindow.class.getResource("/img/check.png")));
@@ -137,6 +149,14 @@ public class FlagsWindow {
 		        super.paintComponent(g);
 		    }
 		};
+		Overlay2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				wind = new SurbanRecordsApp(2);
+				wind.frmWelcome.setVisible(true);
+				frmWelcome.setVisible(false);
+			}
+		});
 		Overlay2.setHorizontalAlignment(SwingConstants.CENTER);
 		Overlay2.setHorizontalTextPosition(SwingConstants.CENTER);
 		Overlay2.setIcon(new ImageIcon(FlagsWindow.class.getResource("/img/check.png")));
@@ -174,6 +194,14 @@ public class FlagsWindow {
 		        super.paintComponent(g);
 		    }
 		};
+		Overlay3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				wind = new SurbanRecordsApp(1);
+				wind.frmWelcome.setVisible(true);
+				frmWelcome.setVisible(false);
+			}
+		});
 		Overlay3.setHorizontalAlignment(SwingConstants.CENTER);
 		Overlay3.setHorizontalTextPosition(SwingConstants.CENTER);
 		Overlay3.setIcon(new ImageIcon(FlagsWindow.class.getResource("/img/check.png")));

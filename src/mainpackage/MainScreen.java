@@ -504,6 +504,15 @@ public static Audio audioPlayer;
 		sdbrbtnctnsDevpanel.setFont(new Font("Dubai Medium", Font.BOLD, 14));
 		panel_5.add(sdbrbtnctnsDevpanel);
 		
+		if(loginek.isAdmin==0)
+		{
+			sdbrbtnctnsDevpanel.hide();
+		}
+		else
+		{
+			sdbrbtnctnsDevpanel.show();
+		}
+		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBorder(new EmptyBorder(0, 0, 0, 0));
 		panel_3.setBackground(new Color(18, 18, 18));

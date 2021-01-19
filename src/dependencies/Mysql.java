@@ -31,11 +31,12 @@ public class Mysql {
 	private String login=null;
 	private String haslo=null;
 	private String email=null;
+	
 
 	public int checkresult=-1;
 	public String username;
 	public JOptionPane xd = null;
-	
+	public int isAdmin = 0;
 	public Mysql() {
 		
 	}
@@ -252,7 +253,7 @@ public class Mysql {
 		connect = DriverManager.getConnection(url,user,pass);
 		
 		statement=connect.createStatement();
-		preparedStatement =connect.prepareStatement("SELECT id_uzytkownika,login FROM `uzytkownik` WHERE login=? AND haslo=?");
+		preparedStatement =connect.prepareStatement("SELECT id_uzytkownika,login,uprawnienia FROM `uzytkownik` WHERE login=? AND haslo=?");
 		
 		preparedStatement.setString(1, login);
 		preparedStatement.setString(2, haslo);
@@ -267,8 +268,11 @@ public class Mysql {
 		}else {	
 			int id = rs.getInt(1);
 			String uzytkownik = rs.getString(2);
+			int isadmin = rs.getInt(3);
 			this.checkresult = id;
 			this.username = uzytkownik;
+			this.isAdmin = isadmin;
+			
 		}
 	
 		

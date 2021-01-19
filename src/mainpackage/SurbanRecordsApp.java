@@ -108,61 +108,49 @@ public class SurbanRecordsApp {
 	public static JLabel incorrectReg;
 	public static ResourceBundle language;
 	public static ValidateLogin loginek;
-	/**
-	 * @wbp.nonvisual location=272,359
-	 */
+	public static int LangNo = 1;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					
-					int lang = 2;
-					String filename = null;
-					language=null;
-					Locale l = new Locale("en", "US");
+	
+	public SurbanRecordsApp(int LangNo) {
+		this.LangNo = LangNo;
+		try {
+			
+			int lang = LangNo;
+			String filename = null;
+			language=null;
+			Locale l = new Locale("en", "US");
 
-					
-					switch(lang)
-					{
-					    case 1:
-						filename = "pl";
-						break;
+			
+			switch(lang)
+			{
+			    case 1:
+				filename = "pl";
+				break;
 
-						case 2:
-						filename = "en";
-						break;
+				case 2:
+				filename = "en";
+				break;
 
-						case 3:
-						filename = "de";
-						break;
-					}
-
-					language = ResourceBundle.getBundle("langs//"+filename, l);
-					
-					UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-					
-					window = new SurbanRecordsApp();
-					//main_xd = new MainScreen();
-					//SwingUtilities.updateComponentTreeUI(window);
-					//SwingUtilities.updateComponentTreeUI(main_xd);
-					window.frmWelcome.setVisible(true);
-					//main_xd.setVisible(false);
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+				case 3:
+				filename = "de";
+				break;
 			}
-		});
-	}
 
-	/**
-	 * Create the application.
-	 */
-	public SurbanRecordsApp() {
+			language = ResourceBundle.getBundle("langs//"+filename, l);
+			
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+			
+			//window = new SurbanRecordsApp(LangNo);
+			//main_xd = new MainScreen();
+			//SwingUtilities.updateComponentTreeUI(window);
+			//SwingUtilities.updateComponentTreeUI(main_xd);
+			//window.frmWelcome.setVisible(true);
+			//main_xd.setVisible(false);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		initialize();
 	}
     
@@ -287,7 +275,7 @@ public class SurbanRecordsApp {
 				
 				try {
 					loginek = new ValidateLogin(login, haslo);
-					if(loginek.id == -1) //skip login
+					if(loginek.id != -1) //skip login
 					{
 						incorrectPass.hide();
 						
