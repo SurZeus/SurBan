@@ -118,7 +118,16 @@ private JTextField changeEmailPass;
 private ValidateLogin loginek = SurbanRecordsApp.loginek;
 public static JLabel changePassCom;
 public static Audio audioPlayer;
+
 private JTextField textField;
+
+private Audio song;
+private boolean isFirst = false;
+private float volume = 500.0f;
+private int framePos = 0;
+private String song_name = "C:\\Users\\winte\\Desktop\\SurbanMuza\\Chopin-FuneralMarch.wav";
+private JTextField textDemPom;
+private Mysql baza = new Mysql();
 
 
 	/**
@@ -1016,7 +1025,7 @@ private JTextField textField;
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				cl.show(Container,"Dev_PanelRemastered");
-				lblUtwory.setText("Dev_Panel");
+				lblUtwory.setText("Dev_Panel_Remastered");
 				
 			}
 		});
@@ -1502,10 +1511,10 @@ private JTextField textField;
 		UserRanks.add(panel_15);
 		panel_15.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setBounds(174, 5, 183, 20);
-		panel_15.add(textField);
-		textField.setColumns(10);
+		textDemPom = new JTextField();
+		textDemPom.setBounds(174, 5, 183, 20);
+		panel_15.add(textDemPom);
+		textDemPom.setColumns(10);
 		
 		JLabel User_Id = new JLabel("User_Id");
 		User_Id.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -1514,14 +1523,64 @@ private JTextField textField;
 		panel_15.add(User_Id);
 		
 		JButton btnNewButton = new JButton("Promote");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String DemPom = textDemPom.getText();
+				int id = Integer.parseInt(DemPom);
+			 try {
+				baza.PromoteDemoteUser(0, id);
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (Throwable e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			}
+		});
 		btnNewButton.setBounds(174, 36, 89, 23);
 		panel_15.add(btnNewButton);
 		
 		JButton btnDemote = new JButton("Demote");
+		btnDemote.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				String DemPom = textDemPom.getText();
+				int id = Integer.parseInt(DemPom);
+				try {
+						baza.PromoteDemoteUser(1, id);
+					} catch (ClassNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (Throwable e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					}
+			
+		});
 		btnDemote.setBounds(268, 36, 89, 23);
 		panel_15.add(btnDemote);
 		
 		JButton btnRemoveUserFrom = new JButton("Remove User From Database");
+		btnRemoveUserFrom.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String DemPom = textDemPom.getText();
+				int id = Integer.parseInt(DemPom);
+				try {
+					baza.DeleteUser(id);
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (Throwable e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnRemoveUserFrom.setBounds(174, 68, 183, 23);
 		panel_15.add(btnRemoveUserFrom);
 		

@@ -109,6 +109,7 @@ public class SurbanRecordsApp {
 	public static ResourceBundle language;
 	public static ValidateLogin loginek;
 	public static int LangNo = 1;
+    public static Mysql baza;
 
 	
 	public SurbanRecordsApp(int LangNo) {
@@ -478,7 +479,7 @@ public class SurbanRecordsApp {
 		buttonRegister.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Mysql baza = new Mysql();
+				baza = new Mysql();
 				ValidateAnEmail checkmail = new ValidateAnEmail();
 				
 				String login = loginRegister.getText();

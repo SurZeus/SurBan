@@ -111,7 +111,103 @@ public class Mysql {
 		  
 	}
 	
+
+	public void PromoteDemoteUser(int Option, int id) throws ClassNotFoundException, Throwable {
 	
+		int number;
+		number = checkAdmins();
+	
+		
+		
+		Class.forName("com.mysql.jdbc.Driver");
+
+		url="jdbc:mysql://192.166.219.220:3306/surban";
+	
+		connect = DriverManager.getConnection(url,user,pass);
+		
+		statement=connect.createStatement();
+		//writeResultSet(resultSet);
+	
+		preparedStatement =connect.prepareStatement("UPDATE uzytkownik SET uprawnienia=? WHERE id_uzytkownika=?");
+		
+		if(Option == 1 && number!=1)
+		{
+		preparedStatement.setInt(1,0);
+	
+		}
+		else if(Option == 0)
+		{
+	    preparedStatement.setInt(1,1);
+
+		}
+		else
+		{
+			connect.close();
+			return;
+		}
+		preparedStatement.setInt(2, id);
+		
+		preparedStatement.executeUpdate();
+		connect.close();
+	   
+
+		
+	
+		  
+	}
+	
+	
+public void DeleteUser( int id) throws ClassNotFoundException, Throwable {
+	    
+	
+		int number;
+	    number = checkAdmins();
+	    
+	    if(number!=1)
+	    {
+		Class.forName("com.mysql.jdbc.Driver");
+
+		url="jdbc:mysql://192.166.219.220:3306/surban";
+	
+		connect = DriverManager.getConnection(url,user,pass);
+		
+		statement=connect.createStatement();
+		//writeResultSet(resultSet);
+	
+		preparedStatement =connect.prepareStatement("DELETE FROM uzytkownik WHERE id_uzytkownika=?");
+		
+		preparedStatement.setInt(1,id);
+		
+		
+		preparedStatement.executeUpdate();
+		connect.close();
+	    }
+	    else if(number==1)
+	    {
+	    	Class.forName("com.mysql.jdbc.Driver");
+
+			url="jdbc:mysql://192.166.219.220:3306/surban";
+		
+			connect = DriverManager.getConnection(url,user,pass);
+			
+			statement=connect.createStatement();
+			//writeResultSet(resultSet);
+		
+			preparedStatement =connect.prepareStatement("DELETE FROM uzytkownik WHERE id_uzytkownika=? AND uprawnienia=0");
+			
+			preparedStatement.setInt(1,id);
+			
+			
+			preparedStatement.executeUpdate();
+			connect.close();
+	    }
+
+		
+	
+		  
+	}
+
+
 	public String checkPasswordChange(String login,String haslo) throws ClassNotFoundException {
 	
 		
@@ -149,7 +245,79 @@ public class Mysql {
 		return "";
 		
 	}
+	
+	public int checkAdmins() throws ClassNotFoundException {
+		
+		int number = 0;
+		Class.forName("com.mysql.jdbc.Driver");
+
+	url="jdbc:mysql://192.166.219.220:3306/surban";
+	try {
+	connect = DriverManager.getConnection(url,user,pass);
+	
+	statement=connect.createStatement();
+	preparedStatement =connect.prepareStatement("SELECT COUNT(uprawnienia) FROM `uzytkownik` WHERE uprawnienia=1");
+
+
+	ResultSet rs;
+	rs = preparedStatement.executeQuery();
+	
+	if(rs.next())
+	{
+		number = rs.getInt(1);
+		return number;
+	}
+	
+	}
+	catch(SQLException e1) {
+		e1.getStackTrace();
+	}
+	catch(Exception e) {
+		e.getStackTrace();
+	}
+	return number;
+	
+}
+	
 	public boolean checkUser() throws ClassNotFoundException {
+		
+		boolean exists=false;
+		
+		Class.forName("com.mysql.jdbc.Driver");
+
+		url="jdbc:mysql://192.166.219.220:3306/surban";
+		try {
+		connect = DriverManager.getConnection(url,user,pass);
+		
+		statement=connect.createStatement();
+		preparedStatement =connect.prepareStatement("SELECT id_uzytkownika FROM `uzytkownik`");
+		
+		
+		ResultSet rs;
+		rs = preparedStatement.executeQuery();
+		
+		if (rs.next() == false) {
+			exists = false;
+			
+		}else {	
+			exists = true;
+			
+		}
+	
+		connect.close();
+	
+		}
+		catch(SQLException e1) {
+			e1.getStackTrace();
+		}
+		catch(Exception e) {
+			e.getStackTrace();
+		}
+		
+		return exists;
+	
+	} 
+	public boolean userFromDataBase() throws ClassNotFoundException {
 		
 		boolean exists=false;
 		
