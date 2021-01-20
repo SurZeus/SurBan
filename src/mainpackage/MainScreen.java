@@ -124,6 +124,9 @@ private boolean isFirst = false;
 private float volume = -20.0f;
 private int framePos = 0;
 private String song_name = "C:\\Users\\Rihvo\\Desktop\\muzykaDlaDziadka\\cd2\\MyPierwszaBrygada.wav";
+private JTextField textField;
+
+
 
 	/**
 	 * Create the frame.
@@ -439,13 +442,13 @@ private String song_name = "C:\\Users\\Rihvo\\Desktop\\muzykaDlaDziadka\\cd2\\My
 		gbc_FavouritesButtonPanel.gridy = 3;
 		panel_8.add(FavouritesButtonPanel, gbc_FavouritesButtonPanel);
 		
-		SideBarButtonActions lblUlubione = new SideBarButtonActions();
-		lblUlubione.setText(language.getString("ulubione"));
+		SideBarButtonActions DevPanelRemastered_1 = new SideBarButtonActions();
+		DevPanelRemastered_1.setText(language.getString("ulubione"));
 		
-		lblUlubione.setHorizontalAlignment(SwingConstants.CENTER);
-		lblUlubione.setForeground(new Color(179, 179, 179));
-		lblUlubione.setFont(new Font("Dubai Medium", Font.BOLD, 14));
-		FavouritesButtonPanel.add(lblUlubione);
+		DevPanelRemastered_1.setHorizontalAlignment(SwingConstants.CENTER);
+		DevPanelRemastered_1.setForeground(new Color(179, 179, 179));
+		DevPanelRemastered_1.setFont(new Font("Dubai Medium", Font.BOLD, 14));
+		FavouritesButtonPanel.add(DevPanelRemastered_1);
 		
 		JPanel PlayListsPanel = new JPanel();
 		PlayListsPanel.setBackground(new Color(18, 18, 18));
@@ -1048,17 +1051,17 @@ private String song_name = "C:\\Users\\Rihvo\\Desktop\\muzykaDlaDziadka\\cd2\\My
 		sdbrbtnctnsDevpanel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				cl.show(Container,"Dev_Panel");
+				cl.show(Container,"DevPanelRemastered");
 				lblUtwory.setText("Dev_Panel");
 				
 			}
 		});
 		
 		
-		lblUlubione.addMouseListener(new MouseAdapter() {
+		DevPanelRemastered_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				cl.show(Container,"Polak_Panel");
+				cl.show(Container,"DevPanelRemastered");
 			}
 		});
 		lblSettings.addMouseListener(new MouseAdapter() {
@@ -1508,7 +1511,62 @@ private String song_name = "C:\\Users\\Rihvo\\Desktop\\muzykaDlaDziadka\\cd2\\My
 		CreatorsTab.setViewportView(CreatorsTabViewPort);
 		LayoutManagmentMethods.addDevPanel(scrollPane_3,dbrowCount,3,SongsTabViewPort,CreatorsTabViewPort);
 		MainContentCardsMethods.ArtistsCardAddContent(CreatorsTabViewPort,0,1,0);
-
+		
+		JScrollPane DevPanelRemastered = new JScrollPane();
+		DevPanelRemastered.setBorder(new EmptyBorder(0, 0, 0, 0));
+		DevPanelRemastered.setBackground(new Color(36, 36, 36));
+		Container.add(DevPanelRemastered, "DevPanelRemastered");
+		
+		JPanel DevPanelViewPort = new JPanel();
+	
+		DevPanelViewPort.setBackground(Color.DARK_GRAY);
+		DevPanelRemastered.setViewportView(DevPanelViewPort);
+		DevPanelViewPort.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		LayoutManagmentMethods.addLeftDevPanel(DevPanelViewPort,dbrowCount,SongsTabViewPort,CreatorsTabViewPort);
+		
+		JPanel UserRanks = new JPanel();
+		UserRanks.setPreferredSize(new Dimension(500, 400));
+		UserRanks.setBackground(Color.PINK);
+		DevPanelViewPort.add(UserRanks);
+		UserRanks.setLayout(null);
+		
+		JPanel panel_15 = new JPanel();
+		panel_15.setBounds(0, 179, 500, 221);
+		UserRanks.add(panel_15);
+		panel_15.setLayout(null);
+		
+		textField = new JTextField();
+		textField.setBounds(174, 5, 183, 20);
+		panel_15.add(textField);
+		textField.setColumns(10);
+		
+		JLabel User_Id = new JLabel("User_Id");
+		User_Id.setHorizontalTextPosition(SwingConstants.CENTER);
+		User_Id.setHorizontalAlignment(SwingConstants.CENTER);
+		User_Id.setBounds(0, 5, 176, 20);
+		panel_15.add(User_Id);
+		
+		JButton btnNewButton = new JButton("Promote");
+		btnNewButton.setBounds(174, 36, 89, 23);
+		panel_15.add(btnNewButton);
+		
+		JButton btnDemote = new JButton("Demote");
+		btnDemote.setBounds(268, 36, 89, 23);
+		panel_15.add(btnDemote);
+		
+		JButton btnRemoveUserFrom = new JButton("Remove User From Database");
+		btnRemoveUserFrom.setBounds(174, 68, 183, 23);
+		panel_15.add(btnRemoveUserFrom);
+		
+		JPanel panel_13 = new JPanel();
+		panel_13.setBackground(Color.GRAY);
+		panel_13.setBounds(0, 0, 500, 180);
+		UserRanks.add(panel_13);
+		panel_13.setLayout(null);
+		
+		JLabel lblNewLabel_7 = new JLabel("Tu bedzie lista userow i ich id + uprawnnienia");
+		lblNewLabel_7.setBounds(0, 0, 499, 169);
+		panel_13.add(lblNewLabel_7);
 		lblWykonawcy.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
