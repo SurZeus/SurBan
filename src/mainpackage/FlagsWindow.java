@@ -125,7 +125,7 @@ public class FlagsWindow {
 		flagDe.setIcon(new ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/img/de.png")).getImage().getScaledInstance(160, 100, Image.SCALE_SMOOTH)));
 		
 		
-		///////////
+	
 		
 		JPanel FlagTile2 = new JPanel(){
 		    protected void paintComponent(Graphics g)
@@ -235,7 +235,7 @@ public class FlagsWindow {
 		
 		
 		
-		///listenery
+	
 		
 		FlagTile2.addMouseListener(new MouseAdapter() {
 			@Override
