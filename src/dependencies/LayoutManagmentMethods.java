@@ -349,25 +349,7 @@ public class LayoutManagmentMethods {
 			scrollPane.setViewportView(panel_9);
 			
 			
-			ShowFormAlbums tempMusic1 = new ShowFormAlbums();
-
 			
-			try {
-				tempMusic1.displayMusic();
-			}catch(Exception e){
-				e.getStackTrace();
-			}
-		
-			dbrowCount =ShowFormAlbums.count;
-			//ShowFormMusic.Utwory[][];
-			for(int i=0;i<dbrowCount;i++) {
-			//addSongsRow(rowContainer,i,status);
-			LayoutManagmentMethods.addContent1(panel_9,dbrowCount,i);
-			}
-			/*LayoutManagmentMethods.addContent1(panel_9,dbrowCount);
-			LayoutManagmentMethods.addContent1(panel_9,dbrowCount);
-			LayoutManagmentMethods.addContent1(panel_9,dbrowCount);
-			LayoutManagmentMethods.addContent1(panel_9,dbrowCount);*/
 		};
 		public static void addContent1(JPanel panel, int rowCount,int rowNumber) {
 			int y_pos=-1;
@@ -482,6 +464,28 @@ public class LayoutManagmentMethods {
 			
 			
 			};
+			
+			public static int AlbumsCardAddContent(JPanel rowContainer,int runTimes,int dbRowCount,int status) {
+				ShowFormMusic tempMusic1 = new ShowFormMusic();
+					
+						
+						
+						try {
+							tempMusic1.displayMusic();
+						}catch(Exception e){
+							e.getStackTrace();
+						}
+					
+						dbRowCount =ShowFormMusic.count;
+						//ShowFormMusic.Utwory[][];
+						for(int i=0;i<dbRowCount;i++) {
+						//addSongsRow(rowContainer,i,status);
+						addContent1(rowContainer, i,status);
+						}
+						
+						
+						return dbRowCount;
+					}
 			public static void LeftDevPanel_addSongCard(JPanel cardContainer,JPanel SongsCardsContainer) {
 				JPanel Card1 = new JPanel();
 				Card1.setBackground(Color.DARK_GRAY);
