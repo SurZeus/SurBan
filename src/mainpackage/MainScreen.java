@@ -47,7 +47,6 @@ import java.awt.event.AdjustmentListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 import java.awt.event.ActionEvent;
@@ -119,13 +118,7 @@ private JTextField changeEmailPass;
 private ValidateLogin loginek = SurbanRecordsApp.loginek;
 public static JLabel changePassCom;
 public static Audio audioPlayer;
-private Audio song;
-private boolean isFirst = false;
-private float volume = -20.0f;
-private int framePos = 0;
-private String song_name = "C:\\Users\\Rihvo\\Desktop\\muzykaDlaDziadka\\cd2\\MyPierwszaBrygada.wav";
 private JTextField textField;
-
 
 
 	/**
@@ -137,12 +130,13 @@ private JTextField textField;
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MainScreen.class.getResource("/img/polack.png")));
 		setBackground(Color.PINK);
 		
-		setMinimumSize(new Dimension(1100, 400));
+		setMinimumSize(new Dimension(1400,700));
 		setTitle("SurBan Studio");
 		MainScreen.setDefaultLookAndFeelDecorated(true);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1400, 700);
+	
 		
 		
 		
@@ -510,15 +504,6 @@ private JTextField textField;
 		sdbrbtnctnsDevpanel.setForeground(new Color(179, 179, 179));
 		sdbrbtnctnsDevpanel.setFont(new Font("Dubai Medium", Font.BOLD, 14));
 		panel_5.add(sdbrbtnctnsDevpanel);
-		
-		if(loginek.isAdmin==0)
-		{
-			sdbrbtnctnsDevpanel.hide();
-		}
-		else
-		{
-			sdbrbtnctnsDevpanel.show();
-		}
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -901,33 +886,12 @@ private JTextField textField;
 				if( IsPlayButton ==1){
 					PlayButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/pauseWhite32.png")));
 					IsPlayButton = 0;		
-					try {
-						song = new Audio(song_name);
-					} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					if (!isFirst)
-					{
-						
-						song.stop();
-						song.play(volume, framePos);
-						song.playAfterPause(framePos);
-					}
-					else
-					{
-						song.play(volume, framePos);
-						
-					}
 
 				}
 				else {
 					
 					PlayButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/playWhite32.png")));
 					IsPlayButton = 1;
-					framePos = song.getFramePosition();
-					song.stop();
-					
 				}
 			}
 			@Override
@@ -1020,7 +984,7 @@ private JTextField textField;
 		lblAlbums.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				cl.show(Container,"Albums");
+				cl.show(Container,"AlbumsTab");
 				lblUtwory.setText(language.getString("albumy"));
 			}
 		});
@@ -1051,7 +1015,7 @@ private JTextField textField;
 		sdbrbtnctnsDevpanel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				cl.show(Container,"DevPanelRemastered");
+				cl.show(Container,"Dev_PanelRemastered");
 				lblUtwory.setText("Dev_Panel");
 				
 			}
@@ -1502,14 +1466,17 @@ private JTextField textField;
 		label_3.setFont(new Font("Dubai Medium", Font.BOLD, 15));
 		
 		JScrollPane CreatorsTab = new JScrollPane();
+		CreatorsTab.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		CreatorsTab.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		CreatorsTab.setBackground(new Color(36,36,36));
 		CreatorsTab.setBorder(new EmptyBorder(0, 0, 0, 0));
 		Container.add(CreatorsTab, "CreatorsCard");
 		
 		JPanel CreatorsTabViewPort = new JPanel();
+		CreatorsTabViewPort.setPreferredSize(new Dimension(1200, 700));
 		CreatorsTabViewPort.setBackground(new Color(36,36,36));
 		CreatorsTab.setViewportView(CreatorsTabViewPort);
-		LayoutManagmentMethods.addDevPanel(scrollPane_3,dbrowCount,3,SongsTabViewPort,CreatorsTabViewPort);
+		
 		MainContentCardsMethods.ArtistsCardAddContent(CreatorsTabViewPort,0,1,0);
 		
 		JScrollPane DevPanelRemastered = new JScrollPane();
@@ -1522,7 +1489,7 @@ private JTextField textField;
 		DevPanelViewPort.setBackground(Color.DARK_GRAY);
 		DevPanelRemastered.setViewportView(DevPanelViewPort);
 		DevPanelViewPort.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		LayoutManagmentMethods.addLeftDevPanel(DevPanelViewPort,dbrowCount,SongsTabViewPort,CreatorsTabViewPort);
+	
 		
 		JPanel UserRanks = new JPanel();
 		UserRanks.setPreferredSize(new Dimension(500, 400));
@@ -1558,15 +1525,39 @@ private JTextField textField;
 		btnRemoveUserFrom.setBounds(174, 68, 183, 23);
 		panel_15.add(btnRemoveUserFrom);
 		
-		JPanel panel_13 = new JPanel();
-		panel_13.setBackground(Color.GRAY);
-		panel_13.setBounds(0, 0, 500, 180);
-		UserRanks.add(panel_13);
-		panel_13.setLayout(null);
+		JPanel Users_Container = new JPanel();
+		Users_Container.setBackground(Color.DARK_GRAY);
+		Users_Container.setBounds(0, 0, 500, 180);
+		UserRanks.add(Users_Container);
+		Users_Container.setLayout(null);
 		
-		JLabel lblNewLabel_7 = new JLabel("Tu bedzie lista userow i ich id + uprawnnienia");
-		lblNewLabel_7.setBounds(0, 0, 499, 169);
-		panel_13.add(lblNewLabel_7);
+		JScrollPane UsersTAB = new JScrollPane();
+		UsersTAB.setBackground(Color.RED);
+		UsersTAB.setBounds(0, 0, 500, 180);
+		Users_Container.add(UsersTAB);
+		
+		JPanel UsersTabViewPort = new JPanel();
+		UsersTabViewPort.setBackground(Color.LIGHT_GRAY);
+		UsersTAB.setViewportView(UsersTabViewPort);
+		UsersTabViewPort.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JScrollPane AlbumsTab = new JScrollPane();
+		AlbumsTab.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+		AlbumsTab.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		AlbumsTab.setMaximumSize(new Dimension(1400, 700));
+		AlbumsTab.setBorder(new EmptyBorder(0, 0, 0, 0));
+		AlbumsTab.setBackground(new Color(36, 36, 36));
+		Container.add(AlbumsTab, "AlbumsTab");
+		
+		JPanel AlbumsTabViewPort = new JPanel();
+		AlbumsTabViewPort.setPreferredSize(new Dimension(1200, 700));
+		AlbumsTabViewPort.setMaximumSize(new Dimension(1400, 700));
+		AlbumsTab.setViewportView(AlbumsTabViewPort);
+		AlbumsTabViewPort.setBackground(new Color(36,36,36));
+		AlbumsTabViewPort.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		MainContentCardsMethods.AlbumsCardAddContent(AlbumsTabViewPort, 0, 1,0);
+		LayoutManagmentMethods.addDevPanel(scrollPane_3,dbrowCount,3,SongsTabViewPort,CreatorsTabViewPort,AlbumsTabViewPort);
+		LayoutManagmentMethods.addLeftDevPanel(DevPanelViewPort,dbrowCount,SongsTabViewPort,CreatorsTabViewPort,AlbumsTabViewPort);
 		lblWykonawcy.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -1630,31 +1621,5 @@ private JTextField textField;
 				
 			}
 		});
-		
 	}
-	public void playSong(String song_name, float volume, int framePos)
-	
-	{
-	
-		if (!isFirst)
-		{
-		song.stop();
-		song.close();
-		}
-		else
-		{
-		isFirst = false;
-		}
-		try {
-			
-			//System.out.print(url);
-			song = new Audio(song_name);
-		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		framePos=0;
-		song.play(volume, framePos);
-		
-		}
 }

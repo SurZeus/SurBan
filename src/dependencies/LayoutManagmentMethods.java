@@ -2,6 +2,7 @@ package dependencies;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -802,7 +803,7 @@ public class LayoutManagmentMethods {
 		};
 
 		
-			public static void LeftDevPanel_addAlbumCard(JPanel cardContainer) {
+			public static void LeftDevPanel_addAlbumCard(JPanel cardContainer,JPanel AlbumsCardsPanel) {
 				JPanel Card1 = new JPanel();
 				Card1.setBackground(Color.DARK_GRAY);
 				Card1.setBounds(33, 517, 300, 341);
@@ -928,7 +929,7 @@ public class LayoutManagmentMethods {
 						AddAlbumToDb temp = new AddAlbumToDb();
 						String album = textField_3.getText();
 						int artist = Integer.parseInt(textField_4.getText());
-		
+						AlbumsCardsPanel.removeAll();
 						try {
 							temp.dodajbaza(album,artist);
 						} catch (ClassNotFoundException e) {
@@ -936,7 +937,7 @@ public class LayoutManagmentMethods {
 							e.printStackTrace();
 						}
 					
-						
+						MainContentCardsMethods.AlbumsCardAddContent(AlbumsCardsPanel,0,1,0);
 					}
 				});
 				
@@ -1031,7 +1032,7 @@ public class LayoutManagmentMethods {
 				cardsContainer.add(Card1,"AddArtistCard");
 				
 			}
-			public static void addLeftDevPanel(JPanel panel, int rowCount,JPanel SongsCardsPanel, JPanel ArtistsCardsPanel) {
+			public static void addLeftDevPanel(JPanel panel, int rowCount,JPanel SongsCardsPanel, JPanel ArtistsCardsPanel, JPanel AlbumsCardsPanel) {
 				int y_pos=-1;
 
 				JTextField textField;
@@ -1095,7 +1096,7 @@ public class LayoutManagmentMethods {
 					//}*/
 				//});
 				LeftDevPanel_addSongCard(SettingsCardsContainer,SongsCardsPanel);
-				LeftDevPanel_addAlbumCard(SettingsCardsContainer);
+				LeftDevPanel_addAlbumCard(SettingsCardsContainer,AlbumsCardsPanel);
 				LeftDevPanel_addArtistCard(SettingsCardsContainer,ArtistsCardsPanel);
 				cl.show(SettingsCardsContainer, "AddSongsCard");
 				btnNewButton_4.addMouseListener(new MouseAdapter() {
@@ -1142,7 +1143,7 @@ public class LayoutManagmentMethods {
 					panel.add(DB_View);
 				}
 			
-			public static void addDevPanel(JScrollPane scrollPane, int dbrowCount, int cardNumber,JPanel SongsCardsContainer,JPanel ArtistsCardsContainer) {
+			public static void addDevPanel(JScrollPane scrollPane, int dbrowCount, int cardNumber,JPanel SongsCardsContainer,JPanel ArtistsCardsContainer ,JPanel AlbumsCardsPanel) {
 				JPanel panel_9 = new JPanel(){
 				    protected void paintComponent(Graphics g)
 				    {
@@ -1251,7 +1252,7 @@ public class LayoutManagmentMethods {
 			
 
 				
-				LayoutManagmentMethods.addLeftDevPanel(panel_9,dbrowCount,SongsCardsContainer,ArtistsCardsContainer);
+				LayoutManagmentMethods.addLeftDevPanel(panel_9,dbrowCount,SongsCardsContainer,ArtistsCardsContainer,AlbumsCardsPanel);
 				LayoutManagmentMethods.addRightDevPanel(panel_9);
 			
 				

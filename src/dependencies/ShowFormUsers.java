@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class ShowFormAlbums {
+public class ShowFormUsers {
 	
 		private Connection connect=null;
 		private Statement statement=null;
@@ -19,7 +19,7 @@ public class ShowFormAlbums {
 		private String haslo = null;
 		private String url;
 		public static int count;
-	public ShowFormAlbums() {
+	public ShowFormUsers() {
 		
 		}
 			

@@ -3,6 +3,7 @@ package dependencies;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
@@ -262,7 +263,139 @@ ShowFormMusic tempMusic1 = new ShowFormMusic();
 		}
 		
 		
+		public static void addAlbumsTile(JPanel rowContainer,int rowNumber,int status) {
 			
+			if(status ==1 ) {
+				rowNumber =ShowFormAlbums.Albumy.length -1;
+			}
+			JPanel AlbumTile = new JPanel();
+			AlbumTile.setPreferredSize(new Dimension(196, 270));
+		AlbumTile.setOpaque(false);
+		AlbumTile.setBackground(Color.DARK_GRAY);
+		AlbumTile.setBounds(66, 50, 196, 270);
+	
+		AlbumTile.setLayout(null);
+		
+		JPanel ImageFrame = new JPanel() {
+	    protected void paintComponent(Graphics g)
+	    {
+	        g.setColor( getBackground() );
+	        g.fillRect(0, 0, getWidth(), getHeight());
+	        super.paintComponent(g);
+	    }
+	};
+		ImageFrame.setBackground(Color.GRAY);
+		ImageFrame.setInheritsPopupMenu(true);
+
+		ImageFrame.setOpaque(false);
+		ImageFrame.setBounds(0, 0, 196, 196);
+		AlbumTile.add(ImageFrame);
+		ImageFrame.setLayout(null);
+		
+		JPanel Overlay = new JPanel() {
+	    protected void paintComponent(Graphics g)
+	    {
+	        g.setColor( getBackground() );
+	        g.fillRect(0, 0, getWidth(), getHeight());
+	        super.paintComponent(g);
+	    }
+	};
+
+		Overlay.setOpaque(false);
+		Overlay.setBackground(new Color(25,25,25,1));
+		
+		
+		Overlay.setBounds(0, 0, 196, 196);
+		ImageFrame.add(Overlay);
+		Overlay.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setPreferredSize(new Dimension(196, 196));
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setBounds(0, 0, 196, 196);
+	
+		Overlay.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
+		lblNewLabel.setIcon(new ImageIcon(new javax.swing.ImageIcon(LayoutManagmentMethods.class.getResource("/img/dkac2.jpg")).getImage().getScaledInstance(196, 196, Image.SCALE_SMOOTH)));
+		lblNewLabel.setBounds(0, 0, 196, 196);
+		ImageFrame.add(lblNewLabel);
+		
+		JPanel panel_1 = new JPanel() {
+				protected void paintComponent(Graphics g)
+	    {
+	        g.setColor( getBackground() );
+	        g.fillRect(0, 0, getWidth(), getHeight());
+	        super.paintComponent(g);
+	    }
+	};
+		panel_1.setBackground(new Color(255,255,255,1));
+		panel_1.setOpaque(false);
+
+		panel_1.setBounds(0, 196, 196, 75);
+		AlbumTile.add(panel_1);
+		panel_1.setLayout(null);
+		Overlay.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				Overlay.setBackground(new Color(25,25,25,200));
+				lblNewLabel_1.setIcon(new ImageIcon(LayoutManagmentMethods.class.getResource("/img/playWhite48.png")));
+			}
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				Overlay.setBackground(new Color(25,25,25,1));
+				lblNewLabel_1.setIcon(new ImageIcon(LayoutManagmentMethods.class.getResource("")));
+			}
+			
+		});
+		
+		
+		JLabel Title = new JLabel(ShowFormAlbums.Albumy[rowNumber][0]);
+		Title .setForeground(new Color(255,255,255));
+		Title .setFont(new Font("Dubai Medium", Font.PLAIN, 16));
+		Title.setHorizontalAlignment(SwingConstants.LEFT);
+		Title.setBounds(0, 0, 196, 35);
+		panel_1.add(Title);
+		JLabel Autor = new JLabel(ShowFormAlbums.Albumy[rowNumber][1]);
+		Autor.setForeground(new Color(179, 179, 179));
+		Autor.setFont(new Font("Dubai Medium", Font.PLAIN, 16));
+		Autor.setHorizontalAlignment(SwingConstants.LEFT);
+		Autor.setBounds(0, 20, 196, 35);
+		panel_1.add(Autor);
+		
+	
+		rowContainer.add(AlbumTile);
+		
+		
+	
+		
+		
+		
+	
+		}
+
+		public static int AlbumsCardAddContent(JPanel rowContainer,int runTimes,int dbRowCount,int status) {
+			ShowFormAlbums tempMusic1 = new ShowFormAlbums();
+				
+					
+					
+					try {
+						tempMusic1.displayMusic();
+					}catch(Exception e){
+						e.getStackTrace();
+					}
+				
+					dbRowCount =ShowFormAlbums.count;
+					//ShowFormMusic.Utwory[][];
+					for(int i=0;i<dbRowCount;i++) {
+					addAlbumsTile(rowContainer,i,status);
+					}
+					
+					
+					return dbRowCount;
+				}
 		
 	public static void refreshIfNeeded() {
 		
