@@ -39,7 +39,7 @@ import java.awt.GridLayout;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.FontFormatException;
-
+import java.net.URL;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.AdjustmentEvent;
@@ -120,7 +120,7 @@ public static JLabel changePassCom;
 public static Audio audioPlayer;
 
 private JTextField textField;
-
+private DataBaseView dbView;
 private Audio song;
 private boolean isFirst = false;
 private float volume = 500.0f;
@@ -139,7 +139,7 @@ private Mysql baza = new Mysql();
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MainScreen.class.getResource("/img/polack.png")));
 		setBackground(Color.PINK);
 		
-		setMinimumSize(new Dimension(1400,700));
+		setMinimumSize(new Dimension(1400,400));
 		setTitle("SurBan Studio");
 		MainScreen.setDefaultLookAndFeelDecorated(true);
 		
@@ -240,6 +240,7 @@ private Mysql baza = new Mysql();
 		TopCenterPanel.add(panel_12, gbc_panel_12);
 		
 		JLabel lblUtwory = new JLabel(language.getString("utwory"));
+		lblUtwory.setVisible(false);
 		lblUtwory.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblUtwory.setHorizontalTextPosition(SwingConstants.LEFT);
 		lblUtwory.setHorizontalAlignment(SwingConstants.LEFT);
@@ -327,17 +328,7 @@ private Mysql baza = new Mysql();
 		
 		JLabel label_2 = new JLabel("");
 		label_2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		label_2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				label_2.setIcon(new ImageIcon(MainScreen.class.getResource("/img/homeFilledWhite32.png")));
-			}
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				label_2.setIcon(new ImageIcon(MainScreen.class.getResource("/img/home1.png")));
-			}
-			
-		});
+		
 		label_2.setVerticalAlignment(SwingConstants.TOP);
 		label_2.setHorizontalAlignment(SwingConstants.CENTER);
 		label_2.setIcon(new ImageIcon(MainScreen.class.getResource("/img/home1.png")));
@@ -393,9 +384,9 @@ private Mysql baza = new Mysql();
 		scrollPane.setViewportView(panel_8);
 		GridBagLayout gbl_panel_8 = new GridBagLayout();
 		gbl_panel_8.columnWidths = new int[]{133, 0};
-		gbl_panel_8.rowHeights = new int[]{20, 35, 35, 35, 35, 35, 0, 0, 0, 0};
+		gbl_panel_8.rowHeights = new int[]{20, 35, 35, 35, 35, 0, 0, 0, 0};
 		gbl_panel_8.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_panel_8.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_8.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		panel_8.setLayout(gbl_panel_8);
 		
 		JPanel SongButtonPanel = new JPanel();
@@ -436,29 +427,12 @@ private Mysql baza = new Mysql();
 		lblAlbums.setFont(new Font("Dubai Medium", Font.BOLD, 14));
 		AlbumsButtonPanel.add(lblAlbums);
 		
-		
-		JPanel FavouritesButtonPanel = new JPanel();
-		FavouritesButtonPanel.setBackground(new Color(18, 18, 18));
-		GridBagConstraints gbc_FavouritesButtonPanel = new GridBagConstraints();
-		gbc_FavouritesButtonPanel.insets = new Insets(0, 0, 5, 0);
-		gbc_FavouritesButtonPanel.gridx = 0;
-		gbc_FavouritesButtonPanel.gridy = 3;
-		panel_8.add(FavouritesButtonPanel, gbc_FavouritesButtonPanel);
-		
-		SideBarButtonActions DevPanelRemastered_1 = new SideBarButtonActions();
-		DevPanelRemastered_1.setText(language.getString("ulubione"));
-		
-		DevPanelRemastered_1.setHorizontalAlignment(SwingConstants.CENTER);
-		DevPanelRemastered_1.setForeground(new Color(179, 179, 179));
-		DevPanelRemastered_1.setFont(new Font("Dubai Medium", Font.BOLD, 14));
-		FavouritesButtonPanel.add(DevPanelRemastered_1);
-		
 		JPanel PlayListsPanel = new JPanel();
 		PlayListsPanel.setBackground(new Color(18, 18, 18));
 		GridBagConstraints gbc_PlayListsPanel = new GridBagConstraints();
 		gbc_PlayListsPanel.insets = new Insets(0, 0, 5, 0);
 		gbc_PlayListsPanel.gridx = 0;
-		gbc_PlayListsPanel.gridy = 4;
+		gbc_PlayListsPanel.gridy = 3;
 		panel_8.add(PlayListsPanel, gbc_PlayListsPanel);
 		
 		SideBarButtonActions lblPlaylisty = new SideBarButtonActions();
@@ -478,7 +452,7 @@ private Mysql baza = new Mysql();
 		GridBagConstraints gbc_lblWykonawcy = new GridBagConstraints();
 		gbc_lblWykonawcy.insets = new Insets(0, 0, 5, 0);
 		gbc_lblWykonawcy.gridx = 0;
-		gbc_lblWykonawcy.gridy = 5;
+		gbc_lblWykonawcy.gridy = 4;
 		panel_8.add(lblWykonawcy, gbc_lblWykonawcy);
 		
 		JLabel lblSettings = new JLabel(language.getString("ustawienia"));
@@ -488,14 +462,14 @@ private Mysql baza = new Mysql();
 		GridBagConstraints gbc_lblSettings = new GridBagConstraints();
 		gbc_lblSettings.insets = new Insets(0, 0, 5, 0);
 		gbc_lblSettings.gridx = 0;
-		gbc_lblSettings.gridy = 6;
+		gbc_lblSettings.gridy = 5;
 		panel_8.add(lblSettings, gbc_lblSettings);
 		
 		SideBarButtonActions sideBarButtonActions = new SideBarButtonActions();
 		GridBagConstraints gbc_sideBarButtonActions = new GridBagConstraints();
 		gbc_sideBarButtonActions.insets = new Insets(0, 0, 5, 0);
 		gbc_sideBarButtonActions.gridx = 0;
-		gbc_sideBarButtonActions.gridy = 7;
+		gbc_sideBarButtonActions.gridy = 6;
 		panel_8.add(sideBarButtonActions, gbc_sideBarButtonActions);
 		
 		JPanel panel_5 = new JPanel();
@@ -503,7 +477,7 @@ private Mysql baza = new Mysql();
 		GridBagConstraints gbc_panel_5 = new GridBagConstraints();
 		gbc_panel_5.fill = GridBagConstraints.BOTH;
 		gbc_panel_5.gridx = 0;
-		gbc_panel_5.gridy = 8;
+		gbc_panel_5.gridy = 7;
 		panel_8.add(panel_5, gbc_panel_5);
 		
 		SideBarButtonActions sdbrbtnctnsDevpanel = new SideBarButtonActions();
@@ -665,7 +639,7 @@ private Mysql baza = new Mysql();
 		SongsRowTemplate.add(SongsRowPlayButton, gbc_SongsRowPlayButton);
 		
 		JLabel SongsRowFavoriteButton = new JLabel("");
-		SongsRowFavoriteButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/favIcon2.png")));
+		SongsRowFavoriteButton.setIcon(null);
 		GridBagConstraints gbc_SongsRowFavoriteButton = new GridBagConstraints();
 		gbc_SongsRowFavoriteButton.fill = GridBagConstraints.VERTICAL;
 		gbc_SongsRowFavoriteButton.insets = new Insets(0, 0, 0, 5);
@@ -735,8 +709,8 @@ private Mysql baza = new Mysql();
 		//MainContentCardsMethods.SongsCardAddContent(SongsTabViewPort,0,dbRowCountOld,0);
 		MainContentCardsMethods.SongsCardAddContent(SongsTabViewPort, 0, 1,0);
 	
-		SongsRowPlayButton.addMouseListener(new MouseAdapter() {
-			@Override
+		//SongsRowPlayButton.addMouseListener(new MouseAdapter() {
+			/*@Override
 			public void mouseEntered(MouseEvent e) {
 				SongsRowPlayButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/playWhite24.png")));
 				SongsRowTemplate.setBackground(new Color(50,50,50));
@@ -746,7 +720,7 @@ private Mysql baza = new Mysql();
 				SongsRowPlayButton.setIcon(null);
 				SongsRowTemplate.setBackground(new Color(36,36,36));
 			}
-		});
+		});*/
 		cl.show(Container,"SongsTab");
 		//cl.show(Container,"SongsTab");
 		JPanel SongsHeader = new JPanel();
@@ -871,6 +845,15 @@ private Mysql baza = new Mysql();
 				PrevButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/previouseGray.png")));
 			}
 		});
+		
+		if(loginek.isAdmin==0)
+		{
+			sdbrbtnctnsDevpanel.hide();
+		}
+		else
+		{
+			sdbrbtnctnsDevpanel.show();
+		}
 		panel_4.add(PrevButton);
 		PrevButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/previouseGray.png")));
 		
@@ -895,17 +878,39 @@ private Mysql baza = new Mysql();
 				if( IsPlayButton ==1){
 					PlayButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/pauseWhite32.png")));
 					IsPlayButton = 0;		
+					try {
+						song = new Audio(song_name);
+					} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					if (!isFirst)
+					{
+
+						song.stop();
+						song.play(volume, framePos);
+						song.playAfterPause(framePos);
+					}
+					else
+					{
+						song.play(volume, framePos);
+
+					}
 
 				}
 				else {
 					
 					PlayButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/playWhite32.png")));
 					IsPlayButton = 1;
+					framePos = song.getFramePosition();
+					song.stop();
+
 				}
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
 				IsButtonWhite =0;
+				
 				if(IsPlayButton ==1) {
 					PlayButton.setIcon(new ImageIcon(MainScreen.class.getResource("/img/playGray32.png")));
 				}
@@ -981,6 +986,7 @@ private Mysql baza = new Mysql();
 		
 		JProgressBar progressBar = new JProgressBar();
 		GridBagConstraints gbc_progressBar = new GridBagConstraints();
+		gbc_progressBar.fill = GridBagConstraints.HORIZONTAL;
 		gbc_progressBar.insets = new Insets(0, 0, 0, 5);
 		gbc_progressBar.gridx = 1;
 		gbc_progressBar.gridy = 1;
@@ -1024,19 +1030,13 @@ private Mysql baza = new Mysql();
 		sdbrbtnctnsDevpanel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				cl.show(Container,"Dev_PanelRemastered");
+				cl.show(Container,"DevPanelRemastered");
 				lblUtwory.setText("Dev_Panel_Remastered");
+				
 				
 			}
 		});
 		
-		
-		DevPanelRemastered_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				cl.show(Container,"DevPanelRemastered");
-			}
-		});
 		lblSettings.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -1489,13 +1489,15 @@ private Mysql baza = new Mysql();
 		MainContentCardsMethods.ArtistsCardAddContent(CreatorsTabViewPort,0,1,0);
 		
 		JScrollPane DevPanelRemastered = new JScrollPane();
+		DevPanelRemastered.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		DevPanelRemastered.setBorder(new EmptyBorder(0, 0, 0, 0));
 		DevPanelRemastered.setBackground(new Color(36, 36, 36));
 		Container.add(DevPanelRemastered, "DevPanelRemastered");
 		
 		JPanel DevPanelViewPort = new JPanel();
+		DevPanelViewPort.setPreferredSize(new Dimension(1000, 1000));
 	
-		DevPanelViewPort.setBackground(Color.DARK_GRAY);
+		DevPanelViewPort.setBackground(new Color(36,36,36));
 		DevPanelRemastered.setViewportView(DevPanelViewPort);
 		DevPanelViewPort.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 	
@@ -1523,9 +1525,10 @@ private Mysql baza = new Mysql();
 		panel_15.add(User_Id);
 		
 		JButton btnNewButton = new JButton("Promote");
-		btnNewButton.addMouseListener(new MouseAdapter() {
+		/*btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				//AlbumsCardsPanel.removeAll();
 				String DemPom = textDemPom.getText();
 				int id = Integer.parseInt(DemPom);
 			 try {
@@ -1538,64 +1541,45 @@ private Mysql baza = new Mysql();
 				e1.printStackTrace();
 			}
 			}
-		});
+		});*/
 		btnNewButton.setBounds(174, 36, 89, 23);
 		panel_15.add(btnNewButton);
 		
 		JButton btnDemote = new JButton("Demote");
-		btnDemote.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-				String DemPom = textDemPom.getText();
-				int id = Integer.parseInt(DemPom);
-				try {
-						baza.PromoteDemoteUser(1, id);
-					} catch (ClassNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (Throwable e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					}
-			
-		});
+		
 		btnDemote.setBounds(268, 36, 89, 23);
 		panel_15.add(btnDemote);
 		
 		JButton btnRemoveUserFrom = new JButton("Remove User From Database");
-		btnRemoveUserFrom.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				String DemPom = textDemPom.getText();
-				int id = Integer.parseInt(DemPom);
-				try {
-					baza.DeleteUser(id);
-				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (Throwable e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
+		
 		btnRemoveUserFrom.setBounds(174, 68, 183, 23);
 		panel_15.add(btnRemoveUserFrom);
 		
+		JButton btnNewButton_1 = new JButton("Show DataBase");
+		
+		btnNewButton_1.setBounds(174, 148, 183, 23);
+		panel_15.add(btnNewButton_1);
+		btnNewButton_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dbView = new DataBaseView();
+				dbView.frame.setVisible(true);
+			}
+		});
+		
 		JPanel Users_Container = new JPanel();
-		Users_Container.setBackground(Color.DARK_GRAY);
+		Users_Container.setBackground(Color.WHITE);
 		Users_Container.setBounds(0, 0, 500, 180);
 		UserRanks.add(Users_Container);
 		Users_Container.setLayout(null);
 		
 		JScrollPane UsersTAB = new JScrollPane();
 		UsersTAB.setBackground(Color.RED);
-		UsersTAB.setBounds(0, 0, 500, 180);
+		UsersTAB.setBounds(0, 47, 500, 133);
 		Users_Container.add(UsersTAB);
 		
 		JPanel UsersTabViewPort = new JPanel();
+		UsersTabViewPort.setPreferredSize(new Dimension(450, 10));
 		UsersTabViewPort.setBackground(Color.LIGHT_GRAY);
 		UsersTAB.setViewportView(UsersTabViewPort);
 		UsersTabViewPort.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -1617,6 +1601,249 @@ private Mysql baza = new Mysql();
 		MainContentCardsMethods.AlbumsCardAddContent(AlbumsTabViewPort, 0, 1,0);
 		LayoutManagmentMethods.addDevPanel(scrollPane_3,dbrowCount,3,SongsTabViewPort,CreatorsTabViewPort,AlbumsTabViewPort);
 		LayoutManagmentMethods.addLeftDevPanel(DevPanelViewPort,dbrowCount,SongsTabViewPort,CreatorsTabViewPort,AlbumsTabViewPort);
+		MainContentCardsMethods.UsersCardAddContent(UsersTabViewPort, 0, 1,0);
+		
+		JPanel panel_16 = new JPanel();
+		panel_16.setBounds(55, 11, 400, 30);
+		Users_Container.add(panel_16);
+		panel_16.setLayout(null);
+		panel_16.setPreferredSize(new Dimension(400, 30));
+		
+		JLabel label_4 = new JLabel("Id_Uzytkownika");
+		label_4.setBounds(10, 5, 124, 14);
+		panel_16.add(label_4);
+		
+		JLabel label_5 = new JLabel("Login");
+		label_5.setBounds(173, 5, 124, 14);
+		panel_16.add(label_5);
+		
+		JLabel label_6 = new JLabel("Ranga");
+		label_6.setBounds(332, 5, 46, 14);
+		panel_16.add(label_6);
+		
+		JScrollPane HomeTab = new JScrollPane();
+		HomeTab.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+		HomeTab.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		HomeTab.setBorder(new EmptyBorder(0, 0, 0, 0));
+		HomeTab.setBackground(new Color(36, 36, 36));
+		Container.add(HomeTab, "HomeCard");
+		
+		JPanel HomeTabViewPort = new JPanel();
+		HomeTabViewPort.setPreferredSize(new Dimension(1200, 10));
+		HomeTabViewPort.setBackground(new Color(36,36,36));
+		HomeTab.setViewportView(HomeTabViewPort);
+		label_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				label_2.setIcon(new ImageIcon(MainScreen.class.getResource("/img/homeFilledWhite32.png")));
+				
+			}
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				label_2.setIcon(new ImageIcon(MainScreen.class.getResource("/img/home1.png")));
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cl.show(Container, "HomeCard");
+			}
+		});
+		HomeTabViewPort.setLayout(null);
+		JPanel panel_13 = new JPanel();
+		panel_13.setOpaque(false);
+		panel_13.setBounds(0, 0, 1200, 89);
+		panel_13.setPreferredSize(new Dimension(1200, 50));
+		panel_13.setBackground(Color.DARK_GRAY);
+		HomeTabViewPort.add(panel_13);
+		panel_13.setLayout(null);
+		
+		JLabel lblNewLabel_7 = new JLabel("Welcome" + " " + loginek.username + " ! ");
+		lblNewLabel_7.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblNewLabel_7.setForeground(Color.LIGHT_GRAY);
+		lblNewLabel_7.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_7.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblNewLabel_7.setBounds(0, 5, 1184, 84);
+		panel_13.add(lblNewLabel_7);
+		
+		JPanel panelsContainer = new JPanel();
+		panelsContainer.setBounds(0, 87, 1190, 400);
+		panelsContainer.setPreferredSize(new Dimension(300, 400));
+		HomeTabViewPort.add(panelsContainer);
+		panelsContainer.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		panelsContainer.setBackground(new Color(36,36,36));
+		JPanel ArtistTile = new JPanel()
+		{
+		    protected void paintComponent(Graphics g)
+		    {
+		        g.setColor( getBackground() );
+		        g.fillRect(0, 0, getWidth(), getHeight());
+		        super.paintComponent(g);
+		    }
+		};
+		
+		ArtistTile.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		
+		ArtistTile.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.LIGHT_GRAY));
+		ArtistTile.setPreferredSize(new Dimension(300, 390));
+		ArtistTile.setBackground(new Color (36,36,36));
+		panelsContainer.add(ArtistTile);
+		ArtistTile.setLayout(null);
+		
+		JPanel OverlayTile3 = new JPanel();
+		OverlayTile3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		OverlayTile3.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.LIGHT_GRAY));
+		OverlayTile3.setBackground(new Color (36,36,36,255));
+		OverlayTile3.setBounds(0, 0, 300, 390);
+		ArtistTile.add(OverlayTile3);
+		OverlayTile3.setLayout(null);
+		OverlayTile3.setVisible(false);
+		
+		JLabel lblNewLabel_10c = new JLabel("");
+		lblNewLabel_10c.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_10c.setIcon(new ImageIcon(MainScreen.class.getResource("/img/doorsHome.png")));
+		lblNewLabel_10c.setBounds(0, 5, 300, 385);
+		OverlayTile3.add(lblNewLabel_10c);
+		
+		JPanel panel_19c = new JPanel();
+		panel_19c.setBorder(new MatteBorder(0, 1, 1, 1, (Color) Color.LIGHT_GRAY));
+		panel_19c.setBackground(new Color (36,36,36));
+		panel_19c.setBounds(0, 263, 300, 127);
+		ArtistTile.add(panel_19c);
+		panel_19c.setLayout(null);
+		
+		JLabel lblNewLabel_8c= new JLabel("Artists");
+		lblNewLabel_8c.setBorder(new MatteBorder(0, 1, 1, 1, (Color) Color.LIGHT_GRAY));
+		lblNewLabel_8c.setForeground(Color.LIGHT_GRAY);
+		lblNewLabel_8c.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblNewLabel_8c.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_8c.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblNewLabel_8c.setBounds(0, 5, 300, 122);
+		panel_19c.add(lblNewLabel_8c);
+		
+		JLabel lblNewLabel_9c = new JLabel("");
+		lblNewLabel_9c.setBackground(Color.BLACK);
+		lblNewLabel_9c.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblNewLabel_9c.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_9c.setIcon(new ImageIcon(MainScreen.class.getResource("/img/artistsHome.png")));
+		lblNewLabel_9c.setBounds(0, 0, 300, 263);
+		ArtistTile.add(lblNewLabel_9c);
+		
+		
+		JPanel AudioTile = new JPanel()
+		{
+		    protected void paintComponent(Graphics g)
+		    {
+		        g.setColor( getBackground() );
+		        g.fillRect(0, 0, getWidth(), getHeight());
+		        super.paintComponent(g);
+		    }
+		};
+		AudioTile.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		
+		AudioTile.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.LIGHT_GRAY));
+		AudioTile.setPreferredSize(new Dimension(300, 390));
+		AudioTile.setBackground(new Color (36,36,36));
+		panelsContainer.add(AudioTile);
+		AudioTile.setLayout(null);
+		
+		JPanel OverlayTile = new JPanel();
+		OverlayTile.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		OverlayTile.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.LIGHT_GRAY));
+		OverlayTile.setBackground(new Color (36,36,36,255));
+		OverlayTile.setBounds(0, 0, 300, 390);
+		AudioTile.add(OverlayTile);
+		OverlayTile.setLayout(null);
+		OverlayTile.setVisible(false);
+		
+		JLabel lblNewLabel_10 = new JLabel("");
+		lblNewLabel_10.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_10.setIcon(new ImageIcon(MainScreen.class.getResource("/img/doorsHome.png")));
+		lblNewLabel_10.setBounds(0, 5, 300, 385);
+		OverlayTile.add(lblNewLabel_10);
+		
+		JPanel panel_19 = new JPanel();
+		panel_19.setBorder(new MatteBorder(0, 1, 1, 1, (Color) Color.LIGHT_GRAY));
+		panel_19.setBackground(new Color (36,36,36));
+		panel_19.setBounds(0, 263, 300, 127);
+		AudioTile.add(panel_19);
+		panel_19.setLayout(null);
+		
+		JLabel lblNewLabel_8 = new JLabel("Songs");
+		lblNewLabel_8.setBorder(new MatteBorder(0, 1, 1, 1, (Color) Color.LIGHT_GRAY));
+		lblNewLabel_8.setForeground(Color.LIGHT_GRAY);
+		lblNewLabel_8.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblNewLabel_8.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_8.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblNewLabel_8.setBounds(0, 5, 300, 122);
+		panel_19.add(lblNewLabel_8);
+		
+		JLabel lblNewLabel_9 = new JLabel("");
+		lblNewLabel_9.setBackground(Color.BLACK);
+		lblNewLabel_9.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblNewLabel_9.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_9.setIcon(new ImageIcon(MainScreen.class.getResource("/img/musicHome2.png")));
+		lblNewLabel_9.setBounds(0, 0, 300, 263);
+		AudioTile.add(lblNewLabel_9);
+		
+		//
+		JPanel AlbumsTile = new JPanel()
+		{
+		    protected void paintComponent(Graphics g)
+		    {
+		        g.setColor( getBackground() );
+		        g.fillRect(0, 0, getWidth(), getHeight());
+		        super.paintComponent(g);
+		    }
+		};
+		AlbumsTile.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		
+		AlbumsTile.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.LIGHT_GRAY));
+		AlbumsTile.setPreferredSize(new Dimension(300, 390));
+		AlbumsTile.setBackground(new Color (36,36,36));
+		panelsContainer.add(AlbumsTile);
+		AlbumsTile.setLayout(null);
+		
+		JPanel OverlayTile2 = new JPanel();
+		OverlayTile2.setVisible(false);
+		OverlayTile2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		OverlayTile2.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.LIGHT_GRAY));
+		OverlayTile2.setBackground(new Color (36,36,36,255));
+		OverlayTile2.setBounds(0, 0, 300, 390);
+		AlbumsTile.add(OverlayTile2);
+		OverlayTile2.setLayout(null);
+		
+		JLabel lblNewLabel_10a = new JLabel("");
+		lblNewLabel_10a.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_10a.setIcon(new ImageIcon(MainScreen.class.getResource("/img/doorsHome.png")));
+		lblNewLabel_10a.setBounds(0, 5, 300, 385);
+		OverlayTile2.add(lblNewLabel_10a);
+		
+		JPanel panel_19a = new JPanel();
+		panel_19a.setBounds(0, 263, 300, 127);
+		AlbumsTile.add(panel_19a);
+		panel_19a.setBorder(new MatteBorder(0, 1, 1, 1, (Color) Color.LIGHT_GRAY));
+		panel_19a.setBackground(new Color (36,36,36));
+		panel_19a.setLayout(null);
+		
+		JLabel lblNewLabel_8a = new JLabel("Albums");
+		lblNewLabel_8a.setBorder(new MatteBorder(0, 1, 1, 1, (Color) Color.LIGHT_GRAY));
+		lblNewLabel_8a.setForeground(Color.LIGHT_GRAY);
+		lblNewLabel_8a.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblNewLabel_8a.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_8a.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblNewLabel_8a.setBounds(0, 5, 300, 122);
+		panel_19a.add(lblNewLabel_8a);
+		
+		JLabel lblNewLabel_9a = new JLabel("");
+		lblNewLabel_9a.setBackground(Color.BLACK);
+		lblNewLabel_9a.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblNewLabel_9a.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_9a.setIcon(new ImageIcon(MainScreen.class.getResource("/img/albumsHome.png")));
+		lblNewLabel_9a.setBounds(0, 0, 300, 263);
+		AlbumsTile.add(lblNewLabel_9a);
+		
+		
+		
 		lblWykonawcy.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -1680,5 +1907,135 @@ private Mysql baza = new Mysql();
 				
 			}
 		});
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				UsersTabViewPort.removeAll();
+				UsersTabViewPort.setVisible(false);
+				String DemPom = textDemPom.getText();
+				int id = Integer.parseInt(DemPom);
+			 try {
+				baza.PromoteDemoteUser(0, id);
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (Throwable e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+				MainContentCardsMethods.UsersCardAddContent(UsersTabViewPort, 0, 1,0);
+				UsersTabViewPort.setVisible(true);
+			}
+		});
+		btnDemote.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				UsersTabViewPort.removeAll();
+				UsersTabViewPort.setVisible(false);
+				String DemPom = textDemPom.getText();
+				int id = Integer.parseInt(DemPom);
+				try {
+						baza.PromoteDemoteUser(1, id);
+					} catch (ClassNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (Throwable e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				MainContentCardsMethods.UsersCardAddContent(UsersTabViewPort, 0, 1,0);
+				UsersTabViewPort.setVisible(true);
+					}
+			
+		});
+		AudioTile.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				OverlayTile.setVisible(true);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				OverlayTile.setVisible(false);
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cl.show(Container,"SongsTab");
+			}
+		});
+		
+		ArtistTile.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				OverlayTile3.setVisible(true);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				OverlayTile3.setVisible(false);
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cl.show(Container,"CreatorsCard");
+			}
+		});
+		
+		AlbumsTile.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				OverlayTile2.setVisible(true);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				OverlayTile2.setVisible(false);
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cl.show(Container,"AlbumsTab");
+			}
+		});
+		btnRemoveUserFrom.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				UsersTabViewPort.removeAll();
+				UsersTabViewPort.setVisible(false);
+				String DemPom = textDemPom.getText();
+				int id = Integer.parseInt(DemPom);
+				try {
+					baza.DeleteUser(id);
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (Throwable e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				MainContentCardsMethods.UsersCardAddContent(UsersTabViewPort, 0, 1,0);
+				UsersTabViewPort.setVisible(true);
+			}
+		});
 	}
+	public void playSong(String song_name, float volume, int framePos)
+
+	{
+
+		if (!isFirst)
+		{
+		song.stop();
+		song.close();
+		}
+		else
+		{
+		isFirst = false;
+		}
+		try {
+
+			//System.out.print(url);
+			song = new Audio(song_name);
+		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		framePos=0;
+		song.play(volume, framePos);
+
+		}
 }

@@ -7,19 +7,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class ShowFormUsers {
+public class ShowFormAlbumsView {
 	
 		private Connection connect=null;
 		private Statement statement=null;
 		private ResultSet resultSet=null;
-		public static String[][] Users ;
+		public static String[][] Albumy ;
 		private String user="surb";
 		private String pass="zlRhOdY232..0";
 		private String login = null;
 		private String haslo = null;
 		private String url;
 		public static int count;
-	public ShowFormUsers() {
+	public ShowFormAlbumsView() {
 		
 		}
 			
@@ -33,16 +33,16 @@ public class ShowFormUsers {
 				statement=connect.createStatement();
 				Statement stmt = connect.createStatement();
 				ResultSet rs;
-				rs=stmt.executeQuery("SELECT COUNT(login) FROM uzytkownik");
+				rs=stmt.executeQuery("SELECT COUNT(nazwa_albumu) FROM album");
 			
 				if(rs.next()) 
 				count = rs.getInt(1);
 				
 				System.out.println("Liczba albumow");
 				System.out.println(count);
-			Users = new String[count][3];
-			 resultSet=statement.executeQuery("SELECT id_uzytkownika,login,uprawnienia  FROM uzytkownik");
-			 writeResultSet(resultSet,count,Users);
+			Albumy = new String[count][3];
+			 resultSet=statement.executeQuery("SELECT id_albumu, nazwa_albumu, id_wykonawcy  FROM album");
+			 writeResultSet(resultSet,count,Albumy);
 				connect.close();
 				System.out.println("Connection closed");
 				////INSERT//////////////////////////////////////
@@ -59,9 +59,9 @@ public class ShowFormUsers {
 		
 			int i =0;
 			while (resultSet.next()) {
-				tb[i][0]=resultSet.getString("id_uzytkownika");
-				tb[i][1]=resultSet.getString("login");
-				tb[i][2]=resultSet.getString("uprawnienia");
+				tb[i][0]=resultSet.getString("id_albumu");
+				tb[i][1]=resultSet.getString("id_wykonawcy");
+				tb[i][2]=resultSet.getString("nazwa_albumu");
 			
 				i++;
 			

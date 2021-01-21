@@ -1032,6 +1032,182 @@ public class LayoutManagmentMethods {
 				cardsContainer.add(Card1,"AddArtistCard");
 				
 			}
+			public static void LeftDevPanel_removeSongCard(JPanel cardsContainer, JPanel SongsCardsPanel) {
+				JPanel Card1 = new JPanel();
+				Card1.setBackground(Color.DARK_GRAY);
+				Card1.setBounds(33, 517, 300, 341);
+			
+				
+				JPanel AddSongCard = new JPanel();
+				AddSongCard.setLayout(null);
+				AddSongCard.setPreferredSize(new Dimension(300, 300));
+				Card1.add(AddSongCard);
+				
+				JLabel lblDevaddalbum = new JLabel("DevRemoveSong");
+				lblDevaddalbum.setHorizontalAlignment(SwingConstants.CENTER);
+				lblDevaddalbum.setBounds(0, 5, 300, 14);
+				AddSongCard.add(lblDevaddalbum);
+				
+				JPanel panel_4 = new JPanel();
+				panel_4.setBackground(Color.DARK_GRAY);
+				panel_4.setBounds(0, 30, 300, 273);
+				AddSongCard.add(panel_4);
+				GridBagLayout gbl_panel_4 = new GridBagLayout();
+				gbl_panel_4.columnWidths = new int[]{0, 0};
+				gbl_panel_4.rowHeights = new int[]{0, 0, 0};
+				gbl_panel_4.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+				gbl_panel_4.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+				panel_4.setLayout(gbl_panel_4);
+				
+				JPanel panel_5 = new JPanel();
+				GridBagConstraints gbc_panel_5 = new GridBagConstraints();
+				gbc_panel_5.fill = GridBagConstraints.BOTH;
+				gbc_panel_5.insets = new Insets(0, 0, 5, 0);
+				gbc_panel_5.gridx = 0;
+				gbc_panel_5.gridy = 0;
+				panel_4.add(panel_5, gbc_panel_5);
+				GridBagLayout gbl_panel_5 = new GridBagLayout();
+				gbl_panel_5.columnWidths = new int[]{100, 0, 0};
+				gbl_panel_5.rowHeights = new int[]{0, 0};
+				gbl_panel_5.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
+				gbl_panel_5.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+				panel_5.setLayout(gbl_panel_5);
+				
+				JLabel lblSetalbumtitle = new JLabel("Id_Of_Song");
+				GridBagConstraints gbc_lblSetalbumtitle = new GridBagConstraints();
+				gbc_lblSetalbumtitle.insets = new Insets(0, 0, 0, 5);
+				gbc_lblSetalbumtitle.gridx = 0;
+				gbc_lblSetalbumtitle.gridy = 0;
+				panel_5.add(lblSetalbumtitle, gbc_lblSetalbumtitle);
+				
+				JTextField  textField_3 = new JTextField();
+				textField_3.setColumns(10);
+				GridBagConstraints gbc_textField_3 = new GridBagConstraints();
+				gbc_textField_3.fill = GridBagConstraints.HORIZONTAL;
+				gbc_textField_3.gridx = 1;
+				gbc_textField_3.gridy = 0;
+				panel_5.add(textField_3, gbc_textField_3);
+				
+				JButton btnAddalbum = new JButton("Remove Song");
+				GridBagConstraints gbc_btnAddalbum = new GridBagConstraints();
+				gbc_btnAddalbum.gridx = 0;
+				gbc_btnAddalbum.gridy = 1;
+				panel_4.add(btnAddalbum, gbc_btnAddalbum);
+				btnAddalbum.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent arg0) {
+						RemoveSongFromDb temp = new RemoveSongFromDb();
+						String album = textField_3.getText();
+						int artist = Integer.parseInt(textField_3.getText());
+						SongsCardsPanel.removeAll();
+						try {
+							temp.DeleteUser(artist);
+						} catch (ClassNotFoundException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (Throwable e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					
+						MainContentCardsMethods.SongsCardAddContent(SongsCardsPanel,0,1,0);
+					}
+				});
+				
+				
+				
+				
+				cardsContainer.add(Card1,"RemoveSongsCard");
+				
+			}
+			public static void LeftDevPanel_removeArtistCard(JPanel cardsContainer, JPanel ArtistCardsPanel) {
+				JPanel Card1 = new JPanel();
+				Card1.setBackground(Color.DARK_GRAY);
+				Card1.setBounds(33, 517, 300, 341);
+			
+				
+				JPanel AddSongCard = new JPanel();
+				AddSongCard.setLayout(null);
+				AddSongCard.setPreferredSize(new Dimension(300, 300));
+				Card1.add(AddSongCard);
+				
+				JLabel lblDevaddalbum = new JLabel("DevRemoveArtist");
+				lblDevaddalbum.setHorizontalAlignment(SwingConstants.CENTER);
+				lblDevaddalbum.setBounds(0, 5, 300, 14);
+				AddSongCard.add(lblDevaddalbum);
+				
+				JPanel panel_4 = new JPanel();
+				panel_4.setBackground(Color.DARK_GRAY);
+				panel_4.setBounds(0, 30, 300, 273);
+				AddSongCard.add(panel_4);
+				GridBagLayout gbl_panel_4 = new GridBagLayout();
+				gbl_panel_4.columnWidths = new int[]{0, 0};
+				gbl_panel_4.rowHeights = new int[]{0, 0, 0};
+				gbl_panel_4.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+				gbl_panel_4.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+				panel_4.setLayout(gbl_panel_4);
+				
+				JPanel panel_5 = new JPanel();
+				GridBagConstraints gbc_panel_5 = new GridBagConstraints();
+				gbc_panel_5.fill = GridBagConstraints.BOTH;
+				gbc_panel_5.insets = new Insets(0, 0, 5, 0);
+				gbc_panel_5.gridx = 0;
+				gbc_panel_5.gridy = 0;
+				panel_4.add(panel_5, gbc_panel_5);
+				GridBagLayout gbl_panel_5 = new GridBagLayout();
+				gbl_panel_5.columnWidths = new int[]{100, 0, 0};
+				gbl_panel_5.rowHeights = new int[]{0, 0};
+				gbl_panel_5.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
+				gbl_panel_5.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+				panel_5.setLayout(gbl_panel_5);
+				
+				JLabel lblSetalbumtitle = new JLabel("Id_Of_Artist");
+				GridBagConstraints gbc_lblSetalbumtitle = new GridBagConstraints();
+				gbc_lblSetalbumtitle.insets = new Insets(0, 0, 0, 5);
+				gbc_lblSetalbumtitle.gridx = 0;
+				gbc_lblSetalbumtitle.gridy = 0;
+				panel_5.add(lblSetalbumtitle, gbc_lblSetalbumtitle);
+				
+				JTextField  textField_3 = new JTextField();
+				textField_3.setColumns(10);
+				GridBagConstraints gbc_textField_3 = new GridBagConstraints();
+				gbc_textField_3.fill = GridBagConstraints.HORIZONTAL;
+				gbc_textField_3.gridx = 1;
+				gbc_textField_3.gridy = 0;
+				panel_5.add(textField_3, gbc_textField_3);
+				
+				JButton btnAddalbum = new JButton("Remove Artist");
+				GridBagConstraints gbc_btnAddalbum = new GridBagConstraints();
+				gbc_btnAddalbum.gridx = 0;
+				gbc_btnAddalbum.gridy = 1;
+				panel_4.add(btnAddalbum, gbc_btnAddalbum);
+				btnAddalbum.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent arg0) {
+						RemoveArtistFromDb temp = new RemoveArtistFromDb();
+						String album = textField_3.getText();
+						int artist = Integer.parseInt(textField_3.getText());
+						ArtistCardsPanel.removeAll();
+						try {
+							temp.DeleteUser(artist);
+						} catch (ClassNotFoundException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (Throwable e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					
+						MainContentCardsMethods.ArtistsCardAddContent(ArtistCardsPanel,0,1,0);
+					}
+				});
+				
+				
+				
+				
+				cardsContainer.add(Card1,"RemoveArtistCard");
+				
+			}
 			public static void addLeftDevPanel(JPanel panel, int rowCount,JPanel SongsCardsPanel, JPanel ArtistsCardsPanel, JPanel AlbumsCardsPanel) {
 				int y_pos=-1;
 
@@ -1062,13 +1238,13 @@ public class LayoutManagmentMethods {
 				JButton btnNewButton_2 = new JButton("AddArtist");
 				LeftDevPanelButtons.add(btnNewButton_2);
 				
-				JButton btnNewButton_5 = new JButton("TBS1");
+				JButton btnNewButton_5 = new JButton("RemoveSong");
 				LeftDevPanelButtons.add(btnNewButton_5);
 				
-				JButton btnNewButton_1 = new JButton("TBS2");
+				JButton btnNewButton_1 = new JButton("RA");
 				LeftDevPanelButtons.add(btnNewButton_1);
 				
-				JButton btnNewButton_6 = new JButton("TBS3");
+				JButton btnNewButton_6 = new JButton("RemoveArtist");
 				LeftDevPanelButtons.add(btnNewButton_6);
 				
 				JPanel SettingsCardsContainer = new JPanel();
@@ -1098,6 +1274,8 @@ public class LayoutManagmentMethods {
 				LeftDevPanel_addSongCard(SettingsCardsContainer,SongsCardsPanel);
 				LeftDevPanel_addAlbumCard(SettingsCardsContainer,AlbumsCardsPanel);
 				LeftDevPanel_addArtistCard(SettingsCardsContainer,ArtistsCardsPanel);
+				LeftDevPanel_removeSongCard(SettingsCardsContainer,SongsCardsPanel);
+				LeftDevPanel_removeArtistCard(SettingsCardsContainer,ArtistsCardsPanel);
 				cl.show(SettingsCardsContainer, "AddSongsCard");
 				btnNewButton_4.addMouseListener(new MouseAdapter() {
 					@Override
@@ -1119,6 +1297,21 @@ public class LayoutManagmentMethods {
 					@Override
 					public void mouseClicked(MouseEvent arg0) {
 						cl.show(SettingsCardsContainer,"AddArtistCard");
+						
+					}
+				});
+				btnNewButton_5.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent arg0) {
+						cl.show(SettingsCardsContainer,"RemoveSongsCard");
+						
+					}
+				});
+				
+				btnNewButton_6.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent arg0) {
+						cl.show(SettingsCardsContainer,"RemoveArtistCard");
 						
 					}
 				});
@@ -1253,7 +1446,6 @@ public class LayoutManagmentMethods {
 
 				
 				LayoutManagmentMethods.addLeftDevPanel(panel_9,dbrowCount,SongsCardsContainer,ArtistsCardsContainer,AlbumsCardsPanel);
-				LayoutManagmentMethods.addRightDevPanel(panel_9);
 			
 				
 			};

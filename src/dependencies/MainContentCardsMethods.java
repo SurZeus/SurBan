@@ -154,6 +154,49 @@ ShowFormMusic tempMusic1 = new ShowFormMusic();
 		
 		return dbRowCount;
 	}
+	
+public static void addUsersRow(JPanel rowContainer,int rowNumber,int status) {
+		
+		if(status ==1 ) {
+			rowNumber =ShowFormUsers.Users.length -1;
+		}
+		JPanel panel_13 = new JPanel();
+		panel_13.setPreferredSize(new Dimension(400, 30));
+		rowContainer.add(panel_13);
+		panel_13.setLayout(null);
+		
+		JLabel lblNewLabel_8 = new JLabel(ShowFormUsers.Users[rowNumber][0]);
+		lblNewLabel_8.setBounds(10, 5, 124, 14);
+		panel_13.add(lblNewLabel_8);
+		
+		JLabel lblNewLabel_7 = new JLabel(ShowFormUsers.Users[rowNumber][1]);
+		lblNewLabel_7.setBounds(173, 5, 124, 14);
+		panel_13.add(lblNewLabel_7);
+		
+		JLabel lblNewLabel_9 = new JLabel(ShowFormUsers.Users[rowNumber][2]);
+		lblNewLabel_9.setBounds(332, 5, 46, 14);
+		panel_13.add(lblNewLabel_9);
+	}
+	public static int UsersCardAddContent(JPanel rowContainer,int runTimes,int dbRowCount,int status) {
+		ShowFormUsers tempMusic1 = new ShowFormUsers();
+			
+				
+				
+				try {
+					tempMusic1.displayMusic();
+				}catch(Exception e){
+					e.getStackTrace();
+				}
+			
+				dbRowCount =ShowFormUsers.count;
+				//ShowFormMusic.Utwory[][];
+				for(int i=0;i<dbRowCount;i++) {
+				addUsersRow(rowContainer,i,status);
+				}
+				
+				
+				return dbRowCount;
+			}
 	public static int dCardAddContent(JPanel rowContainer,int runTimes,int dbRowCount,int status) {
 		ShowFormMusic tempMusic1 = new ShowFormMusic();
 			
